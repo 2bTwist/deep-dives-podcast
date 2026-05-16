@@ -4,23 +4,25 @@ import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const url = process.argv[2] ?? 'http://localhost:3000/';
-const outDir = resolve('./screenshots/hero-focus');
+const outDir = resolve('./screenshots/shine');
 await mkdir(outDir, { recursive: true });
 
 const browser = await chromium.launch();
 const ctx = await browser.newContext({
   viewport: { width: 1440, height: 900 },
-  deviceScaleFactor: 2,
+  deviceScaleFactor: 3,
 });
 const page = await ctx.newPage();
 await page.goto(url, { waitUntil: 'networkidle' });
 await page.evaluate(() => document.fonts.ready);
 
-// Capture three frames ~1.2s apart so the gold-sweep animation lands at different positions
-const frames = ['a', 'b', 'c'];
-for (const tag of frames) {
-  await page.screenshot({ path: `${outDir}/hero-1440-${tag}.png`, fullPage: false });
-  await page.waitForTimeout(1200);
+// Screenshot just the gold-shine spans, three times, ~700ms apart
+const els = await page.locator('.text-gold-shine').all();
+for (let i = 0; i < els.length; i++) {
+  for (const tag of ['a', 'b', 'c']) {
+    await els[i].screenshot({ path: `${outDir}/shine-${i}-${tag}.png` });
+    await page.waitForTimeout(700);
+  }
 }
 await browser.close();
-console.log('done');
+console.log(`captured ${els.length * 3} shine frames`);

@@ -53,31 +53,52 @@ body {
   background: linear-gradient(90deg, transparent, var(--color-gold) 12%, var(--color-gold) 88%, transparent);
 }
 
-/* Metallic gold gradient text — used on the host name to make it pop.
-   Pairs with an animated background-position shimmer for a subtle glitter pass. */
+/* Metallic gold gradient text with wide highlight band + pulsing halo glow.
+   Used on host name treatments to make them shimmer + glow visibly at any size. */
 @utility text-gold-shine {
-  background: linear-gradient(
+  background-image: linear-gradient(
     100deg,
-    var(--color-gold) 0%,
-    var(--color-champagne) 30%,
-    var(--color-gold-bright) 50%,
-    var(--color-champagne) 70%,
-    var(--color-gold) 100%
+    #b88e44 0%,
+    #c8a25d 18%,
+    #e4b84f 36%,
+    #ffe9a8 46%,
+    #ffffff 50%,        /* bright sparkle peak */
+    #ffe9a8 54%,
+    #e4b84f 64%,
+    #c8a25d 82%,
+    #b88e44 100%
   );
   background-size: 220% 100%;
-  background-position: 0% 50%;
-  -webkit-background-clip: text;
+  background-position: 50% 50%;     /* sparkle visible mid-text on first paint */
   background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
-  text-shadow: 0 0 28px rgb(228 184 79 / 0.18);
-  animation: gold-shimmer 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 14px rgb(228 184 79 / 0.45));
+  animation:
+    gold-sweep 4s linear infinite,
+    gold-glow 2.8s ease-in-out infinite;
 }
 
-@keyframes gold-shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
+@keyframes gold-sweep {
+  from { background-position: 150% 50%; }
+  to   { background-position: -50% 50%; }
+}
+
+@keyframes gold-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgb(228 184 79 / 0.30));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 18px rgb(228 184 79 / 0.65))
+      drop-shadow(0 0 36px rgb(228 184 79 / 0.30));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .text-gold-shine { animation: none; }
+  .text-gold-shine {
+    animation: none;
+    background-position: 50% 50%;
+    filter: drop-shadow(0 0 8px rgb(228 184 79 / 0.35));
+  }
 }
