@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mic, Users, Globe, Heart } from "lucide-react";
 import type { ComponentType } from "react";
+import { Reveal } from "./Reveal";
 
 const values: { Icon: ComponentType<{ className?: string }>; title: string; body: string }[] = [
   {
@@ -22,7 +23,7 @@ const values: { Icon: ComponentType<{ className?: string }>; title: string; body
   {
     Icon: Heart,
     title: "A Community",
-    body: "10,000+ listeners who came for one episode and stayed for the conversation.",
+    body: "Listeners who came for one episode and stayed for the conversation.",
   },
 ];
 
@@ -33,14 +34,18 @@ export function WhyIStartedSection() {
         {/* Top: portrait + copy */}
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* LEFT — real portrait of Raissa (vertical crop from banner) */}
-          <div className="lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden bg-card">
+          <Reveal className="lg:col-span-5">
+            <Link
+              href="/about"
+              aria-label="Read about Raissa"
+              className="group relative block aspect-[4/5] overflow-hidden bg-card"
+            >
               <Image
                 src="/brand/raissa-portrait.png"
                 alt="Raissa, host and founder of Deep Dives Podcast"
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-[3000ms] ease-out group-hover:scale-[1.06]"
                 style={{ objectPosition: "50% 25%" }}
               />
               {/* edge vignettes */}
@@ -64,15 +69,22 @@ export function WhyIStartedSection() {
                 <p className="mt-3 font-script text-[34px] leading-[0.85] text-paper">
                   in her own words
                 </p>
-                <p className="mt-5 font-body text-[11px] uppercase tracking-[0.32em] text-paper/80">
-                  Host, Creator, @DeepDives237
-                </p>
+                {/* Caption swaps on hover: handle/role → "Read her story →" */}
+                <div className="relative mt-5 h-[14px]">
+                  <p className="absolute inset-0 font-body text-[11px] uppercase tracking-[0.32em] text-paper/80 transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:opacity-0">
+                    Host, Creator, @DeepDives237
+                  </p>
+                  <p className="absolute inset-0 flex translate-y-2 items-center gap-2 font-body text-[11px] uppercase tracking-[0.32em] text-gold opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                    Read her story
+                    <span aria-hidden>→</span>
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
+            </Link>
+          </Reveal>
 
           {/* RIGHT — copy */}
-          <div className="lg:col-span-7 lg:pt-6">
+          <Reveal delay={0.12} className="lg:col-span-7 lg:pt-6">
             <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
               About Raissa
             </p>
@@ -99,19 +111,21 @@ export function WhyIStartedSection() {
               Read My Story
               <span className="text-[14px] transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
-          </div>
+          </Reveal>
         </div>
 
         {/* Bottom: 4 value cards */}
         <div className="mt-24 grid grid-cols-1 gap-px bg-rule sm:grid-cols-2 lg:mt-32 lg:grid-cols-4">
-          {values.map(({ Icon, title, body }) => (
-            <div key={title} className="bg-surface p-8 lg:p-10">
-              <span className="inline-grid h-12 w-12 place-items-center border border-gold text-gold">
-                <Icon className="h-5 w-5" />
+          {values.map(({ Icon, title, body }, i) => (
+            <Reveal key={title} delay={i * 0.08} className="group bg-surface p-8 lg:p-10">
+              <span className="inline-grid h-12 w-12 place-items-center border border-gold text-gold transition-all duration-300 ease-out group-hover:border-gold-bright group-hover:text-gold-bright">
+                <Icon className="h-5 w-5 transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110" />
               </span>
-              <h3 className="mt-7 font-display text-[22px] leading-[1.2] text-paper">{title}</h3>
+              <h3 className="mt-7 font-display text-[22px] leading-[1.2] text-paper transition-colors duration-300 group-hover:text-gold">
+                {title}
+              </h3>
               <p className="mt-3 font-body italic text-sub text-[15px] leading-[1.55]">{body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
