@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev-only screenshot iterations + cache data from scripts/
+/screenshots/
+/scripts/*.json
