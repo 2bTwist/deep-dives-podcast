@@ -1,6 +1,6 @@
 ---
 date: 2026-05-16T18:24:49Z
-git_commit: bb4a8d7
+git_commit: ad2cc69
 branch: main
 repository: DeepDive Website
 topic: "Deep Dives Podcast homepage v1 shipped; deciding next direction"
@@ -9,6 +9,8 @@ status: in-progress
 last_updated: 2026-05-16
 type: handoff
 ---
+
+**Update after handoff write:** Strengthened `text-gold-shine` utility — wider white highlight band + faster 4s sweep + pulsing halo glow (2.8s). Added `scripts/screenshot-shine.mjs` for element-level animation capture. Committed as `ad2cc69`.
 
 # Handoff: Deep Dives Podcast homepage v1 shipped, deciding next direction
 
