@@ -8,6 +8,8 @@ export type EpisodeCategory =
   | "Immigrant Journeys";
 
 export type Episode = {
+  /** Sanity document id (e.g. "6e217fe6-…"). Absent only for legacy seed data. */
+  _id?: string;
   title: string;
   slug: string;
   guest?: string;

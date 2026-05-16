@@ -5,15 +5,21 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { EpisodeThumb } from "@/components/EpisodeThumb";
 import { reveal, stagger, microHover } from "@/lib/motion";
-import { featuredEpisode } from "@/data/episodes";
+import type { Episode } from "@/lib/types";
 
-const featured = featuredEpisode;
-const formattedDate = featured.publishedAt
-  ? new Date(featured.publishedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
-  : "";
+type Props = {
+  featured: Episode;
+};
 
-export function Hero() {
+export function Hero({ featured }: Props) {
   const reduced = useReducedMotion();
+  const formattedDate = featured.publishedAt
+    ? new Date(featured.publishedAt).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : "";
   const initialPose = reduced ? false : reveal.initial;
 
   return (
@@ -97,26 +103,29 @@ export function Hero() {
               </Link>
             </motion.div>
 
-            <motion.div
+            <motion.a
               initial={initialPose}
               animate={reveal.animate}
               transition={reveal.transition}
-              className="mt-14 flex items-center gap-5"
+              href="https://www.youtube.com/@DeepDives237"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-14 inline-flex items-center gap-4"
             >
-              <div className="flex -space-x-2">
-                {["A", "M", "T"].map((c, i) => (
-                  <span
-                    key={i}
-                    className="inline-grid h-9 w-9 place-items-center rounded-full border border-ink bg-deep-gray font-display text-[14px] text-gold"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-              <p className="font-body italic text-sub text-[14px] leading-[1.4]">
-                Join 10,000+ listeners exploring deeper conversations.
-              </p>
-            </motion.div>
+              <span className="grid h-10 w-10 place-items-center rounded-full border border-gold text-gold transition-colors duration-200 group-hover:bg-gold/10">
+                <svg viewBox="0 0 12 12" className="h-3.5 w-3.5 translate-x-[1px]" fill="currentColor" aria-hidden>
+                  <polygon points="2,0 12,6 2,12" />
+                </svg>
+              </span>
+              <span className="leading-tight">
+                <span className="block font-body text-[15px] font-medium tracking-[-0.005em] text-paper transition-colors duration-200 group-hover:text-gold">
+                  @DeepDives237
+                </span>
+                <span className="mt-1 block font-body italic text-sub text-[13px]">
+                  Long-form conversations on YouTube.
+                </span>
+              </span>
+            </motion.a>
           </div>
 
           {/* CENTER — real photo of Raissa from the YouTube banner */}
@@ -177,18 +186,15 @@ export function Hero() {
               Featured Episode
             </p>
 
-            <Link
-              href={`https://www.youtube.com/watch?v=${featured.youtubeId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
-            >
+            <Link href={`/episodes/${featured.slug}`} className="group block">
               <div className="relative aspect-video overflow-hidden bg-card">
                 <EpisodeThumb
                   id={featured.youtubeId}
                   alt={featured.title}
                   width={640}
                   height={360}
+                  priority
+                  sizes="(min-width: 1024px) 25vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 {/* play affordance */}

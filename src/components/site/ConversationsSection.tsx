@@ -1,30 +1,34 @@
 import Link from "next/link";
 import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
-import { episodes, featuredEpisode } from "@/data/episodes";
+import { Reveal } from "@/components/site/Reveal";
+import { getAllEpisodes } from "@/sanity/lib/queries";
 
 function formatDate(iso?: string) {
   if (!iso) return "";
   return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-export function ConversationsSection() {
+export async function ConversationsSection() {
+  const all = await getAllEpisodes();
   // Show next 4 episodes after the featured one (top of /episodes will show all)
-  const list = episodes.filter((e) => e.youtubeId !== featuredEpisode.youtubeId).slice(0, 4);
+  const featuredId = all[0]?.youtubeId;
+  const list = all.filter((e) => e.youtubeId !== featuredId).slice(0, 4);
+  if (list.length === 0) return null;
 
   return (
     <section className="relative">
       <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-32">
         {/* Masthead */}
         <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5">
             <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
               Latest Episodes
             </p>
             <h2 className="mt-5 font-display text-[56px] leading-[0.98] tracking-[-0.015em] lg:text-[72px]">
               Conversations <span className="block italic font-light text-sub">That Matter</span>
             </h2>
-          </div>
-          <div className="self-end lg:col-span-6 lg:col-start-7">
+          </Reveal>
+          <Reveal delay={0.08} className="self-end lg:col-span-6 lg:col-start-7">
             <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
               Long-form interviews with people who lived the story before they told it. Founders,
               clergy, planners, lobbyists, immigrants, the under-asked.
@@ -33,22 +37,18 @@ export function ConversationsSection() {
               href="/episodes"
               className="group mt-6 inline-flex items-center gap-3 font-body text-[12px] uppercase tracking-[0.28em] text-paper hover:text-gold transition-colors"
             >
-              All Episodes
+              More Episodes
               <span className="text-[14px] transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
-          </div>
+          </Reveal>
         </div>
 
         {/* Episode card grid — 4 cards with hairline gold dividers between */}
         <div className="grid grid-cols-1 gap-px bg-rule md:grid-cols-2 lg:grid-cols-4">
-          {list.map((ep) => (
-            <article key={ep.youtubeId} className="group bg-ink">
-              <Link
-                href={`https://www.youtube.com/watch?v=${ep.youtubeId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
+          {list.map((ep, i) => (
+            <Reveal key={ep.youtubeId} delay={i * 0.08} className="group bg-ink">
+              <article>
+              <Link href={`/episodes/${ep.slug}`} className="block">
                 <div className="relative aspect-video overflow-hidden bg-card">
                   <EpisodeThumbStatic
                     id={ep.youtubeId}
@@ -81,7 +81,8 @@ export function ConversationsSection() {
                   </p>
                 </div>
               </Link>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
