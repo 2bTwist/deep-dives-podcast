@@ -21,6 +21,18 @@ for (const width of widths) {
   await page.goto(url, { waitUntil: 'networkidle' });
   // Wait for fonts to settle
   await page.evaluate(() => document.fonts.ready);
+  // Scroll through the page so scroll-triggered (whileInView) reveals fire.
+  // Then scroll back to the top so screenshot starts from the masthead.
+  await page.evaluate(async () => {
+    const step = 400;
+    const total = document.documentElement.scrollHeight;
+    for (let y = 0; y < total; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 80));
+    }
+    window.scrollTo(0, 0);
+    await new Promise((r) => setTimeout(r, 400));
+  });
   const path = `${outDir}/${width}.png`;
   await page.screenshot({ path, fullPage: true });
   console.log(`  ${width}px → ${path}`);
