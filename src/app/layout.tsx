@@ -5,7 +5,7 @@ import "./globals.css";
 const playfair = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 const fraunces = Fraunces({
   variable: "--font-body",
   subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
+  axes: ["opsz"],
   style: ["normal", "italic"],
   display: "swap",
 });

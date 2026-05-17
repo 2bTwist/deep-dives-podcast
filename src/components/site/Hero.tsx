@@ -41,19 +41,16 @@ export function Hero({ featured }: Props) {
               Real Stories. Real People. Real Impact.
             </motion.p>
 
-            <motion.h1
-              initial={initialPose}
-              animate={reveal.animate}
-              transition={reveal.transition}
-              className="mt-8"
-            >
+            {/* h1 renders statically (no opacity fade) so it lands as LCP element
+                ASAP. Surrounding stagger continues to animate. */}
+            <h1 className="mt-8">
               <span className="block font-display text-[88px] leading-[0.92] tracking-[-0.015em] text-paper">
                 Deep Dives
               </span>
               <span className="-mt-3 ml-[-4px] block font-script text-[96px] leading-[0.78] text-gold">
                 Podcast
               </span>
-            </motion.h1>
+            </h1>
 
             <motion.p
               initial={initialPose}
