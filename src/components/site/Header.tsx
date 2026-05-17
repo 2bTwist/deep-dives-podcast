@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
 import { Logo } from "./Logo";
 import { SocialIcons } from "./SocialIcons";
 
@@ -148,78 +147,62 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="mobile-nav"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-x-0 bottom-0 top-[72px] z-30 bg-ink/[0.97] backdrop-blur-md lg:hidden"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Primary navigation"
-          >
-            <div className="flex h-full flex-col justify-between px-8 pb-12 pt-20">
-              <nav aria-label="Mobile primary">
-                <ul className="space-y-7">
-                  {navLinks.map((l, i) => {
-                    const active = isActive(l.href);
-                    return (
-                      <motion.li
-                        key={l.href}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.45,
-                          delay: 0.08 + i * 0.06,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                      >
-                        <Link
-                          href={l.href}
-                          aria-current={active ? "page" : undefined}
-                          className={
-                            "group flex items-baseline justify-between font-display text-[44px] leading-none tracking-[-0.01em] transition-colors duration-200 " +
-                            (active ? "text-gold" : "text-paper hover:text-gold")
-                          }
-                        >
-                          <span>{l.label}</span>
-                          <span className="text-[15px] opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
-                            →
-                          </span>
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
-                </ul>
-              </nav>
+      {/* Mobile overlay — always rendered, CSS-toggled visibility. No motion. */}
+      <div
+        id="mobile-nav"
+        role="dialog"
+        aria-modal={open}
+        aria-hidden={!open}
+        aria-label="Primary navigation"
+        className={
+          "fixed inset-x-0 bottom-0 top-[72px] z-30 bg-ink/[0.97] backdrop-blur-md transition-opacity duration-300 ease-out lg:hidden " +
+          (open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")
+        }
+      >
+        <div className="flex h-full flex-col justify-between px-8 pb-12 pt-20">
+          <nav aria-label="Mobile primary">
+            <ul className="space-y-7">
+              {navLinks.map((l) => {
+                const active = isActive(l.href);
+                return (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      tabIndex={open ? 0 : -1}
+                      aria-current={active ? "page" : undefined}
+                      className={
+                        "group flex items-baseline justify-between font-display text-[44px] leading-none tracking-[-0.01em] transition-colors duration-200 " +
+                        (active ? "text-gold" : "text-paper hover:text-gold")
+                      }
+                    >
+                      <span>{l.label}</span>
+                      <span className="text-[15px] opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.35 }}
-                className="space-y-6"
-              >
-                <a
-                  href="https://www.youtube.com/@DeepDives237?sub_confirmation=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-ink transition-colors duration-200 hover:bg-gold-bright"
-                >
-                  Subscribe on YouTube →
-                </a>
-                <SocialIcons />
-                <p className="font-body italic text-sub text-[13px]">
-                  @DeepDives237 — long-form on YouTube.
-                </p>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          <div className="space-y-6">
+            <a
+              href="https://www.youtube.com/@DeepDives237?sub_confirmation=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={open ? 0 : -1}
+              className="inline-flex items-center gap-2.5 bg-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-ink transition-colors duration-200 hover:bg-gold-bright"
+            >
+              Subscribe on YouTube →
+            </a>
+            <SocialIcons />
+            <p className="font-body italic text-sub text-[13px]">
+              @DeepDives237 — long-form on YouTube.
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
