@@ -3,12 +3,17 @@ import { Playfair_Display, Fraunces, Allura } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
+// All three brand fonts use display:swap with preload so the real fonts always
+// render eventually, even on cold first visits. We accept ~100-200ms of LCP
+// cost in exchange for brand fidelity — the original display:optional setup
+// caused first-time visitors to see system fallbacks for the entire pageview
+// when the fonts lost the ~100ms initial race.
 const playfair = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500"],
   style: ["normal", "italic"],
-  display: "optional",
+  display: "swap",
 });
 
 const fraunces = Fraunces({
@@ -16,16 +21,14 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   axes: ["opsz"],
   style: ["normal", "italic"],
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 const allura = Allura({
   variable: "--font-script",
   subsets: ["latin"],
   weight: ["400"],
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
   title: {
     default: 'Deep Dives Podcast with Raissa',
-    template: '%s — Deep Dives Podcast',
+    template: '%s | Deep Dives Podcast',
   },
   description:
     'Genuine conversations that inspire, educate, and empower. Real stories. Real people. Real impact.',
