@@ -14,7 +14,7 @@ export function Logo({
   size?: number;
 }) {
   return (
-    <Link href="/" className="group inline-flex items-center gap-3" aria-label="Deep Dives Podcast — home">
+    <Link href="/" className="group inline-flex items-center gap-3" aria-label="Deep Dives Podcast, home">
       <span
         className="relative inline-block overflow-hidden rounded-full bg-paper ring-1 ring-gold/60 transition-all duration-300 group-hover:ring-gold-bright"
         style={{ width: size, height: size }}

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
 import { Reveal } from "@/components/site/Reveal";
+import { DropCap } from "@/components/site/DropCap";
+import { NewBadge } from "@/components/site/NewBadge";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 
 function formatDate(iso?: string) {
@@ -21,24 +23,23 @@ export async function ConversationsSection() {
         {/* Masthead */}
         <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5">
-            <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-              Latest Episodes
-            </p>
-            <h2 className="mt-5 font-display text-[56px] leading-[0.98] tracking-[-0.015em] lg:text-[72px]">
-              Conversations <span className="block italic font-light text-sub">That Matter</span>
+            <h2 className="font-display text-[56px] leading-[0.98] tracking-[-0.015em] lg:text-[72px]">
+              <DropCap letter="C" />onversations
+              <span className="block italic font-light text-sub">That Matter</span>
+              <span className="clear-both block" />
             </h2>
           </Reveal>
-          <Reveal delay={0.08} className="self-end lg:col-span-6 lg:col-start-7">
+          <Reveal delay={0.08} className="self-end lg:col-span-7 lg:col-start-6">
             <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
               Long-form interviews with people who lived the story before they told it. Founders,
               clergy, planners, lobbyists, immigrants, the under-asked.
             </p>
             <Link
               href="/episodes"
-              className="group mt-6 inline-flex items-center gap-3 font-body text-[12px] uppercase tracking-[0.28em] text-paper hover:text-gold transition-colors"
+              className="group mt-6 inline-flex items-baseline gap-3 font-body text-[14px] uppercase tracking-[0.14em] text-gold transition-colors hover:text-gold-bright"
             >
-              More Episodes
-              <span className="text-[14px] transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="border-b border-gold/50 pb-1 transition-colors group-hover:border-gold-bright">More episodes</span>
+              <span className="text-[15px] transition-transform duration-200 ease-out group-hover:translate-x-1">→</span>
             </Link>
           </Reveal>
         </div>
@@ -71,6 +72,7 @@ export async function ConversationsSection() {
                   <span className="absolute right-3 top-3 bg-ink/85 px-2.5 py-1 font-body text-[11px] uppercase tracking-[0.16em] text-paper">
                     {ep.duration}
                   </span>
+                  <NewBadge publishedAt={ep.publishedAt} />
                 </div>
 
                 <div className="p-6">
@@ -80,9 +82,6 @@ export async function ConversationsSection() {
                   <h3 className="mt-3 font-display text-[22px] leading-[1.18] text-paper transition-colors duration-200 group-hover:text-gold">
                     {ep.title}
                   </h3>
-                  <p className="mt-6 font-body italic text-sub text-[13px]">
-                    {formatDate(ep.publishedAt)}
-                  </p>
                 </div>
               </Link>
               </article>

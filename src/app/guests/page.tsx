@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
+import { DropCap } from "@/components/site/DropCap";
+import { NewBadge } from "@/components/site/NewBadge";
 import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 
@@ -37,7 +39,7 @@ const voices: { label: string; archetype: string; body: string }[] = [
   {
     label: "Creatives at Work",
     archetype: "Past the highlight reel.",
-    body: "Writers, musicians, designers, photographers. The middle of a creative life — process, paychecks, persistence.",
+    body: "Writers, musicians, designers, photographers. The middle of a creative life. Process, paychecks, persistence.",
   },
   {
     label: "Faith & Doubt",
@@ -47,9 +49,9 @@ const voices: { label: string; archetype: string; body: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Guests — Deep Dive Podcast with Raissa",
+  title: "Guests",
   description:
-    "The kinds of voices Deep Dives features — founders, planners, clergy, civic voices, immigrants, creatives. Pitch yourself.",
+    "The kinds of voices Deep Dives features. Founders, planners, clergy, civic voices, immigrants, creatives. Pitch yourself.",
 };
 
 export default async function GuestsPage() {
@@ -64,17 +66,16 @@ export default async function GuestsPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
-                <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                  Who comes on the show
-                </p>
-                <h1 className="mt-5 font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
-                  Voices <span className="italic font-light text-sub">we feature.</span>
+                <h1 className="font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
+                  <DropCap letter="V" />oices
+                  <span className="italic font-light text-sub"> we feature.</span>
+                  <span className="clear-both block" />
                 </h1>
               </Reveal>
-              <Reveal delay={0.1} className="self-end lg:col-span-4 lg:col-start-9">
+              <Reveal delay={0.1} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
                   Deep Dives isn't a celebrity show. It's a conversation show. The full guest
-                  directory is coming — for now, here's the kind of room we're building.
+                  directory is coming. For now, here's the kind of room we're building.
                 </p>
               </Reveal>
             </div>
@@ -98,6 +99,9 @@ export default async function GuestsPage() {
                   <p className="mt-5 font-body text-sub text-[15px] leading-[1.6]">{v.body}</p>
                 </Reveal>
               ))}
+              {Array.from({ length: (3 - (voices.length % 3)) % 3 }).map((_, i) => (
+                <div key={`filler-${i}`} aria-hidden className="hidden bg-surface lg:block" />
+              ))}
             </div>
           </div>
           <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
@@ -108,16 +112,15 @@ export default async function GuestsPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-32">
             <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
-                <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                  Recent conversations
-                </p>
-                <h2 className="mt-5 font-display text-[44px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
-                  The latest <span className="italic font-light text-sub">guests.</span>
+                <h2 className="font-display text-[44px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
+                  <DropCap letter="T" />he latest
+                  <span className="italic font-light text-sub"> guests.</span>
+                  <span className="clear-both block" />
                 </h2>
               </Reveal>
-              <Reveal delay={0.08} className="self-end lg:col-span-4 lg:col-start-9">
+              <Reveal delay={0.08} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[17px] leading-[1.55]">
-                  Watch the conversations themselves — guest names and topic notes live in each
+                  Watch the conversations themselves. Guest names and topic notes live in each
                   episode.
                 </p>
               </Reveal>
@@ -142,6 +145,7 @@ export default async function GuestsPage() {
                       <span className="absolute right-3 top-3 bg-ink/85 px-2.5 py-1 font-body text-[11px] uppercase tracking-[0.16em] text-paper">
                         {ep.duration}
                       </span>
+                      <NewBadge publishedAt={ep.publishedAt} />
                     </div>
                     <div className="p-6">
                       <p className="font-body text-[11px] uppercase tracking-[0.28em] text-gold">
@@ -164,14 +168,13 @@ export default async function GuestsPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-32">
             <Reveal className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-7">
-                <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                  Want to come on the show?
-                </p>
-                <h2 className="mt-5 font-display text-[44px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
-                  Pitch <span className="italic font-light text-sub">yourself.</span>
+                <h2 className="font-display text-[44px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
+                  <DropCap letter="P" />itch
+                  <span className="italic font-light text-sub"> yourself.</span>
+                  <span className="clear-both block" />
                 </h2>
                 <p className="mt-6 max-w-xl font-body italic text-sub text-[18px] leading-[1.55]">
-                  If your story doesn't fit a tweet — or hasn't been told the way you'd tell it —
+                  If your story doesn't fit a tweet, or hasn't been told the way you'd tell it,
                   send it in. The best pitches start with the one moment you'd open the
                   conversation with.
                 </p>

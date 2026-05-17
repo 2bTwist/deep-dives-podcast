@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
+import { DropCap } from "@/components/site/DropCap";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Terms of Use — Deep Dive Podcast with Raissa",
+  title: "Terms of Use",
   description: "The terms that govern your use of the Deep Dives website and content.",
 };
 
@@ -21,17 +22,16 @@ export default function TermsPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
-                <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                  Rules of the road
-                </p>
-                <h1 className="mt-5 font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
-                  Terms <span className="italic font-light text-sub">of Use.</span>
+                <h1 className="font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
+                  <DropCap letter="T" />erms
+                  <span className="italic font-light text-sub"> of Use.</span>
+                  <span className="clear-both block" />
                 </h1>
                 <p className="mt-6 font-body italic text-sub text-[14px]">
                   Last updated {LAST_UPDATED}
                 </p>
               </Reveal>
-              <Reveal delay={0.1} className="self-end lg:col-span-4 lg:col-start-9">
+              <Reveal delay={0.1} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
                   Short version: enjoy the show, don't repost the episodes as your own, and don't
                   break the site on purpose.
@@ -89,7 +89,7 @@ export default function TermsPage() {
                 <p className="mt-5 font-body text-paper text-[18px] leading-[1.7]">
                   The site and its content are provided "as is" without warranties of any kind.
                   Conversations on Deep Dives reflect the views of the host and guests in the
-                  moment they were recorded — they are not professional advice (legal, medical,
+                  moment they were recorded. They are not professional advice (legal, medical,
                   financial, or otherwise). Use your own judgment.
                 </p>
               </div>

@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
+import { DropCap } from "@/components/site/DropCap";
 import { ContactForm } from "@/components/site/ContactForm";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Contact — Deep Dive Podcast with Raissa",
+  title: "Contact",
   description:
     "Write to Deep Dives. Guest pitches, press inquiries, partnerships, or just hello.",
 };
@@ -22,14 +23,13 @@ export default function ContactPage() {
             {/* Masthead */}
             <div className="mb-20 grid gap-8 lg:mb-24 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
-                <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                  Get in touch
-                </p>
-                <h1 className="mt-5 font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
-                  Write to <span className="italic font-light text-sub">Deep Dives.</span>
+                <h1 className="font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
+                  <DropCap letter="W" />rite to
+                  <span className="italic font-light text-sub"> Deep Dives.</span>
+                  <span className="clear-both block" />
                 </h1>
               </Reveal>
-              <Reveal delay={0.1} className="self-end lg:col-span-4 lg:col-start-9">
+              <Reveal delay={0.1} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
                   Guest pitches, press, partnerships, or just a note about an episode that landed.
                   Every message gets read.

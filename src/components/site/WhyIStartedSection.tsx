@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Mic, Users, Globe, Heart } from "lucide-react";
 import type { ComponentType } from "react";
 import { Reveal } from "./Reveal";
+import { DropCap } from "./DropCap";
+import { PullQuote } from "./PullQuote";
 
 const values: { Icon: ComponentType<{ className?: string }>; title: string; body: string }[] = [
   {
@@ -13,12 +15,12 @@ const values: { Icon: ComponentType<{ className?: string }>; title: string; body
   {
     Icon: Users,
     title: "Inspiring Guests",
-    body: "Founders, planners, lobbyists, immigrants — voices you don't hear on autopilot.",
+    body: "Founders, planners, lobbyists, immigrants. Voices you don't hear on autopilot.",
   },
   {
     Icon: Globe,
     title: "Meaningful Impact",
-    body: "Stories that travel — from launch to listener to action.",
+    body: "Stories that travel, from launch to listener to action.",
   },
   {
     Icon: Heart,
@@ -56,11 +58,6 @@ export function WhyIStartedSection() {
               {/* gradient ceiling for top label */}
               <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/70 to-transparent" />
 
-              {/* top label */}
-              <p className="absolute left-6 right-6 top-6 font-body text-[11px] uppercase tracking-[0.32em] text-gold">
-                The Founder
-              </p>
-
               {/* bottom overlay */}
               <div className="absolute bottom-8 left-8 right-8">
                 <p className="font-display italic font-light text-[64px] leading-[0.92] tracking-[-0.01em] text-gold-shine lg:text-[80px]">
@@ -85,31 +82,36 @@ export function WhyIStartedSection() {
 
           {/* RIGHT — copy */}
           <Reveal delay={0.12} className="lg:col-span-7 lg:pt-6">
-            <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-              About Raissa
-            </p>
-            <h2 className="mt-5 font-display text-[56px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
-              Why I Started <span className="block italic font-light text-sub">Deep Dives</span>
+            <h2 className="font-display text-[56px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
+              <DropCap letter="W" />hy I Started
+              <span className="block italic font-light text-sub">Deep Dives</span>
+              <span className="clear-both block" />
             </h2>
 
             <div className="mt-10 max-w-xl space-y-6 font-body text-sub text-[18px] leading-[1.6]">
               <p>
                 I made Deep Dives because the conversations I most wanted to hear weren't happening
-                anywhere. The kind where someone actually answers the question. Where the camera
-                doesn't cut when the truth gets quiet.
+                anywhere. The kind where someone actually answers the question.
               </p>
+            </div>
+
+            <PullQuote className="max-w-xl">
+              Where the camera doesn&rsquo;t cut when the truth gets quiet.
+            </PullQuote>
+
+            <div className="max-w-xl font-body text-sub text-[18px] leading-[1.6]">
               <p>
-                No filters. No fluff. Real people sharing the stories that shaped them — and the
-                lessons they're still working out in real time.
+                No filters. No fluff. Real people sharing the stories that shaped them, and the
+                lessons they&rsquo;re still working out in real time.
               </p>
             </div>
 
             <Link
               href="/about"
-              className="group mt-10 inline-flex items-center gap-3 font-body text-[12px] uppercase tracking-[0.28em] text-paper transition-colors hover:text-gold"
+              className="group mt-10 inline-flex items-baseline gap-3 font-body text-[14px] uppercase tracking-[0.14em] text-gold transition-colors hover:text-gold-bright"
             >
-              Read My Story
-              <span className="text-[14px] transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="border-b border-gold/50 pb-1 transition-colors group-hover:border-gold-bright">Read my story</span>
+              <span className="text-[15px] transition-transform duration-200 ease-out group-hover:translate-x-1">→</span>
             </Link>
           </Reveal>
         </div>

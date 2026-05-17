@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Reveal } from "./Reveal";
+import { DropCap } from "./DropCap";
 
 export function CommunitySection() {
   const [email, setEmail] = useState("");
@@ -28,11 +29,10 @@ export function CommunitySection() {
           <div className="grid gap-10 px-8 py-14 lg:grid-cols-12 lg:gap-16 lg:px-16 lg:py-20">
             {/* Left — copy */}
             <div className="lg:col-span-6">
-              <p className="font-body text-[12px] uppercase tracking-[0.32em] text-ink/70">
-                The Community
-              </p>
-              <h2 className="mt-5 font-display text-[44px] leading-[1.0] tracking-[-0.015em] text-ink lg:text-[56px]">
-                Join the conversation <span className="italic font-light">before it airs.</span>
+              <h2 className="font-display text-[44px] leading-[1.0] tracking-[-0.015em] text-ink lg:text-[56px]">
+                <DropCap letter="J" color="ink" />oin the conversation
+                <span className="italic font-light"> before it airs.</span>
+                <span className="clear-both block" />
               </h2>
               <p className="mt-5 max-w-md font-body italic text-ink/80 text-[18px] leading-[1.5]">
                 New episodes, behind-the-scenes notes, and the occasional thought too long for an

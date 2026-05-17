@@ -41,7 +41,7 @@ export function ContactForm() {
           Thank you for writing.
         </p>
         <p className="mt-5 max-w-md font-body italic text-sub text-[16px] leading-[1.55]">
-          I read every note. You'll hear back from us — usually within a week. Often sooner.
+          I read every note. You'll hear back from us, usually within a week. Often sooner.
         </p>
       </div>
     );

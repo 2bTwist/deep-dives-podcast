@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { EpisodeThumb } from "@/components/EpisodeThumb";
+import { NewBadge } from "@/components/site/NewBadge";
 import type { Episode } from "@/lib/types";
 
 type Props = {
@@ -27,11 +28,7 @@ export function Hero({ featured }: Props) {
         <div className="grid gap-x-10 gap-y-16 pb-28 pt-20 lg:grid-cols-12 lg:gap-x-12 lg:pb-36 lg:pt-24">
           {/* LEFT — copy column */}
           <div className="lg:col-span-5">
-            <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-              Real Stories. Real People. Real Impact.
-            </p>
-
-            <h1 className="mt-8">
+            <h1 className="mt-2">
               <span className="block font-display text-[88px] leading-[0.92] tracking-[-0.015em] text-paper">
                 Deep Dives
               </span>
@@ -109,15 +106,6 @@ export function Hero({ featured }: Props) {
               <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent" />
               <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/70 to-transparent" />
 
-              <div className="absolute left-6 right-6 top-6 flex items-center justify-between">
-                <p className="font-body text-[11px] uppercase tracking-[0.32em] text-gold">
-                  Vol. 03
-                </p>
-                <p className="font-body text-[11px] uppercase tracking-[0.32em] text-paper/80">
-                  2026
-                </p>
-              </div>
-
               <div className="absolute bottom-6 left-6 right-6 text-center">
                 <p className="font-display italic text-[36px] leading-none text-gold-shine">
                   Raissa
@@ -131,8 +119,8 @@ export function Hero({ featured }: Props) {
 
           {/* RIGHT — Featured Episode card */}
           <aside className="lg:col-span-3">
-            <p className="pb-5 font-body text-[11px] uppercase tracking-[0.32em] text-gold">
-              Featured Episode
+            <p className="pb-5 font-body italic text-muted text-[13px]">
+              Latest episode · {formattedDate}
             </p>
 
             <Link href={`/episodes/${featured.slug}`} className="group block">
@@ -146,6 +134,7 @@ export function Hero({ featured }: Props) {
                   sizes="(min-width: 1024px) 25vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
+                <NewBadge publishedAt={featured.publishedAt} />
                 <span className="absolute inset-0 grid place-items-center">
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-gold text-ink transition-transform duration-300 group-hover:scale-110">
                     <svg viewBox="0 0 12 12" className="h-4 w-4 translate-x-[1px]" fill="currentColor" aria-hidden>

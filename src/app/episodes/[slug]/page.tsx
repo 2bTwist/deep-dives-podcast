@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
+import { DropCap } from "@/components/site/DropCap";
+import { NewBadge } from "@/components/site/NewBadge";
 import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes, getEpisodeBySlug, getEpisodeSlugs } from "@/sanity/lib/queries";
@@ -38,7 +40,7 @@ export async function generateMetadata({
   if (!ep) return {};
   const image = youtubeThumb(ep.youtubeId, "maxres");
   return {
-    title: `${ep.title} — Deep Dive Podcast with Raissa`,
+    title: `${ep.title} | Deep Dive Podcast with Raissa`,
     description: ep.description,
     alternates: { canonical: `/episodes/${ep.slug}` },
     openGraph: {
@@ -89,12 +91,12 @@ export default async function EpisodePage({
             <Reveal>
               <Link
                 href="/episodes"
-                className="group inline-flex items-center gap-2 font-body text-[12px] uppercase tracking-[0.28em] text-muted transition-colors hover:text-gold"
+                className="group inline-flex items-baseline gap-3 font-body text-[14px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-gold"
               >
-                <span className="text-[14px] transition-transform duration-200 group-hover:-translate-x-0.5">
+                <span className="text-[15px] transition-transform duration-200 ease-out group-hover:-translate-x-1">
                   ←
                 </span>
-                All Episodes
+                <span className="border-b border-muted/40 pb-1 transition-colors group-hover:border-gold/60">All episodes</span>
               </Link>
             </Reveal>
 
@@ -139,17 +141,10 @@ export default async function EpisodePage({
 
             {/* Description */}
             {ep.description ? (
-              <Reveal delay={0.12} className="mt-16 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-4">
-                  <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                    About this episode
-                  </p>
-                </div>
-                <div className="lg:col-span-8">
-                  <p className="font-body text-paper text-[22px] leading-[1.55] lg:text-[26px]">
-                    {ep.description}
-                  </p>
-                </div>
+              <Reveal delay={0.12} className="mt-16 lg:mt-20">
+                <p className="mx-auto max-w-3xl font-body text-paper text-[22px] leading-[1.55] lg:text-[26px]">
+                  {ep.description}
+                </p>
               </Reveal>
             ) : null}
           </div>
@@ -161,14 +156,13 @@ export default async function EpisodePage({
           <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-32">
             <div className="mb-14 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
-                <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                  Keep watching
-                </p>
-                <h2 className="mt-5 font-display text-[40px] leading-[1.0] tracking-[-0.015em] lg:text-[56px]">
-                  More <span className="italic font-light text-sub">conversations.</span>
+                <h2 className="font-display text-[40px] leading-[1.0] tracking-[-0.015em] lg:text-[56px]">
+                  <DropCap letter="M" />ore
+                  <span className="italic font-light text-sub"> conversations.</span>
+                  <span className="clear-both block" />
                 </h2>
               </Reveal>
-              <Reveal delay={0.08} className="self-end lg:col-span-4 lg:col-start-9">
+              <Reveal delay={0.08} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[17px] leading-[1.55]">
                   Other long-form interviews worth your full attention.
                 </p>
@@ -199,6 +193,7 @@ export default async function EpisodePage({
                       <span className="absolute right-3 top-3 bg-ink/85 px-2.5 py-1 font-body text-[11px] uppercase tracking-[0.16em] text-paper">
                         {r.duration}
                       </span>
+                      <NewBadge publishedAt={r.publishedAt} />
                     </div>
                     <div className="p-6 lg:p-7">
                       <p className="font-body text-[11px] uppercase tracking-[0.28em] text-gold">
@@ -207,9 +202,6 @@ export default async function EpisodePage({
                       <h3 className="mt-3 font-display text-[22px] leading-[1.18] text-paper transition-colors duration-200 group-hover:text-gold">
                         {r.title}
                       </h3>
-                      <p className="mt-5 font-body italic text-sub text-[13px]">
-                        {formatDate(r.publishedAt)}
-                      </p>
                     </div>
                   </Link>
                 </Reveal>

@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
+import { DropCap } from "@/components/site/DropCap";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Deep Dive Podcast with Raissa",
+  title: "Privacy Policy",
   description:
     "How Deep Dives handles your information when you sign up for the newsletter, send a message, or watch episodes.",
 };
@@ -22,17 +23,16 @@ export default function PrivacyPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
-                <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
-                  How we handle your data
-                </p>
-                <h1 className="mt-5 font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
-                  Privacy <span className="italic font-light text-sub">Policy.</span>
+                <h1 className="font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
+                  <DropCap letter="P" />rivacy
+                  <span className="italic font-light text-sub"> Policy.</span>
+                  <span className="clear-both block" />
                 </h1>
                 <p className="mt-6 font-body italic text-sub text-[14px]">
                   Last updated {LAST_UPDATED}
                 </p>
               </Reveal>
-              <Reveal delay={0.1} className="self-end lg:col-span-4 lg:col-start-9">
+              <Reveal delay={0.1} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
                   Short version: we only collect what you give us, we don't sell it, and you can
                   ask us to delete it anytime.
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
                   What we collect
                 </h2>
                 <p className="mt-5 font-body text-paper text-[18px] leading-[1.7]">
-                  Deep Dives only collects information you actively give us — primarily your email
+                  Deep Dives only collects information you actively give us, primarily your email
                   address when you subscribe to the newsletter, and whatever you write into the
                   contact form (name, email, message, subject).
                 </p>
@@ -69,7 +69,7 @@ export default function PrivacyPage() {
                 <p className="mt-5 font-body text-paper text-[18px] leading-[1.7]">
                   Email addresses from the newsletter signup are used solely to send updates about
                   new episodes and occasional behind-the-scenes notes from Raissa. Messages sent
-                  through the contact form are read and replied to by the Deep Dives team — they
+                  through the contact form are read and replied to by the Deep Dives team. They
                   are not used for marketing.
                 </p>
               </div>

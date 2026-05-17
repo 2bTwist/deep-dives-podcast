@@ -26,7 +26,7 @@ export default function GlobalError({ error, reset }: Props) {
               Off the <span className="italic font-light text-sub">air.</span>
             </h1>
             <p className="mx-auto mt-8 max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
-              An unexpected error interrupted the page. Try again — if it keeps happening, head
+              An unexpected error interrupted the page. Try again. If it keeps happening, head
               home and we'll get you back on track.
             </p>
             {error?.digest ? (

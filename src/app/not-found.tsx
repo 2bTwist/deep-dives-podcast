@@ -3,7 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
 export const metadata = {
-  title: "Not Found — Deep Dive Podcast with Raissa",
+  title: "Not Found",
   description: "The page you were looking for isn't here.",
   robots: { index: false, follow: false },
 };

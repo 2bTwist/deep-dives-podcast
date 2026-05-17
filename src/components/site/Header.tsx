@@ -194,7 +194,7 @@ export function Header() {
               </a>
               <SocialIcons />
               <p className="font-body italic text-sub text-[13px]">
-                @DeepDives237 — long-form on YouTube.
+                @DeepDives237. Long-form on YouTube.
               </p>
             </div>
           </div>
