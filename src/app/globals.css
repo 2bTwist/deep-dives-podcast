@@ -102,3 +102,13 @@ body {
     filter: drop-shadow(0 0 8px rgb(228 184 79 / 0.35));
   }
 }
+
+/* Mobile-nav overlay fade-in. CSS-only so motion isn't on the home bundle. */
+@utility animate-fade-in {
+  animation: fade-in 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
