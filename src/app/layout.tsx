@@ -15,7 +15,7 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   axes: ["opsz"],
   style: ["normal", "italic"],
-  display: "swap",
+  display: "optional",
   preload: false,
 });
 
@@ -23,7 +23,7 @@ const allura = Allura({
   variable: "--font-script",
   subsets: ["latin"],
   weight: ["400"],
-  display: "swap",
+  display: "optional",
   preload: false,
 });
 
@@ -88,6 +88,27 @@ export default function RootLayout({
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://www.youtube.com" />
         <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
+        {/* Prerender same-origin links on hover (Chromium only, ignored elsewhere).
+            Excludes /studio (5MB Sanity bundle) and /api routes. */}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prerender: [
+                {
+                  where: {
+                    and: [
+                      { href_matches: "/*" },
+                      { not: { href_matches: "/studio*" } },
+                      { not: { href_matches: "/api/*" } },
+                    ],
+                  },
+                  eagerness: "moderate",
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
