@@ -12,6 +12,8 @@ import { breadcrumbSchema, podcastEpisodeSchema, siteUrl } from "@/lib/seo";
 
 type Params = { slug: string };
 
+export const revalidate = 300;
+
 export async function generateStaticParams(): Promise<Params[]> {
   const slugs = await getEpisodeSlugs();
   return slugs.map((slug) => ({ slug }));

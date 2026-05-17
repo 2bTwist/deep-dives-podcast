@@ -4,6 +4,8 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { ContactForm } from "@/components/site/ContactForm";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Contact — Deep Dive Podcast with Raissa",
   description:

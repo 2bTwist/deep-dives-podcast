@@ -9,6 +9,8 @@ import { JsonLd } from "@/components/site/JsonLd";
 import { getFeaturedEpisode } from "@/sanity/lib/queries";
 import { podcastSeriesSchema } from "@/lib/seo";
 
+export const revalidate = 300;
+
 export default async function HomePage() {
   const featured = await getFeaturedEpisode();
   if (!featured) notFound();

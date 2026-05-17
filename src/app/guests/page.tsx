@@ -6,6 +6,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 
+export const revalidate = 3600;
+
 const voices: { label: string; archetype: string; body: string }[] = [
   {
     label: "Founders & Operators",

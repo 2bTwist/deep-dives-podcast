@@ -7,6 +7,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { JsonLd } from "@/components/site/JsonLd";
 import { podcastSeriesSchema } from "@/lib/seo";
 
+export const revalidate = 3600;
+
 const CHANNEL_URL = "https://www.youtube.com/@DeepDives237";
 
 const topics: { label: string; body: string }[] = [

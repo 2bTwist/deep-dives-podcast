@@ -3,6 +3,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Privacy Policy — Deep Dive Podcast with Raissa",
   description:

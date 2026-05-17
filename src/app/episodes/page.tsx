@@ -8,6 +8,8 @@ import { getAllEpisodes } from "@/sanity/lib/queries";
 
 const CHANNEL_URL = "https://www.youtube.com/@DeepDives237/videos";
 
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Episodes — Deep Dive Podcast with Raissa",
   description:
