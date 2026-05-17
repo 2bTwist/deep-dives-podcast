@@ -46,10 +46,14 @@ export default async function EpisodesPage() {
               </Reveal>
             </div>
 
-            {/* Episode grid — hairline gold dividers between cards */}
-            <div className="grid grid-cols-1 gap-px bg-rule md:grid-cols-2 lg:grid-cols-3">
+            {/* Episode grid — outlined cards with hairline border + breathing room */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
               {latest.map((ep, i) => (
-                <Reveal key={ep.youtubeId} delay={i * 0.08} className="group bg-ink">
+                <Reveal
+                  key={ep.youtubeId}
+                  delay={i * 0.08}
+                  className="group border border-rule bg-card transition-colors duration-300 hover:border-gold/40"
+                >
                   <article>
                     <Link href={`/episodes/${ep.slug}`} className="block">
                       <div className="relative aspect-video overflow-hidden bg-card">

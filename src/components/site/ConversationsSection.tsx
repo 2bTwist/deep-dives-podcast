@@ -43,10 +43,14 @@ export async function ConversationsSection() {
           </Reveal>
         </div>
 
-        {/* Episode card grid — 4 cards with hairline gold dividers between */}
-        <div className="grid grid-cols-1 gap-px bg-rule md:grid-cols-2 lg:grid-cols-4">
+        {/* Episode card grid — outlined cards with hairline border + breathing room */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-7">
           {list.map((ep, i) => (
-            <Reveal key={ep.youtubeId} delay={i * 0.08} className="group bg-ink">
+            <Reveal
+              key={ep.youtubeId}
+              delay={i * 0.08}
+              className="group border border-rule bg-card transition-colors duration-300 hover:border-gold/40"
+            >
               <article>
               <Link href={`/episodes/${ep.slug}`} className="block">
                 <div className="relative aspect-video overflow-hidden bg-card">

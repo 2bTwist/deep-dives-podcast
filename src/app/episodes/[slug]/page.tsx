@@ -173,9 +173,13 @@ export default async function EpisodePage({
               </Reveal>
             </div>
 
-            <div className="grid grid-cols-1 gap-px bg-rule md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
               {related.map((r, i) => (
-                <Reveal key={r.youtubeId} delay={i * 0.08} className="group bg-surface">
+                <Reveal
+                  key={r.youtubeId}
+                  delay={i * 0.08}
+                  className="group border border-rule bg-card transition-colors duration-300 hover:border-gold/40"
+                >
                   <Link href={`/episodes/${r.slug}`} className="block">
                     <div className="relative aspect-video overflow-hidden bg-card">
                       <EpisodeThumbStatic
