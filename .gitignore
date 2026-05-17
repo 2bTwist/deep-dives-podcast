@@ -43,3 +43,6 @@ next-env.d.ts
 # dev-only screenshot iterations + cache data from scripts/
 /screenshots/
 /scripts/*.json
+
+# Lighthouse measurement artifacts (run via scripts/lh.mjs --out=<path>)
+/lh-*.json
