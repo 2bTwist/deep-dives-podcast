@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
-import { fadeUp, microHover } from "@/lib/motion";
+import { Reveal } from "./Reveal";
 
 export function CommunitySection() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "submitting" | "success">("idle");
-  const reduced = useReducedMotion();
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -22,13 +20,7 @@ export function CommunitySection() {
   return (
     <section className="relative bg-ink">
       <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-28">
-        <motion.div
-          initial={reduced ? false : fadeUp.initial}
-          whileInView={fadeUp.whileInView}
-          viewport={fadeUp.viewport}
-          transition={fadeUp.transition}
-          className="relative overflow-hidden bg-gold text-ink"
-        >
+        <Reveal className="relative overflow-hidden bg-gold text-ink">
           {/* hairline ink rule inset */}
           <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-ink/20" />
           <span aria-hidden className="absolute inset-x-8 bottom-0 h-px bg-ink/20" />
@@ -77,19 +69,16 @@ export function CommunitySection() {
                         className="h-14 w-full border border-ink/40 bg-transparent px-5 font-body text-[16px] text-ink placeholder:text-ink/40 focus:border-ink focus:outline-none"
                       />
                     </label>
-                    <motion.button
+                    <button
                       type="submit"
-                      whileHover={{ y: -2 }}
-                      whileTap={{ y: 0 }}
-                      transition={microHover.transition}
                       disabled={state === "submitting"}
-                      className="group inline-flex h-14 items-center justify-center gap-3 bg-ink px-7 font-body text-[11px] uppercase tracking-[0.24em] text-paper hover:bg-deep-gray disabled:opacity-50"
+                      className="group inline-flex h-14 items-center justify-center gap-3 bg-ink px-7 font-body text-[11px] uppercase tracking-[0.24em] text-paper transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-deep-gray disabled:opacity-50"
                     >
                       {state === "submitting" ? "Joining..." : "Join the List"}
                       {state !== "submitting" && (
                         <span className="text-[14px] transition-transform group-hover:translate-x-0.5">→</span>
                       )}
-                    </motion.button>
+                    </button>
                   </div>
                 )}
                 <p className="mt-4 font-body italic text-ink/60 text-[13px]">
@@ -98,7 +87,7 @@ export function CommunitySection() {
               </form>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
