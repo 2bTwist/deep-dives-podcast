@@ -49,13 +49,13 @@ export const metadata: Metadata = {
     description:
       'Genuine conversations that inspire, educate, and empower. Real stories. Real people. Real impact.',
     locale: 'en_US',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Deep Dive Podcast with Raissa' }],
+    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Deep Dive Podcast with Raissa' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Deep Dives Podcast with Raissa',
     description: 'Genuine conversations that inspire, educate, and empower.',
-    images: ['/og.png'],
+    images: ['/og.jpg'],
     creator: '@DeepDives237',
     site: '@DeepDives237',
   },

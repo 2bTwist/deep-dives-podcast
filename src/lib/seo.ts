@@ -40,7 +40,7 @@ export function podcastSeriesSchema() {
     alternateName: SITE.shortName,
     description: SITE.description,
     url: siteUrl(),
-    image: `${siteUrl()}/og.png`,
+    image: `${siteUrl()}/og.jpg`,
     webFeed: SITE.channel,
     author: { "@type": "Person", name: "Raissa" },
     sameAs: [SITE.social.youtube, SITE.social.instagram, SITE.social.tiktok],
