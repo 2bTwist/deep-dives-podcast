@@ -16,6 +16,7 @@ const fraunces = Fraunces({
   axes: ["opsz"],
   style: ["normal", "italic"],
   display: "swap",
+  preload: false,
 });
 
 const allura = Allura({
@@ -23,6 +24,7 @@ const allura = Allura({
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
+  preload: false,
 });
 
 export const viewport: Viewport = {
