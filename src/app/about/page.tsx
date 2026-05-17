@@ -8,7 +8,7 @@ import { DropCap } from "@/components/site/DropCap";
 import { PullQuote } from "@/components/site/PullQuote";
 import { HandSignature } from "@/components/site/HandSignature";
 import { JsonLd } from "@/components/site/JsonLd";
-import { podcastSeriesSchema } from "@/lib/seo";
+import { breadcrumbSchema, personSchema, podcastSeriesSchema, siteUrl } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -49,12 +49,22 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Why Raissa started Deep Dives. The conversations behind the show, the topics it covers, and where to find every episode on YouTube.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={podcastSeriesSchema()} />
+      <JsonLd
+        data={[
+          podcastSeriesSchema(),
+          personSchema(),
+          breadcrumbSchema([
+            { name: "Home", url: siteUrl() },
+            { name: "About", url: `${siteUrl()}/about` },
+          ]),
+        ]}
+      />
       <Header />
       <main>
         {/* Masthead */}

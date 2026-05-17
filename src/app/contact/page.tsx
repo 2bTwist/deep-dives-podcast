@@ -4,6 +4,8 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { ContactForm } from "@/components/site/ContactForm";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumbSchema, siteUrl } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -11,11 +13,18 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Write to Deep Dives. Guest pitches, press inquiries, partnerships, or just hello.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: siteUrl() },
+          { name: "Contact", url: `${siteUrl()}/contact` },
+        ])}
+      />
       <Header />
       <main>
         <section className="relative">

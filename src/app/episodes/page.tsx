@@ -6,7 +6,9 @@ import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { NewBadge } from "@/components/site/NewBadge";
 import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
+import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes } from "@/sanity/lib/queries";
+import { breadcrumbSchema, episodeListSchema, siteUrl } from "@/lib/seo";
 
 const CHANNEL_URL = "https://www.youtube.com/@DeepDives237/videos";
 
@@ -16,6 +18,7 @@ export const metadata: Metadata = {
   title: "Episodes",
   description:
     "The latest episodes of Deep Dive Podcast with Raissa. Long-form conversations with founders, lobbyists, planners, clergy, immigrants, and the under-asked.",
+  alternates: { canonical: "/episodes" },
 };
 
 function formatDate(iso?: string) {
@@ -28,6 +31,15 @@ export default async function EpisodesPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          episodeListSchema(latest),
+          breadcrumbSchema([
+            { name: "Home", url: siteUrl() },
+            { name: "Episodes", url: `${siteUrl()}/episodes` },
+          ]),
+        ]}
+      />
       <Header />
       <main>
         <section className="relative">

@@ -9,6 +9,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Terms of Use",
   description: "The terms that govern your use of the Deep Dives website and content.",
+  alternates: { canonical: "/terms" },
 };
 
 const LAST_UPDATED = "May 16, 2026";

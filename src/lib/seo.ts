@@ -41,8 +41,9 @@ export function podcastSeriesSchema() {
     description: SITE.description,
     url: siteUrl(),
     image: `${siteUrl()}/og.jpg`,
+    inLanguage: "en",
     webFeed: SITE.channel,
-    author: { "@type": "Person", name: "Raissa" },
+    author: { "@type": "Person", name: "Raissa", url: `${siteUrl()}/about` },
     sameAs: [SITE.social.youtube, SITE.social.instagram, SITE.social.tiktok],
   };
 }
@@ -59,6 +60,7 @@ export function podcastEpisodeSchema(ep: Episode) {
     duration: durationToISO(ep.duration),
     url,
     image,
+    inLanguage: "en",
     associatedMedia: {
       "@type": "MediaObject",
       contentUrl: `https://www.youtube.com/watch?v=${ep.youtubeId}`,
@@ -82,6 +84,67 @@ export function breadcrumbSchema(items: { name: string; url?: string }[]) {
       position: i + 1,
       name: it.name,
       ...(it.url ? { item: it.url } : {}),
+    })),
+  };
+}
+
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    alternateName: SITE.shortName,
+    url: siteUrl(),
+    inLanguage: "en",
+    publisher: { "@type": "Person", name: "Raissa", url: `${siteUrl()}/about` },
+  };
+}
+
+export function personSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Raissa",
+    url: `${siteUrl()}/about`,
+    image: `${siteUrl()}/brand/raissa-portrait.png`,
+    jobTitle: "Host and creator, Deep Dives Podcast",
+    description:
+      "Host of Deep Dives Podcast. Long-form conversations with founders, planners, clergy, civic voices, immigrants, and creatives.",
+    sameAs: [SITE.social.youtube, SITE.social.instagram, SITE.social.tiktok],
+  };
+}
+
+type EpisodeListItem = Pick<Episode, "slug" | "title">;
+
+export function episodeListSchema(episodes: EpisodeListItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Deep Dives Podcast episodes",
+    numberOfItems: episodes.length,
+    itemListElement: episodes.map((ep, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${siteUrl()}/episodes/${ep.slug}`,
+      name: ep.title,
+    })),
+  };
+}
+
+export function guestArchetypesSchema(items: { label: string; body: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Guest archetypes on Deep Dives Podcast",
+    numberOfItems: items.length,
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Thing",
+        name: it.label,
+        description: it.body,
+      },
     })),
   };
 }

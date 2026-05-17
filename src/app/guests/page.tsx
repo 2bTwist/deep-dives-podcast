@@ -6,7 +6,9 @@ import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { NewBadge } from "@/components/site/NewBadge";
 import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
+import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes } from "@/sanity/lib/queries";
+import { breadcrumbSchema, guestArchetypesSchema, siteUrl } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -52,6 +54,7 @@ export const metadata: Metadata = {
   title: "Guests",
   description:
     "The kinds of voices Deep Dives features. Founders, planners, clergy, civic voices, immigrants, creatives. Pitch yourself.",
+  alternates: { canonical: "/guests" },
 };
 
 export default async function GuestsPage() {
@@ -59,6 +62,15 @@ export default async function GuestsPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          guestArchetypesSchema(voices),
+          breadcrumbSchema([
+            { name: "Home", url: siteUrl() },
+            { name: "Guests", url: `${siteUrl()}/guests` },
+          ]),
+        ]}
+      />
       <Header />
       <main>
         {/* Masthead */}

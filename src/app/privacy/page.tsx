@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How Deep Dives handles your information when you sign up for the newsletter, send a message, or watch episodes.",
+  alternates: { canonical: "/privacy" },
 };
 
 const LAST_UPDATED = "May 16, 2026";

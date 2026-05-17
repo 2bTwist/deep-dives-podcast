@@ -7,7 +7,7 @@ import { CommunitySection } from "@/components/site/CommunitySection";
 import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getFeaturedEpisode } from "@/sanity/lib/queries";
-import { podcastSeriesSchema } from "@/lib/seo";
+import { podcastSeriesSchema, websiteSchema } from "@/lib/seo";
 
 export const revalidate = 300;
 
@@ -17,7 +17,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <JsonLd data={podcastSeriesSchema()} />
+      <JsonLd data={[websiteSchema(), podcastSeriesSchema()]} />
       <Header />
       <main>
         <Hero featured={featured} />

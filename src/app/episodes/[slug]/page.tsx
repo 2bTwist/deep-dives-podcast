@@ -40,7 +40,7 @@ export async function generateMetadata({
   if (!ep) return {};
   const image = youtubeThumb(ep.youtubeId, "maxres");
   return {
-    title: `${ep.title} | Deep Dive Podcast with Raissa`,
+    title: ep.title,
     description: ep.description,
     alternates: { canonical: `/episodes/${ep.slug}` },
     openGraph: {
