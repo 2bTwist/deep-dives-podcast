@@ -6,6 +6,24 @@ Grouped by urgency. Get her on the highest-impact items first.
 
 ---
 
+## Status updates since this doc was written
+
+**2026-05-17 (post-DNS-fix session):**
+
+- ✅ **Sanity CORS** added on the live project (`f63p2zht`) for apex, www, and `vercel.app` aliases. `/studio` editing works on production.
+- ✅ **Vercel GitHub App** installed and connected to the repo. `git push origin main` now auto-deploys to production (no more manual `vercel --prod`).
+- ✅ **Cloudflare DNS swapped from A `76.76.21.21` to CNAME `cname.vercel-dns.com`** for both apex and www. Fixes a real reachability issue (the Anycast IP `76.76.21.21` had broken carrier routes on some networks — Edmond's iPhone literally couldn't reach the site, while a Mac on the same WiFi could). CNAME flattening at the apex works on Cloudflare by default. See `specs/handoffs/2026-05-17_1442-deepdives-shipped-and-perf-tuned.md` for the longer story and `specs/perf-log.md` for the numbers.
+- ✅ **Vercel Speed Insights** wired into `layout.tsx`. Real-user p75 LCP/INP/CLS surfaces in the Vercel dashboard after 24-48h of traffic.
+- ✅ **Lighthouse CI** gates every PR. Fails the check if median mobile LCP > 3s, FCP > 2s, TBT > 200ms, or CLS > 0.1. See `.github/workflows/lighthouse.yml`.
+- ✅ **OG image PNG → JPG** (317KB → 109KB on every social-share preview fetch).
+- ✅ **Fonts (Fraunces + Allura)** moved to `display: optional` so late font swaps don't push the h1 LCP measurement.
+- ✅ **Speculation Rules** added: Chromium prerenders likely-next pages on hover. Ignored by Safari.
+- ⏸ **Item 13 below ("Domain DNS hygiene")** — done in spirit (DNS is correct, DNS-only/grey-cloud confirmed) but the SPECIFIC record swap that actually mattered is captured above, not in the original write-up.
+
+Everything else in the tiers below still stands.
+
+---
+
 ## Tier 1 — Copy she should own (her voice, not mine)
 
 ### 1. `/about` manifesto (4 paragraphs)
@@ -89,7 +107,9 @@ The write token currently in `.env.local` appeared briefly in our build chat. Lo
 Even before wiring Resend, decide where contact form messages and signups should ultimately land. Likely her email or a shared inbox.
 
 ### 13. Domain DNS hygiene
-After deploy, verify the Cloudflare DNS records pointing to Vercel are set to **DNS only** (grey cloud) rather than proxied (orange cloud). Otherwise Cloudflare's proxy can interfere with Vercel's SSL renewal.
+**Done 2026-05-17.** Both apex and www are `CNAME → cname.vercel-dns.com`, DNS only (grey cloud). Cloudflare's CNAME flattening makes the CNAME-at-apex work. **Do NOT switch back to A records** at `76.76.21.21` even though Vercel's docs show that as the easy path. The Anycast `76.76.21.21` IP has known bad carrier routes on some networks (caused a real "site won't load on my phone" outage during this session). The CNAME path resolves to a wider IP block (`66.33.60.x` + others) with reliable routing.
+
+If you ever want to enable Cloudflare proxy (orange cloud) for global edge caching: SSL mode must be **Full (strict)** before flipping. Vercel cert is already issued and renews automatically, so the original "grey cloud required for SSL issuance" warning no longer applies.
 
 ---
 
