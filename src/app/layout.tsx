@@ -7,7 +7,7 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500"],
   style: ["normal", "italic"],
-  display: "swap",
+  display: "optional",
 });
 
 const fraunces = Fraunces({
