@@ -18,7 +18,9 @@ for (const width of widths) {
     deviceScaleFactor: 2,
   });
   const page = await context.newPage();
-  await page.goto(url, { waitUntil: 'networkidle' });
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  // Hydration + a bit of breathing room
+  await page.waitForTimeout(1500);
   // Wait for fonts to settle
   await page.evaluate(() => document.fonts.ready);
   // Scroll through the page so scroll-triggered (whileInView) reveals fire.
