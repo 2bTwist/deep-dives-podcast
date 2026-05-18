@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { EpisodeThumb } from "@/components/EpisodeThumb";
 import { NewBadge } from "@/components/site/NewBadge";
+import { HeroAmbience } from "@/components/site/HeroAmbience";
 import type { Episode } from "@/lib/types";
 
 type Props = {
@@ -21,8 +22,9 @@ export function Hero({ featured }: Props) {
     : "";
 
   return (
-    <section className="relative">
-      <div className="relative mx-auto max-w-[1320px] px-8 lg:px-10">
+    <section className="relative overflow-hidden">
+      <HeroAmbience />
+      <div className="relative z-10 mx-auto max-w-[1320px] px-8 lg:px-10">
         <div className="flex flex-col items-center pb-24 pt-20 text-center lg:pb-32 lg:pt-28">
           {/* Masthead */}
           <h1>
