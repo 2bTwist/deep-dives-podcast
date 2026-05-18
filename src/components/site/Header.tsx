@@ -48,8 +48,10 @@ export function Header() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Close on route change
+  // Close on route change. Setting state in an effect is correct here:
+  // mobile-nav openness reflects a route side effect, not derived state.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(false);
   }, [pathname]);
 

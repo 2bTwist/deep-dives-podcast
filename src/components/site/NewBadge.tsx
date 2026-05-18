@@ -13,8 +13,11 @@ type Props = {
  */
 export function NewBadge({ publishedAt, maxDaysOld = 14, className = "" }: Props) {
   if (!publishedAt) return null;
-  const ageDays =
-    (Date.now() - new Date(publishedAt).getTime()) / (1000 * 60 * 60 * 24);
+  // Date.now() at render time is intentional: page is server-rendered with
+  // revalidate, so the staleness check rebuilds on each ISR cycle. A stateful
+  // clock would only create hydration mismatches.
+  // eslint-disable-next-line react-hooks/purity
+  const ageDays = (Date.now() - new Date(publishedAt).getTime()) / (1000 * 60 * 60 * 24);
   if (ageDays > maxDaysOld) return null;
 
   return (

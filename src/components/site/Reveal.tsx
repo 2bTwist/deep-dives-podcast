@@ -25,6 +25,9 @@ export function Reveal({ delay = 0, children, className }: Props) {
     if (!el) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // Reduce-motion: render shown immediately. One-shot setup
+      // side effect on mount, not derived render state.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShown(true);
       return;
     }
