@@ -85,7 +85,7 @@ export default async function EpisodePage({
     <>
       <JsonLd data={structured} />
       <Header />
-      <main>
+      <main id="main">
         {/* Episode hero */}
         <section className="relative">
           <div className="mx-auto max-w-content px-8 py-20 lg:px-10 lg:py-28">

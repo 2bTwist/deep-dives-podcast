@@ -115,6 +115,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-gold focus:px-4 focus:py-2 focus:text-[11px] focus:font-medium focus:uppercase focus:tracking-[0.24em] focus:text-ink"
+        >
+          Skip to main content
+        </a>
         {children}
         <SpeedInsights />
       </body>

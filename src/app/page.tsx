@@ -19,7 +19,7 @@ export default async function HomePage() {
     <>
       <JsonLd data={[websiteSchema(), podcastSeriesSchema()]} />
       <Header />
-      <main>
+      <main id="main">
         <Hero featured={featured} />
         <ConversationsSection />
         <AboutTeaserSection />

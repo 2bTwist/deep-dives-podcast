@@ -51,7 +51,7 @@ export default function StyleguidePage() {
   if (process.env.NODE_ENV !== "development") notFound();
 
   return (
-    <main className="min-h-screen text-paper">
+    <main id="main" className="min-h-screen text-paper">
       {/* Top bar — editorial masthead */}
       <header className="border-b border-rule">
         <div className="mx-auto flex max-w-content items-end justify-between px-10 pb-6 pt-10">

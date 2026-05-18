@@ -34,7 +34,7 @@ export default async function EpisodesPage() {
         ]}
       />
       <Header />
-      <main>
+      <main id="main">
         <section className="relative">
           <div className="mx-auto max-w-content px-8 py-32 lg:px-10 lg:py-40">
             {/* Masthead */}

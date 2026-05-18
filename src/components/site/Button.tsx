@@ -39,7 +39,8 @@ const VARIANT_CLASSES: Record<Variant, string> = {
 };
 
 const BASE_CLASSES =
-  "group inline-flex items-center gap-3 px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] transition-colors duration-200";
+  "group inline-flex items-center gap-3 px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] transition-colors duration-200 " +
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper";
 
 const Arrow = () => (
   <span

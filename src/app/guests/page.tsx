@@ -71,7 +71,7 @@ export default async function GuestsPage() {
         ]}
       />
       <Header />
-      <main>
+      <main id="main">
         {/* Masthead */}
         <section className="relative">
           <div className="mx-auto max-w-content px-8 pb-16 pt-20 lg:px-10 lg:pb-20 lg:pt-28">

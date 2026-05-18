@@ -53,7 +53,7 @@ export default function AboutPage() {
         ]}
       />
       <Header />
-      <main>
+      <main id="main">
         {/* 1. A Letter from Raissa. */}
         <section className="relative">
           <div className="mx-auto max-w-content px-8 py-28 lg:px-10 lg:py-36">
@@ -74,16 +74,15 @@ export default function AboutPage() {
 
                 <div className="mt-10 space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
-                    I&rsquo;m Raissa.{" "}
-                    <strong className="font-semibold tracking-[0.04em]">
-                      ENTREPRENEUR. HOST. STORYTELLER.
-                    </strong>
+                    I&rsquo;m Raissa. Host, founder, storyteller. On this show, my job
+                    is mostly to shut up and let the guest say the thing nobody asked
+                    them to say.
                   </p>
                   <p>
                     I&rsquo;ve sat on both sides of this microphone. I&rsquo;ve built
-                    things, raised money, lost some, started over. I know the moments
-                    that get edited out of a story, because I&rsquo;ve lived a few of
-                    them.
+                    businesses, raised money, lost some, started over. I know the part
+                    of a founder&rsquo;s story that gets edited out, because I&rsquo;ve
+                    lived a few of them.
                   </p>
                   <p>
                     Deep Dives is the room I wanted to be in and couldn&rsquo;t find. Most

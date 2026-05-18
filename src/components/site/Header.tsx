@@ -120,7 +120,7 @@ export function Header() {
               aria-controls="mobile-nav"
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((prev) => !prev)}
-              className="grid h-10 w-10 place-items-center text-paper transition-colors hover:text-gold lg:hidden"
+              className="grid h-11 w-11 place-items-center text-paper transition-colors hover:text-gold lg:hidden"
             >
               <svg
                 viewBox="0 0 24 24"
