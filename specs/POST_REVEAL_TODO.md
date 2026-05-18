@@ -8,6 +8,17 @@ Grouped by urgency. Get her on the highest-impact items first.
 
 ## Status updates since this doc was written
 
+**2026-05-18 (repo health audit + traffic activation session):**
+
+- ✅ **Full repo health audit shipped** across 10 phases (organization, components, dead code, deps, routes, types/build, SEO, accessibility, 2026 SEO trends, off-site activation). Findings + unified plan all in `specs/audit/`. Six refactor batches (A-H) landed clean.
+- ✅ **FAQ schema + visible "Quick Answers" on `/about`** — 5 Q&A pairs that match common AI search query patterns. AI summarizers cite FAQ markup disproportionately.
+- ✅ **`dateModified` field on Episode** — Sanity field + GROQ + render. Set it when materially editing an episode (description rewrite, transcript add, corrections); shows "Updated {date}" in the meta line + emits in the PodcastEpisode schema. Freshness signal for AI/SEO.
+- ✅ **`Organization` schema** on the home, alongside existing `WebSite` + `PodcastSeries`. Gives Google's Knowledge Graph a brand entity to associate with the YouTube channel.
+- ✅ **Component primitives extracted**: `EpisodeCard` (was duplicated 4× across grids), `Button` (was duplicated 17× as inline gold-filled / gold-outlined CTAs), size-aware `DropCap`, tokenized `max-w-content` via Tailwind v4 `@theme`. Future width/card/button tweaks are one-file edits.
+- ✅ **Lint at 0 errors / 0 warnings**. Typecheck clean. Build green. Zero `any` / `@ts-ignore` / `@ts-expect-error` across the codebase.
+- ✅ **A11y polish**: skip-to-content link, focus-visible outlines on buttons, mobile menu touch target bumped to 44×44 (WCAG AAA).
+- 📋 **Off-site traffic playbook documented** at `specs/audit/10-edmond-homework.md` — copy-pasteable action list for Edmond + Raissa. Most leverage is on YouTube and Reddit, not the website. See Tier 7 below for the short version.
+
 **2026-05-17 (post-DNS-fix session):**
 
 - ✅ **Sanity CORS** added on the live project (`f63p2zht`) for apex, www, and `vercel.app` aliases. `/studio` editing works on production.
@@ -110,6 +121,61 @@ Even before wiring Resend, decide where contact form messages and signups should
 **Done 2026-05-17.** Both apex and www are `CNAME → cname.vercel-dns.com`, DNS only (grey cloud). Cloudflare's CNAME flattening makes the CNAME-at-apex work. **Do NOT switch back to A records** at `76.76.21.21` even though Vercel's docs show that as the easy path. The Anycast `76.76.21.21` IP has known bad carrier routes on some networks (caused a real "site won't load on my phone" outage during this session). The CNAME path resolves to a wider IP block (`66.33.60.x` + others) with reliable routing.
 
 If you ever want to enable Cloudflare proxy (orange cloud) for global edge caching: SSL mode must be **Full (strict)** before flipping. Vercel cert is already issued and renews automatically, so the original "grey cloud required for SSL issuance" warning no longer applies.
+
+---
+
+## Tier 7 — Traffic & SEO activation (after the reveal)
+
+Now that the site is deployed and the SEO foundation is in place, the remaining traffic levers are off-site. Full detail with exact copy-paste text lives in **`specs/audit/10-edmond-homework.md`** — short version below.
+
+### Edmond's actions (~90 seconds total, do today)
+
+- **Submit sitemap to Google Search Console.** `search.google.com/search-console` → add `deepdives237.com` → verify → Sitemaps → paste `https://deepdives237.com/sitemap.xml`. 30 sec.
+- **Submit sitemap to Bing Webmaster Tools.** `bing.com/webmasters` → import from GSC (1-click) → submit same sitemap. Powers ChatGPT + Copilot citations. 60 sec.
+
+### Raissa's actions (after she sees the gift)
+
+**One-time setup (~25 min):**
+
+- **YouTube Studio → Settings → Channel → Basic info → Keywords** — paste the keyword list from §3a of the homework doc. Front-loads "Deep Dives Podcast" + "long form interview podcast".
+- **YouTube Studio → Customization → Basic info → Description** — replace with the exact text in §3b. Mirrors the website FAQ answer 1:1 for cross-surface consistency.
+- **Submit to 4 free podcast directories** — Listen Notes, Podchaser, Goodpods, Player FM. Free backlinks + brand mentions that AI search uses.
+
+**Per-upload (~10 min/episode):**
+
+- **Title pattern:** `Deep Dives — Ep N: {Guest} on {Topic}`. Brand-phrase first.
+- **Description template** in §4 of homework doc — opens with hook, includes chapters, ends with a fixed "About Deep Dives" block that reinforces the brand-phrase across every video.
+- **Tag pattern:** first three tags always `Deep Dives Podcast`, `long form interview`, `Raissa`. Then 5-10 episode-specific.
+
+**Ongoing (~30 min/week + 20 min/episode):**
+
+- **Reddit presence.** Pick 2-3 subs (`r/podcasts`, `r/podcasting`, one topic-specific). Comment-first, link-only-when-relevant. Reddit is 46.5% of Perplexity's citations.
+- **Guest share kit.** After each episode publishes, send the guest 2-3 social captions + a 60-sec clip + 3-5 visual cards. Brand mentions correlate 0.664 with AI citation probability — guest reposts compound.
+
+**Monthly (~5 min):**
+
+- Open Search Console → check top queries the site appears for
+- Filter GA4 referrers for `chatgpt.com`, `perplexity.ai`, `claude.ai`
+- Manual test: ask ChatGPT/Perplexity/Google AI "What is Deep Dives Podcast?", "Best long-form interview podcasts 2026", "Podcasts about immigrant founders" — note where you appear and where you don't
+
+### What's already shipped on the website side
+
+- Full structured data (PodcastSeries, PodcastEpisode, Person, Organization, BreadcrumbList, FAQPage, ItemList)
+- AI bots explicitly allowed (GPTBot, ChatGPT-User, OAI-SearchBot, PerplexityBot, ClaudeBot, Google-Extended, Bingbot)
+- `llms.txt` at site root
+- Per-route canonical, OG, Twitter, description metadata
+- Indexable episode pages with readable slugs
+- `revalidate` strategy that picks up Sanity edits within 5 minutes
+- Sitemap auto-generates with every published episode
+- WCAG AA accessibility (AAA on contrast)
+
+### Queued — waiting on Raissa input
+
+When she has time + content to provide, ping the agent and these ship next:
+
+- **T1: Episode transcripts** (~4 hrs of code). Biggest single podcast SEO multiplier per 2026 research — turns each episode into ~10k indexable, AI-citable words. Needs at least one transcript draft to validate the UX.
+- **T2: Show notes upgrade** — timestamps, topics covered, resources mentioned (~3-4 hrs). Needs her to fill in for existing episodes.
+- **T3: Topic-cluster essays** (~6-8 hrs) — long-form posts synthesizing themes across 3-5 episodes, optimized for AI citation on "What is X?" / "Best X" queries.
 
 ---
 
