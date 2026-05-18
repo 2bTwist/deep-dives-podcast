@@ -68,52 +68,50 @@ export function Hero({ featured }: Props) {
           </div>
 
           {/* Latest episode — horizontal card below the masthead */}
-          <div className="mt-24 w-full max-w-3xl text-left lg:mt-28">
-            <div className="mb-6 flex items-center justify-center gap-4">
-              <span aria-hidden className="h-px w-8 bg-gold/45" />
-              <p className="font-body text-[11px] uppercase tracking-[0.32em] text-gold/80">
+          <div className="mt-24 w-full max-w-4xl text-left lg:mt-28">
+            <div className="mb-7 flex items-center justify-center gap-4">
+              <span aria-hidden className="h-px w-10 bg-gold/45" />
+              <p className="font-body text-[11px] uppercase tracking-[0.34em] text-gold/80">
                 Latest episode
-                <span className="mx-3 text-gold/40">·</span>
-                {formattedDate}
               </p>
-              <span aria-hidden className="h-px w-8 bg-gold/45" />
+              <span aria-hidden className="h-px w-10 bg-gold/45" />
             </div>
 
             <Link
               href={`/episodes/${featured.slug}`}
-              className="group grid gap-6 sm:grid-cols-12 sm:gap-8"
+              className="group grid gap-7 sm:grid-cols-12 sm:gap-10"
             >
-              <div className="relative aspect-video overflow-hidden bg-card sm:col-span-5">
+              <div className="relative aspect-video overflow-hidden bg-card sm:col-span-7">
                 <EpisodeThumb
                   id={featured.youtubeId}
                   alt={featured.title}
-                  width={640}
-                  height={360}
+                  width={1280}
+                  height={720}
                   priority
-                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  sizes="(min-width: 1024px) 56vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 <NewBadge publishedAt={featured.publishedAt} />
                 <span className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-14 w-14 place-items-center rounded-full bg-gold text-ink transition-transform duration-300 group-hover:scale-110">
-                    <svg viewBox="0 0 12 12" className="h-4 w-4 translate-x-[1px]" fill="currentColor" aria-hidden>
+                  <span className="grid h-16 w-16 place-items-center rounded-full bg-gold text-ink transition-transform duration-300 group-hover:scale-110">
+                    <svg viewBox="0 0 12 12" className="h-5 w-5 translate-x-[1px]" fill="currentColor" aria-hidden>
                       <polygon points="2,0 12,6 2,12" />
                     </svg>
                   </span>
                 </span>
               </div>
 
-              <div className="sm:col-span-7 sm:self-center">
+              <div className="sm:col-span-5 sm:self-center">
                 <p className="font-body text-[11px] uppercase tracking-[0.28em] text-gold">
                   {featured.category}
                 </p>
-                <h3 className="mt-2 font-display text-[24px] leading-[1.15] text-paper transition-colors group-hover:text-gold sm:text-[28px]">
+                <h3 className="mt-3 font-display text-[26px] leading-[1.15] text-paper transition-colors group-hover:text-gold sm:text-[32px]">
                   {featured.title}
                 </h3>
-                <p className="mt-3 font-body italic text-sub text-[15px] leading-[1.5]">
+                <p className="mt-4 font-body italic text-sub text-[16px] leading-[1.5]">
                   {featured.description}
                 </p>
-                <div className="mt-5 flex items-center justify-between border-t border-rule pt-4">
+                <div className="mt-6 flex items-center justify-between border-t border-rule pt-4">
                   <p className="font-body italic text-sub text-[13px]">{featured.duration}</p>
                   <p className="font-body italic text-sub text-[13px]">{formattedDate}</p>
                 </div>
