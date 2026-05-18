@@ -56,7 +56,7 @@ export default function AboutPage() {
       <main>
         {/* 1. A Letter from Raissa. */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-36">
+          <div className="mx-auto max-w-content px-8 py-28 lg:px-10 lg:py-36">
             <Reveal>
               <h1 className="break-words font-display text-[56px] leading-[0.96] tracking-[-0.02em] sm:text-[80px] lg:text-[112px]">
                 <DropCap letter="A" /> Letter
@@ -74,14 +74,21 @@ export default function AboutPage() {
 
                 <div className="mt-10 space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
-                    I&rsquo;m Raissa, and Deep Dives is the show I made because the conversations
-                    I most wanted to hear weren&rsquo;t happening anywhere. Not in a clip. Not in
-                    a thread. Not on a stage with a timer running.
+                    I&rsquo;m Raissa.{" "}
+                    <strong className="font-semibold tracking-[0.04em]">
+                      ENTREPRENEUR. HOST. STORYTELLER.
+                    </strong>
                   </p>
                   <p>
-                    So I built the room. Two chairs, a mic, and the time to let a person finish a
-                    thought. The first time a guest told me something they&rsquo;d never said out
-                    loud before, I knew the show was working.
+                    I&rsquo;ve sat on both sides of this microphone. I&rsquo;ve built
+                    things, raised money, lost some, started over. I know the moments
+                    that get edited out of a story, because I&rsquo;ve lived a few of
+                    them.
+                  </p>
+                  <p>
+                    Deep Dives is the room I wanted to be in and couldn&rsquo;t find. Most
+                    rooms don&rsquo;t hold space for the long version. They run on a clip
+                    count, a timer, a tweet. This one runs on whether the truth shows up.
                   </p>
                 </div>
 
@@ -91,21 +98,21 @@ export default function AboutPage() {
 
                 <div className="space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
-                    The guests aren&rsquo;t celebrities. They&rsquo;re founders who can name the
-                    month their company nearly died. Planners who can tell you what a wedding
-                    actually costs the marriage. Clergy who&rsquo;ll say what they believe, and
-                    what they don&rsquo;t. People who&rsquo;ve lived a specific thing and are
-                    willing to be specific about it.
+                    The guests are the minds I want to learn from. People who&rsquo;ve
+                    lived a specific thing and will be specific about it. Builders and
+                    thinkers whose work matters but doesn&rsquo;t trend. Voices that
+                    look like mine and sound like mine and don&rsquo;t usually get this
+                    much oxygen.
                   </p>
                   <p>
-                    Each episode is one conversation, one guest, taken as long as it deserves.
-                    Usually an hour. Sometimes two. No panel. No co-host arguing for sport. No
-                    clips cut for engagement.
+                    The first time a guest told me something they&rsquo;d never said
+                    out loud before, I knew the show was working.
                   </p>
                   <p>
-                    What you&rsquo;ll find here is the long version. The honest one. The hour or
-                    two it actually takes to say a true thing about a life.
+                    One conversation. One guest. As long as it deserves. Usually an
+                    hour, sometimes two. No panel. No clips cut for engagement.
                   </p>
+                  <p>What you&rsquo;ll find here is the long version. The honest one.</p>
                 </div>
 
                 <div className="mt-14">
@@ -153,12 +160,12 @@ export default function AboutPage() {
               </Reveal>
             </div>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* 2. What We Cover. */}
         <section className="relative bg-surface">
-          <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-6">
                 <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
@@ -190,12 +197,12 @@ export default function AboutPage() {
               </Reveal>
             </div>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* 3. Off the Mic. */}
         <section className="relative bg-ink">
-          <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-20">
               <Reveal className="lg:col-span-5">
                 <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
@@ -217,12 +224,12 @@ export default function AboutPage() {
               </Reveal>
             </div>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* 4. Watch More. */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
                 <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
@@ -259,12 +266,12 @@ export default function AboutPage() {
               </div>
             </Reveal>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* 5. Be a Guest. */}
         <section className="relative bg-surface">
-          <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
                 <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
