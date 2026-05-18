@@ -10,6 +10,7 @@ const EPISODE_PROJECTION = /* groq */ `
   category,
   duration,
   publishedAt,
+  dateModified,
   description,
   guest,
   guestRole,

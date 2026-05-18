@@ -54,6 +54,13 @@ export const episode = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "dateModified",
+      title: "Last Updated",
+      type: "datetime",
+      description:
+        "Optional. Set when you materially update an episode (description rewrite, transcript added, corrections). Drives the 'Updated' label and the dateModified field in schema. Leave empty for un-edited episodes.",
+    }),
+    defineField({
       name: "description",
       type: "text",
       rows: 4,

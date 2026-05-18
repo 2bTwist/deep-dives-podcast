@@ -21,6 +21,10 @@ export type Episode = {
   duration?: string;
   /** ISO 8601 datetime */
   publishedAt?: string;
+  /** ISO 8601 datetime. Optional — set when an episode is materially updated
+   *  (description rewrite, transcript added, corrections) so AI/SEO can pick
+   *  up the freshness signal. Falls back to publishedAt in schema if absent. */
+  dateModified?: string;
   description?: string;
   /** Optional override; if absent, YouTube thumbnail is used. */
   thumbnailOverride?: { url: string; alt: string };

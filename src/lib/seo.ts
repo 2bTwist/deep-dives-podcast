@@ -59,6 +59,7 @@ export function podcastEpisodeSchema(ep: Episode) {
     name: ep.title,
     description: ep.description,
     datePublished: ep.publishedAt,
+    ...(ep.dateModified ? { dateModified: ep.dateModified } : {}),
     duration: durationToISO(ep.duration),
     url,
     image,
@@ -102,6 +103,27 @@ export function websiteSchema() {
   };
 }
 
+export function organizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE.name,
+    alternateName: SITE.shortName,
+    url: siteUrl(),
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl()}/brand/raissa-avatar.png`,
+    },
+    description: SITE.description,
+    founder: {
+      "@type": "Person",
+      name: "Raissa",
+      url: `${siteUrl()}/about`,
+    },
+    sameAs: [SITE.social.youtube, SITE.social.instagram, SITE.social.tiktok],
+  };
+}
+
 export function personSchema() {
   return {
     "@context": "https://schema.org",
@@ -129,6 +151,18 @@ export function episodeListSchema(episodes: EpisodeListItem[]) {
       position: i + 1,
       url: `${siteUrl()}/episodes/${ep.slug}`,
       name: ep.title,
+    })),
+  };
+}
+
+export function faqPageSchema(items: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.question,
+      acceptedAnswer: { "@type": "Answer", text: it.answer },
     })),
   };
 }

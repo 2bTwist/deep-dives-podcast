@@ -111,6 +111,12 @@ export default async function EpisodePage({
                 </h1>
                 <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-body italic text-sub text-[14px]">
                   <span>{formatDate(ep.publishedAt)}</span>
+                  {ep.dateModified && ep.dateModified !== ep.publishedAt && (
+                    <>
+                      <span aria-hidden className="text-rule">·</span>
+                      <span>Updated {formatDate(ep.dateModified)}</span>
+                    </>
+                  )}
                   <span aria-hidden className="text-rule">·</span>
                   <span>{ep.duration}</span>
                   <span aria-hidden className="text-rule">·</span>

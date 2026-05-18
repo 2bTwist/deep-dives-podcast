@@ -9,7 +9,7 @@ import { PullQuote } from "@/components/site/PullQuote";
 import { HandSignature } from "@/components/site/HandSignature";
 import { MomentsStack, type Moment } from "@/components/site/MomentsStack";
 import { JsonLd } from "@/components/site/JsonLd";
-import { breadcrumbSchema, personSchema, podcastSeriesSchema, siteUrl } from "@/lib/seo";
+import { breadcrumbSchema, faqPageSchema, personSchema, podcastSeriesSchema, siteUrl } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -23,6 +23,34 @@ const topics = [
   "Faith",
   "Creativity",
   "Immigrant Journeys",
+];
+
+const FAQS = [
+  {
+    question: "What is Deep Dives Podcast?",
+    answer:
+      "Deep Dives is a long-form interview podcast hosted by Raissa, an entrepreneur and storyteller. Each episode is one conversation with one guest, taken as long as it deserves — usually an hour, sometimes two. New episodes drop on YouTube at @DeepDives237.",
+  },
+  {
+    question: "Who is Raissa?",
+    answer:
+      "Raissa is the host and creator of Deep Dives. She's an entrepreneur who has built businesses, raised money, lost some, started over. She makes the show she wanted to be in and couldn't find — the long version of conversations the algorithm doesn't usually catch.",
+  },
+  {
+    question: "How long are Deep Dives episodes?",
+    answer:
+      "Each episode is one conversation with one guest, taken as long as the conversation deserves. Most run between 60 and 90 minutes; some go to two hours. No panel, no co-host, no clips cut for engagement.",
+  },
+  {
+    question: "Where can I listen to Deep Dives Podcast?",
+    answer:
+      "Every episode lives on YouTube at @DeepDives237. New episodes drop there first; the full back catalog is available on the channel. There is no Spotify or Apple Podcasts feed — Deep Dives is YouTube-only by design.",
+  },
+  {
+    question: "How can I be a guest on Deep Dives?",
+    answer:
+      "Pitch yourself via the Contact form. The best pitches start with the one moment you'd want to open the conversation with — a specific thing you've lived and can be specific about.",
+  },
 ];
 
 const MOMENTS: Moment[] = [
@@ -50,6 +78,7 @@ export default function AboutPage() {
             { name: "Home", url: siteUrl() },
             { name: "About", url: `${siteUrl()}/about` },
           ]),
+          faqPageSchema(FAQS),
         ]}
       />
       <Header />
@@ -74,9 +103,17 @@ export default function AboutPage() {
 
                 <div className="mt-10 space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
-                    I&rsquo;m Raissa. Host, founder, storyteller. On this show, my job
-                    is mostly to shut up and let the guest say the thing nobody asked
-                    them to say.
+                    I&rsquo;m Raissa, an{" "}
+                    <span className="font-semibold uppercase tracking-[0.04em] text-gold">
+                      Entrepreneur
+                    </span>{" "}
+                    and{" "}
+                    <span className="font-semibold uppercase tracking-[0.04em] text-gold">
+                      Host
+                    </span>{" "}
+                    on a journey into the minds of the smart people the algorithm
+                    doesn&rsquo;t usually catch. Thinkers, builders, and entrepreneurs
+                    whose stories rarely get the long version.
                   </p>
                   <p>
                     I&rsquo;ve sat on both sides of this microphone. I&rsquo;ve built
@@ -199,7 +236,41 @@ export default function AboutPage() {
           <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
-        {/* 3. Off the Mic. */}
+        {/* 3. Quick Answers. */}
+        <section className="relative">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-5">
+                <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
+                  <DropCap letter="Q" />uick
+                  <span className="italic font-light text-sub"> Answers.</span>
+                  <span className="clear-both block" />
+                </h2>
+                <p className="mt-8 max-w-sm font-body italic text-sub text-[17px] leading-[1.6]">
+                  The questions people actually ask, answered straight.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.1} className="lg:col-span-7">
+                <dl className="divide-y divide-rule">
+                  {FAQS.map((f) => (
+                    <div key={f.question} className="py-6 first:pt-0 last:pb-0">
+                      <dt className="font-display text-[22px] leading-[1.25] text-paper lg:text-[26px]">
+                        {f.question}
+                      </dt>
+                      <dd className="mt-4 font-body text-sub text-[17px] leading-[1.7]">
+                        {f.answer}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            </div>
+          </div>
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
+        </section>
+
+        {/* 4. Off the Mic. */}
         <section className="relative bg-ink">
           <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-20">
