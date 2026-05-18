@@ -5,11 +5,6 @@ import { DropCap } from "@/components/site/DropCap";
 import { NewBadge } from "@/components/site/NewBadge";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 
-function formatDate(iso?: string) {
-  if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-}
-
 export async function ConversationsSection() {
   const all = await getAllEpisodes();
   // Show next 4 episodes after the featured one (top of /episodes will show all)

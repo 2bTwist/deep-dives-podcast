@@ -4,7 +4,7 @@ export function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 }
 
-export const SITE = {
+const SITE = {
   name: "Deep Dive Podcast with Raissa",
   shortName: "Deep Dives",
   description:
@@ -19,7 +19,7 @@ export const SITE = {
 };
 
 /** Convert "54:08" or "1:12:34" to ISO 8601 duration like "PT54M8S". */
-export function durationToISO(d?: string): string | undefined {
+function durationToISO(d?: string): string | undefined {
   if (!d) return undefined;
   const parts = d.split(":").map((p) => parseInt(p, 10));
   if (parts.some((n) => Number.isNaN(n))) return undefined;

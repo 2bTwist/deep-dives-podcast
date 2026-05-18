@@ -28,23 +28,15 @@ export default function ContactPage() {
       <Header />
       <main>
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
+          <div className="mx-auto max-w-[1400px] px-8 pb-12 pt-20 lg:px-10 lg:pb-16 lg:pt-28">
             {/* Masthead */}
-            <div className="mb-20 grid gap-8 lg:mb-24 lg:grid-cols-12 lg:gap-12">
-              <Reveal className="lg:col-span-7">
-                <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
-                  <DropCap letter="W" />rite to
-                  <span className="italic font-light text-sub"> Deep Dives.</span>
-                  <span className="clear-both block" />
-                </h1>
-              </Reveal>
-              <Reveal delay={0.1} className="self-end lg:col-span-5 lg:col-start-8">
-                <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
-                  Guest pitches, press, partnerships, or just a note about an episode that landed.
-                  Every message gets read.
-                </p>
-              </Reveal>
-            </div>
+            <Reveal className="mb-16 text-center lg:mb-20">
+              <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
+                <DropCap letter="W" />rite to
+                <span className="italic font-light text-sub"> Deep Dives.</span>
+                <span className="clear-both block" />
+              </h1>
+            </Reveal>
 
             {/* Two-column body */}
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -76,7 +68,7 @@ export default function ContactPage() {
                   <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
                     Or just say hi
                   </p>
-                  <p className="mt-5 font-body italic text-sub text-[18px] leading-[1.55]">
+                  <p className="mt-5 font-body italic text-paper text-[18px] leading-[1.55]">
                     The best notes start with which episode pulled you in.
                   </p>
                 </div>

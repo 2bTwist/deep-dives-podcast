@@ -19,27 +19,27 @@ const EPISODE_PROJECTION = /* groq */ `
   }
 `;
 
-export const ALL_EPISODES_QUERY = defineQuery(/* groq */ `
+const ALL_EPISODES_QUERY = defineQuery(/* groq */ `
   *[_type == "episode" && defined(slug.current)]
     | order(publishedAt desc) {
       ${EPISODE_PROJECTION}
     }
 `);
 
-export const FEATURED_EPISODE_QUERY = defineQuery(/* groq */ `
+const FEATURED_EPISODE_QUERY = defineQuery(/* groq */ `
   *[_type == "episode" && defined(slug.current)]
     | order(publishedAt desc)[0] {
       ${EPISODE_PROJECTION}
     }
 `);
 
-export const EPISODE_BY_SLUG_QUERY = defineQuery(/* groq */ `
+const EPISODE_BY_SLUG_QUERY = defineQuery(/* groq */ `
   *[_type == "episode" && slug.current == $slug][0] {
     ${EPISODE_PROJECTION}
   }
 `);
 
-export const EPISODE_SLUGS_QUERY = defineQuery(/* groq */ `
+const EPISODE_SLUGS_QUERY = defineQuery(/* groq */ `
   *[_type == "episode" && defined(slug.current)].slug.current
 `);
 

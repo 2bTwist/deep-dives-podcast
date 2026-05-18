@@ -75,29 +75,21 @@ export default async function GuestsPage() {
       <main>
         {/* Masthead */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
-            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-              <Reveal className="lg:col-span-7">
-                <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
-                  <DropCap letter="V" />oices
-                  <span className="italic font-light text-sub"> we feature.</span>
-                  <span className="clear-both block" />
-                </h1>
-              </Reveal>
-              <Reveal delay={0.1} className="self-end lg:col-span-5 lg:col-start-8">
-                <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
-                  Deep Dives isn't a celebrity show. It's a conversation show. The full guest
-                  directory is coming. For now, here's the kind of room we're building.
-                </p>
-              </Reveal>
-            </div>
+          <div className="mx-auto max-w-[1400px] px-8 pb-16 pt-20 lg:px-10 lg:pb-20 lg:pt-28">
+            <Reveal className="text-center">
+              <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
+                <DropCap letter="V" />oices
+                <span className="italic font-light text-sub"> we feature.</span>
+                <span className="clear-both block" />
+              </h1>
+            </Reveal>
           </div>
           <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
         </section>
 
         {/* Voices grid */}
         <section className="relative bg-surface">
-          <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-36">
+          <div className="mx-auto max-w-[1400px] px-8 py-16 lg:px-10 lg:py-20">
             <div className="grid grid-cols-1 gap-px bg-rule sm:grid-cols-2 lg:grid-cols-3">
               {voices.map((v, i) => (
                 <Reveal key={v.label} delay={i * 0.06} className="bg-surface p-8 lg:p-10">
@@ -121,7 +113,7 @@ export default async function GuestsPage() {
 
         {/* Recent conversations */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-8 py-16 lg:px-10 lg:py-20">
             <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
                 <h2 className="break-words font-display text-[40px] leading-[1.02] tracking-[-0.015em] sm:text-[44px] sm:leading-[1.0] lg:text-[64px]">
@@ -177,7 +169,7 @@ export default async function GuestsPage() {
 
         {/* Pitch yourself CTA */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-8 py-16 lg:px-10 lg:py-20">
             <Reveal className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-7">
                 <h2 className="break-words font-display text-[40px] leading-[1.02] tracking-[-0.015em] sm:text-[44px] sm:leading-[1.0] lg:text-[64px]">

@@ -21,11 +21,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/episodes" },
 };
 
-function formatDate(iso?: string) {
-  if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-}
-
 export default async function EpisodesPage() {
   const latest = await getAllEpisodes();
 

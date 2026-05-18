@@ -1,0 +1,4 @@
+{
+  "entry": ["src/app/**/page.tsx", "src/app/**/route.ts", "src/app/**/layout.tsx", "scripts/*.mjs"],
+  "ignoreDependencies": ["vercel"]
+}

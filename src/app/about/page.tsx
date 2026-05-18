@@ -69,7 +69,7 @@ export default function AboutPage() {
               {/* Letter body */}
               <Reveal delay={0.05} className="order-2 lg:order-1 lg:col-span-7">
                 <p className="font-display italic text-[30px] leading-[1.2] text-paper lg:text-[36px]">
-                  Reader,
+                  Dear Reader,
                 </p>
 
                 <div className="mt-10 space-y-7 font-body text-paper text-[19px] leading-[1.75]">
@@ -89,7 +89,7 @@ export default function AboutPage() {
                   Where the camera doesn&rsquo;t cut when the truth gets quiet.
                 </PullQuote>
 
-                <div className="space-y-7 font-body text-sub text-[19px] leading-[1.75]">
+                <div className="space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
                     The guests aren&rsquo;t celebrities. They&rsquo;re founders who can name the
                     month their company nearly died. Planners who can tell you what a wedding

@@ -1,4 +1,4 @@
-export const ease = {
+const ease = {
   /** Expo-out — front-loaded, slow settle. The "Framer/editorial" feel. */
   editorial: [0.16, 1, 0.3, 1] as const,
   /** Gentle quart-out — for micro-interactions. */
@@ -33,9 +33,4 @@ export const stagger = (delayChildren = 0.1, staggerChildren = 0.08) => ({
 /** Hover micro-interaction — subtle lift, fast snap. */
 export const microHover = {
   transition: { duration: 0.2, ease: ease.gentle },
-};
-
-/** Slow ambient float — for decorative chrome (gold rule shimmer, etc.). */
-export const ambient = {
-  transition: { duration: 2.4, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" as const },
 };
