@@ -44,7 +44,7 @@ export function AboutTeaserSection() {
             >
               <Image
                 src="/brand/raissa-portrait.jpg"
-                alt="Raissa, host and founder of Deep Dives Podcast"
+                alt="Raissa, host and creator of Deep Dives Podcast"
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
                 className="object-cover transition-transform duration-[3000ms] ease-out group-hover:scale-[1.06]"

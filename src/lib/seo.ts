@@ -50,7 +50,9 @@ export function podcastSeriesSchema() {
 
 export function podcastEpisodeSchema(ep: Episode) {
   const url = `${siteUrl()}/episodes/${ep.slug}`;
-  const image = `https://i.ytimg.com/vi/${ep.youtubeId}/maxresdefault.jpg`;
+  // 'sd' (640x480) is guaranteed for every public video; 'maxres' 404s on
+  // older/unprocessed videos and silently breaks any consumer using the schema.
+  const image = `https://i.ytimg.com/vi/${ep.youtubeId}/sddefault.jpg`;
   return {
     "@context": "https://schema.org",
     "@type": "PodcastEpisode",
