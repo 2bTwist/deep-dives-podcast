@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { NewBadge } from "@/components/site/NewBadge";
-import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
+import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 import { breadcrumbSchema, guestArchetypesSchema, siteUrl } from "@/lib/seo";
@@ -77,9 +77,9 @@ export default async function GuestsPage() {
         <section className="relative">
           <div className="mx-auto max-w-[1400px] px-8 pb-16 pt-20 lg:px-10 lg:pb-20 lg:pt-28">
             <Reveal className="text-center">
-              <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
+              <h1 className="inline-block text-left font-display text-[44px] leading-[1.0] tracking-[-0.015em] text-paper sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
                 <DropCap letter="V" />oices
-                <span className="italic font-light text-sub"> we feature.</span>
+                <span className="block whitespace-nowrap italic font-light text-sub">we feature.</span>
                 <span className="clear-both block" />
               </h1>
             </Reveal>

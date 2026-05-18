@@ -29,7 +29,7 @@ const values: { Icon: ComponentType<{ className?: string }>; title: string; body
   },
 ];
 
-export function WhyIStartedSection() {
+export function AboutTeaserSection() {
   return (
     <section className="relative bg-surface">
       <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-36">

@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { NewBadge } from "@/components/site/NewBadge";
-import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
+import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 import { breadcrumbSchema, episodeListSchema, siteUrl } from "@/lib/seo";

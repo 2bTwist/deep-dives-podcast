@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
+import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { NewBadge } from "@/components/site/NewBadge";

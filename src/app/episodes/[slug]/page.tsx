@@ -6,7 +6,7 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { NewBadge } from "@/components/site/NewBadge";
-import { EpisodeThumbStatic } from "@/components/EpisodeThumbStatic";
+import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes, getEpisodeBySlug, getEpisodeSlugs } from "@/sanity/lib/queries";
 import { youtubeEmbedUrl, youtubeThumb, youtubeWatchUrl } from "@/lib/youtube";

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EpisodeThumb } from "@/components/EpisodeThumb";
+import { EpisodeThumb } from "@/components/site/EpisodeThumb";
 import { NewBadge } from "@/components/site/NewBadge";
 import { HeroAmbience } from "@/components/site/HeroAmbience";
 import type { Episode } from "@/lib/types";

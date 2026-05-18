@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { ConversationsSection } from "@/components/site/ConversationsSection";
-import { WhyIStartedSection } from "@/components/site/WhyIStartedSection";
+import { AboutTeaserSection } from "@/components/site/AboutTeaserSection";
 import { CommunitySection } from "@/components/site/CommunitySection";
 import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
@@ -22,7 +22,7 @@ export default async function HomePage() {
       <main>
         <Hero featured={featured} />
         <ConversationsSection />
-        <WhyIStartedSection />
+        <AboutTeaserSection />
         <CommunitySection />
       </main>
       <Footer />
