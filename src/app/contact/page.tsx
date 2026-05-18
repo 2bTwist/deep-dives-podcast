@@ -31,9 +31,9 @@ export default function ContactPage() {
           <div className="mx-auto max-w-[1400px] px-8 pb-12 pt-20 lg:px-10 lg:pb-16 lg:pt-28">
             {/* Masthead */}
             <Reveal className="mb-16 text-center lg:mb-20">
-              <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
+              <h1 className="inline-block text-left font-display text-[44px] leading-[1.0] tracking-[-0.015em] text-paper sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
                 <DropCap letter="W" />rite to
-                <span className="italic font-light text-sub"> Deep Dives.</span>
+                <span className="block whitespace-nowrap italic font-light text-sub">Deep Dives.</span>
                 <span className="clear-both block" />
               </h1>
             </Reveal>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                   <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
                     Or just say hi
                   </p>
-                  <p className="mt-5 font-body italic text-paper text-[18px] leading-[1.55]">
+                  <p className="mt-5 font-body text-paper text-[18px] leading-[1.6]">
                     The best notes start with which episode pulled you in.
                   </p>
                 </div>

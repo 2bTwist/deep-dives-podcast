@@ -3,6 +3,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
+import { JsonLd } from "@/components/site/JsonLd";
+import { breadcrumbSchema, siteUrl } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -17,6 +19,12 @@ const LAST_UPDATED = "May 16, 2026";
 export default function TermsPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: siteUrl() },
+          { name: "Terms", url: `${siteUrl()}/terms` },
+        ])}
+      />
       <Header />
       <main>
         <section className="relative">

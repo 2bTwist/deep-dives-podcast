@@ -38,7 +38,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const ep = await getEpisodeBySlug(slug);
   if (!ep) return {};
-  const image = youtubeThumb(ep.youtubeId, "maxres");
+  // 'sd' (640x480) is guaranteed for every public video; 'maxres' 404s on
+  // older/unprocessed videos and silently breaks the OG card when shared.
+  const image = youtubeThumb(ep.youtubeId, "sd");
   return {
     title: ep.title,
     description: ep.description,
