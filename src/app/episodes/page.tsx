@@ -1,11 +1,9 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
-import { NewBadge } from "@/components/site/NewBadge";
-import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
+import { EpisodeCard } from "@/components/site/EpisodeCard";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 import { breadcrumbSchema, episodeListSchema, siteUrl } from "@/lib/seo";
@@ -59,43 +57,12 @@ export default async function EpisodesPage() {
             {/* Episode grid — outlined cards with hairline border + breathing room */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
               {latest.map((ep, i) => (
-                <Reveal
+                <EpisodeCard
                   key={ep.youtubeId}
+                  episode={ep}
                   delay={i * 0.08}
-                  className="group border border-rule bg-card transition-colors duration-300 hover:border-gold/40"
-                >
-                  <article>
-                    <Link href={`/episodes/${ep.slug}`} className="block">
-                      <div className="relative aspect-video overflow-hidden bg-card">
-                        <EpisodeThumbStatic
-                          id={ep.youtubeId}
-                          alt={ep.title}
-                          width={640}
-                          height={360}
-                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                        />
-                        <span className="pointer-events-none absolute bottom-3 left-3 grid h-10 w-10 place-items-center rounded-full bg-gold text-ink opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                          <svg viewBox="0 0 12 12" className="h-3.5 w-3.5 translate-x-[1px]" fill="currentColor" aria-hidden>
-                            <polygon points="2,0 12,6 2,12" />
-                          </svg>
-                        </span>
-                        <span className="absolute right-3 top-3 bg-ink/85 px-2.5 py-1 font-body text-[11px] uppercase tracking-[0.16em] text-paper">
-                          {ep.duration}
-                        </span>
-                        <NewBadge publishedAt={ep.publishedAt} />
-                      </div>
-
-                      <div className="p-6">
-                        <p className="font-body text-[11px] uppercase tracking-[0.28em] text-gold">
-                          {ep.category}
-                        </p>
-                        <h2 className="mt-3 font-display text-[22px] leading-[1.18] text-paper transition-colors duration-200 group-hover:text-gold">
-                          {ep.title}
-                        </h2>
-                      </div>
-                    </Link>
-                  </article>
-                </Reveal>
+                  headingLevel={2}
+                />
               ))}
             </div>
 

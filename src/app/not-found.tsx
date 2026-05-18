@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { Button } from "@/components/site/Button";
 
 export const metadata = {
   title: "Not Found",
@@ -27,19 +27,12 @@ export default function NotFound() {
                 than the conversation it was looking for.
               </p>
               <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/"
-                  className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-ink transition-colors duration-200 hover:bg-gold-bright"
-                >
+                <Button variant="primary" href="/">
                   Back Home
-                  <span className="text-[14px] transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                </Link>
-                <Link
-                  href="/episodes"
-                  className="inline-flex items-center gap-3 border border-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-gold transition-colors duration-200 hover:bg-gold/10"
-                >
+                </Button>
+                <Button variant="secondary" href="/episodes" showArrow={false}>
                   Browse Episodes
-                </Link>
+                </Button>
               </div>
             </div>
           </div>

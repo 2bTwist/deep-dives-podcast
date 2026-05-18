@@ -1,11 +1,10 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
-import { NewBadge } from "@/components/site/NewBadge";
-import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
+import { EpisodeCard } from "@/components/site/EpisodeCard";
+import { Button } from "@/components/site/Button";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes } from "@/sanity/lib/queries";
 import { breadcrumbSchema, guestArchetypesSchema, siteUrl } from "@/lib/seo";
@@ -132,35 +131,12 @@ export default async function GuestsPage() {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-7">
               {recentGuestEpisodes.map((ep, i) => (
-                <Reveal
+                <EpisodeCard
                   key={ep.youtubeId}
+                  episode={ep}
                   delay={i * 0.08}
-                  className="group border border-rule bg-card transition-colors duration-300 hover:border-gold/40"
-                >
-                  <Link href={`/episodes/${ep.slug}`} className="block">
-                    <div className="relative aspect-video overflow-hidden bg-card">
-                      <EpisodeThumbStatic
-                        id={ep.youtubeId}
-                        alt={ep.title}
-                        width={640}
-                        height={360}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                      />
-                      <span className="absolute right-3 top-3 bg-ink/85 px-2.5 py-1 font-body text-[11px] uppercase tracking-[0.16em] text-paper">
-                        {ep.duration}
-                      </span>
-                      <NewBadge publishedAt={ep.publishedAt} />
-                    </div>
-                    <div className="p-6">
-                      <p className="font-body text-[11px] uppercase tracking-[0.28em] text-gold">
-                        {ep.category}
-                      </p>
-                      <h3 className="mt-3 font-display text-[20px] leading-[1.2] text-paper transition-colors duration-200 group-hover:text-gold">
-                        {ep.title}
-                      </h3>
-                    </div>
-                  </Link>
-                </Reveal>
+                  showPlayBadge={false}
+                />
               ))}
             </div>
           </div>
@@ -184,13 +160,9 @@ export default async function GuestsPage() {
                 </p>
               </div>
               <div className="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.24em] text-ink transition-colors duration-200 hover:bg-gold-bright"
-                >
+                <Button variant="primary" href="/contact">
                   Pitch a Guest
-                  <span className="text-[14px] transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                </Link>
+                </Button>
               </div>
             </Reveal>
           </div>

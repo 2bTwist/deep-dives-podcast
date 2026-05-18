@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect } from "react";
+import { Button } from "@/components/site/Button";
 
 type Props = {
   error: Error & { digest?: string };
@@ -43,12 +43,9 @@ export default function GlobalError({ error, reset }: Props) {
                 Try Again
                 <span className="text-[14px] transition-transform duration-200 group-hover:translate-x-0.5">↻</span>
               </button>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-3 border border-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-gold transition-colors duration-200 hover:bg-gold/10"
-              >
+              <Button variant="secondary" href="/" showArrow={false}>
                 Back Home
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
