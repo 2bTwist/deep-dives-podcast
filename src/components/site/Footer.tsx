@@ -17,9 +17,9 @@ const legalNav = [
 export function Footer() {
   return (
     <footer className="relative bg-ink">
-      <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+      <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
 
-      <div className="mx-auto max-w-[1400px] px-8 py-20 lg:px-10 lg:py-24">
+      <div className="mx-auto max-w-content px-8 py-20 lg:px-10 lg:py-24">
         {/* Top grid — brand + nav + listen */}
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Brand column */}

@@ -14,12 +14,12 @@ export async function ConversationsSection() {
 
   return (
     <section className="relative">
-      <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-content px-8 py-28 lg:px-10 lg:py-32">
         {/* Masthead */}
         <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5">
             <h2 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[56px] sm:leading-[0.98] lg:text-[72px]">
-              <DropCap letter="C" />onversations
+              <DropCap letter="C" size="md" />onversations
               <span className="block italic font-light text-sub">That Matter</span>
               <span className="clear-both block" />
             </h2>
@@ -85,7 +85,7 @@ export async function ConversationsSection() {
         </div>
       </div>
 
-      <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+      <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
     </section>
   );
 }

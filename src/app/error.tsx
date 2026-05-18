@@ -17,7 +17,7 @@ export default function GlobalError({ error, reset }: Props) {
     <main className="flex min-h-screen flex-col bg-ink">
       <div aria-hidden className="h-px w-full bg-gold-bright/70" />
       <section className="relative flex-1">
-        <div className="mx-auto grid min-h-[80vh] max-w-[1400px] place-items-center px-8 py-32 lg:px-10">
+        <div className="mx-auto grid min-h-[80vh] max-w-content place-items-center px-8 py-32 lg:px-10">
           <div className="text-center">
             <p className="font-body text-[12px] uppercase tracking-[0.32em] text-gold">
               Something broke

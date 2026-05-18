@@ -20,7 +20,7 @@ export function CommunitySection() {
 
   return (
     <section className="relative bg-ink">
-      <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-28">
         <Reveal className="relative overflow-hidden bg-gold text-ink">
           {/* hairline ink rule inset */}
           <span aria-hidden className="absolute inset-x-8 top-0 h-px bg-ink/20" />

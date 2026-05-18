@@ -29,7 +29,7 @@ export default function PrivacyPage() {
       <Header />
       <main>
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
+          <div className="mx-auto max-w-content px-8 py-32 lg:px-10 lg:py-40">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
                 <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
@@ -49,11 +49,11 @@ export default function PrivacyPage() {
               </Reveal>
             </div>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-content px-8 py-20 lg:px-10 lg:py-28">
             <Reveal className="mx-auto max-w-3xl space-y-14">
               <div>
                 <h2 className="font-display text-[28px] leading-[1.15] text-paper lg:text-[36px]">

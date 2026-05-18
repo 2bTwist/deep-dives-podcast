@@ -69,7 +69,7 @@ export function Header() {
             : "border-transparent bg-ink/70 backdrop-blur-[2px]")
         }
       >
-        <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-8 lg:px-10">
+        <div className="mx-auto flex h-[72px] max-w-content items-center justify-between px-8 lg:px-10">
           <Logo size={42} />
 
           <nav aria-label="Primary" className="hidden lg:block">

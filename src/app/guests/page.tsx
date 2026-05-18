@@ -75,7 +75,7 @@ export default async function GuestsPage() {
       <main>
         {/* Masthead */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 pb-16 pt-20 lg:px-10 lg:pb-20 lg:pt-28">
+          <div className="mx-auto max-w-content px-8 pb-16 pt-20 lg:px-10 lg:pb-20 lg:pt-28">
             <Reveal className="text-center">
               <h1 className="inline-block text-left font-display text-[44px] leading-[1.0] tracking-[-0.015em] text-paper sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
                 <DropCap letter="V" />oices
@@ -84,12 +84,12 @@ export default async function GuestsPage() {
               </h1>
             </Reveal>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* Voices grid */}
         <section className="relative bg-surface">
-          <div className="mx-auto max-w-[1400px] px-8 py-16 lg:px-10 lg:py-20">
+          <div className="mx-auto max-w-content px-8 py-16 lg:px-10 lg:py-20">
             <div className="grid grid-cols-1 gap-px bg-rule sm:grid-cols-2 lg:grid-cols-3">
               {voices.map((v, i) => (
                 <Reveal key={v.label} delay={i * 0.06} className="bg-surface p-8 lg:p-10">
@@ -108,16 +108,16 @@ export default async function GuestsPage() {
               ))}
             </div>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* Recent conversations */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-16 lg:px-10 lg:py-20">
+          <div className="mx-auto max-w-content px-8 py-16 lg:px-10 lg:py-20">
             <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
                 <h2 className="break-words font-display text-[40px] leading-[1.02] tracking-[-0.015em] sm:text-[44px] sm:leading-[1.0] lg:text-[64px]">
-                  <DropCap letter="T" />he latest
+                  <DropCap letter="T" size="md" />he latest
                   <span className="italic font-light text-sub"> guests.</span>
                   <span className="clear-both block" />
                 </h2>
@@ -164,16 +164,16 @@ export default async function GuestsPage() {
               ))}
             </div>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* Pitch yourself CTA */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-16 lg:px-10 lg:py-20">
+          <div className="mx-auto max-w-content px-8 py-16 lg:px-10 lg:py-20">
             <Reveal className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-7">
                 <h2 className="break-words font-display text-[40px] leading-[1.02] tracking-[-0.015em] sm:text-[44px] sm:leading-[1.0] lg:text-[64px]">
-                  <DropCap letter="P" />itch
+                  <DropCap letter="P" size="md" />itch
                   <span className="italic font-light text-sub"> yourself.</span>
                   <span className="clear-both block" />
                 </h2>

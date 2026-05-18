@@ -54,7 +54,7 @@ export default function StyleguidePage() {
     <main className="min-h-screen text-paper">
       {/* Top bar — editorial masthead */}
       <header className="border-b border-rule">
-        <div className="mx-auto flex max-w-[1400px] items-end justify-between px-10 pb-6 pt-10">
+        <div className="mx-auto flex max-w-content items-end justify-between px-10 pb-6 pt-10">
           <div>
             <p className="text-[10px] uppercase tracking-[0.32em] text-gold">Deep Dives</p>
             <h1 className="mt-2 font-display text-[40px] leading-[1.0]">
@@ -272,7 +272,7 @@ export default function StyleguidePage() {
       </Section>
 
       <footer className="border-t border-rule">
-        <div className="mx-auto max-w-[1400px] px-10 py-10">
+        <div className="mx-auto max-w-content px-10 py-10">
           <p className="font-body italic text-sub text-[12px]">
             Tokens · <span className="font-mono not-italic text-paper">src/app/globals.css</span>.
             Motion · <span className="font-mono not-italic text-paper">src/lib/motion.ts</span>.
@@ -299,7 +299,7 @@ function Section({
 }) {
   return (
     <section className="border-b border-rule">
-      <div className="mx-auto max-w-[1400px] px-10 py-24">
+      <div className="mx-auto max-w-content px-10 py-24">
         <div className="mb-14 grid gap-8 lg:grid-cols-[1fr_2fr]">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-muted">

@@ -24,7 +24,7 @@ export function Hero({ featured }: Props) {
   return (
     <section className="relative overflow-hidden">
       <HeroAmbience />
-      <div className="relative z-10 mx-auto max-w-[1320px] px-8 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-content-tight px-8 lg:px-10">
         <div className="flex flex-col items-center pb-24 pt-20 text-center lg:pb-32 lg:pt-28">
           {/* Masthead */}
           <h1>
@@ -123,7 +123,7 @@ export function Hero({ featured }: Props) {
         </div>
       </div>
 
-      <div aria-hidden className="mx-auto h-px max-w-[1320px] bg-rule" />
+      <div aria-hidden className="mx-auto h-px max-w-content-tight bg-rule" />
     </section>
   );
 }

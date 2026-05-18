@@ -28,7 +28,7 @@ export default function ContactPage() {
       <Header />
       <main>
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 pb-12 pt-20 lg:px-10 lg:pb-16 lg:pt-28">
+          <div className="mx-auto max-w-content px-8 pb-12 pt-20 lg:px-10 lg:pb-16 lg:pt-28">
             {/* Masthead */}
             <Reveal className="mb-16 text-center lg:mb-20">
               <h1 className="inline-block text-left font-display text-[44px] leading-[1.0] tracking-[-0.015em] text-paper sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
@@ -81,7 +81,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
       </main>
       <Footer />

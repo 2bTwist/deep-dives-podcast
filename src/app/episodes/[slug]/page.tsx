@@ -89,7 +89,7 @@ export default async function EpisodePage({
       <main>
         {/* Episode hero */}
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-content px-8 py-20 lg:px-10 lg:py-28">
             <Reveal>
               <Link
                 href="/episodes"
@@ -150,16 +150,16 @@ export default async function EpisodePage({
               </Reveal>
             ) : null}
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
         {/* Related episodes */}
         <section className="relative bg-surface">
-          <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="mb-14 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
                 <h2 className="break-words font-display text-[36px] leading-[1.02] tracking-[-0.015em] sm:text-[40px] sm:leading-[1.0] lg:text-[56px]">
-                  <DropCap letter="M" />ore
+                  <DropCap letter="M" size="md" />ore
                   <span className="italic font-light text-sub"> conversations.</span>
                   <span className="clear-both block" />
                 </h2>
@@ -210,7 +210,7 @@ export default async function EpisodePage({
               ))}
             </div>
           </div>
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
       </main>
       <Footer />

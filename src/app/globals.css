@@ -24,7 +24,12 @@
   /* Text tokens */
   --color-paper: #ffffff;
   --color-muted: #a7a7a7;
-  --color-sub:   rgb(255 255 255 / 0.72);  /* sub-headline / lede — replaces muted for hierarchy */
+  --color-sub:   rgb(255 255 255 / 0.92);  /* sub-headline / lede — high-legibility against ink + film grain */
+
+  /* Layout tokens — single source of truth for page content width.
+     Use max-w-content everywhere; max-w-content-tight on hero only. */
+  --container-content: 1400px;
+  --container-content-tight: 1320px;
 }
 
 :root {

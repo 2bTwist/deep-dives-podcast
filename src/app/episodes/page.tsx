@@ -38,7 +38,7 @@ export default async function EpisodesPage() {
       <Header />
       <main>
         <section className="relative">
-          <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
+          <div className="mx-auto max-w-content px-8 py-32 lg:px-10 lg:py-40">
             {/* Masthead */}
             <div className="mb-20 grid gap-8 lg:mb-24 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
@@ -125,7 +125,7 @@ export default async function EpisodesPage() {
             </Reveal>
           </div>
 
-          <div aria-hidden className="mx-auto h-px max-w-[1400px] bg-rule" />
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
       </main>
       <Footer />
