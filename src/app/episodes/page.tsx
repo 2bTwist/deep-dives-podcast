@@ -47,7 +47,7 @@ export default async function EpisodesPage() {
             {/* Masthead */}
             <div className="mb-20 grid gap-8 lg:mb-24 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
-                <h1 className="font-display text-[64px] leading-[0.98] tracking-[-0.015em] lg:text-[88px]">
+                <h1 className="break-words font-display text-[44px] leading-[1.02] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.98] lg:text-[88px]">
                   <DropCap letter="R" />ecent
                   <span className="italic font-light text-sub"> Conversations.</span>
                   <span className="clear-both block" />

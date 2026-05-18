@@ -82,7 +82,7 @@ export function WhyIStartedSection() {
 
           {/* RIGHT — copy */}
           <Reveal delay={0.12} className="lg:col-span-7 lg:pt-6">
-            <h2 className="font-display text-[56px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
+            <h2 className="break-words font-display text-[44px] leading-[1.02] tracking-[-0.015em] sm:text-[56px] sm:leading-[1.0] lg:text-[64px]">
               <DropCap letter="W" />hy I Started
               <span className="block italic font-light text-sub">Deep Dives</span>
               <span className="clear-both block" />

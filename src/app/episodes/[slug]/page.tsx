@@ -156,7 +156,7 @@ export default async function EpisodePage({
           <div className="mx-auto max-w-[1400px] px-8 py-24 lg:px-10 lg:py-32">
             <div className="mb-14 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
-                <h2 className="font-display text-[40px] leading-[1.0] tracking-[-0.015em] lg:text-[56px]">
+                <h2 className="break-words font-display text-[36px] leading-[1.02] tracking-[-0.015em] sm:text-[40px] sm:leading-[1.0] lg:text-[56px]">
                   <DropCap letter="M" />ore
                   <span className="italic font-light text-sub"> conversations.</span>
                   <span className="clear-both block" />

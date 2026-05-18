@@ -72,7 +72,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
-                <h1 className="font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[104px]">
+                <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[104px]">
                   <DropCap letter="C" />onversations
                   <span className="block italic font-light text-sub">that go the distance.</span>
                   <span className="clear-both block" />
@@ -123,7 +123,7 @@ export default function AboutPage() {
               </Reveal>
 
               <Reveal delay={0.12} className="lg:col-span-6 lg:pt-8">
-                <h2 className="font-display text-[44px] leading-[1.0] tracking-[-0.015em] lg:text-[56px]">
+                <h2 className="break-words font-display text-[40px] leading-[1.02] tracking-[-0.015em] sm:text-[44px] sm:leading-[1.0] lg:text-[56px]">
                   <DropCap letter="T" />he questions
                   <span className="italic font-light text-sub"> short form skips.</span>
                   <span className="clear-both block" />
@@ -178,7 +178,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-36">
             <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
-                <h2 className="font-display text-[44px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
+                <h2 className="break-words font-display text-[40px] leading-[1.02] tracking-[-0.015em] sm:text-[44px] sm:leading-[1.0] lg:text-[64px]">
                   <DropCap letter="S" />even kinds of
                   <span className="italic font-light text-sub"> conversation.</span>
                   <span className="clear-both block" />
@@ -217,7 +217,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-28 lg:px-10 lg:py-32">
             <Reveal className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-7">
-                <h2 className="font-display text-[44px] leading-[1.0] tracking-[-0.015em] lg:text-[64px]">
+                <h2 className="break-words font-display text-[40px] leading-[1.02] tracking-[-0.015em] sm:text-[44px] sm:leading-[1.0] lg:text-[64px]">
                   <DropCap letter="E" />very episode
                   <span className="italic font-light text-sub"> on <span className="text-youtube">YouTube</span>.</span>
                   <span className="clear-both block" />

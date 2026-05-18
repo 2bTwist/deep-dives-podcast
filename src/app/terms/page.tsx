@@ -23,7 +23,7 @@ export default function TermsPage() {
           <div className="mx-auto max-w-[1400px] px-8 py-32 lg:px-10 lg:py-40">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-7">
-                <h1 className="font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
+                <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
                   <DropCap letter="T" />erms
                   <span className="italic font-light text-sub"> of Use.</span>
                   <span className="clear-both block" />

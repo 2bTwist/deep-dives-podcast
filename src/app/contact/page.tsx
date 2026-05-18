@@ -32,7 +32,7 @@ export default function ContactPage() {
             {/* Masthead */}
             <div className="mb-20 grid gap-8 lg:mb-24 lg:grid-cols-12 lg:gap-12">
               <Reveal className="lg:col-span-7">
-                <h1 className="font-display text-[64px] leading-[0.96] tracking-[-0.015em] lg:text-[96px]">
+                <h1 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[64px] sm:leading-[0.96] lg:text-[96px]">
                   <DropCap letter="W" />rite to
                   <span className="italic font-light text-sub"> Deep Dives.</span>
                   <span className="clear-both block" />

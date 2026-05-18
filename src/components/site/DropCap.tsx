@@ -21,7 +21,9 @@ export function DropCap({ letter, color = "gold", className = "" }: Props) {
     <span
       aria-hidden
       className={
-        "float-left mr-3 -mt-2 font-display italic leading-[0.85] text-[96px] lg:mr-4 lg:text-[144px] " +
+        "float-left mr-2 -mt-1 font-display italic leading-[0.82] text-[64px] " +
+        "sm:mr-3 sm:-mt-2 sm:leading-[0.85] sm:text-[96px] " +
+        "lg:mr-4 lg:text-[144px] " +
         colorClass +
         " " +
         className
