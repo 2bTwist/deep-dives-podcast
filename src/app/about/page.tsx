@@ -96,7 +96,7 @@ export default function AboutPage() {
               <Reveal className="lg:col-span-6">
                 <div className="relative aspect-[4/5] overflow-hidden bg-card">
                   <Image
-                    src="/brand/raissa-portrait.png"
+                    src="/brand/raissa-portrait.jpg"
                     alt="Raissa, host and creator of Deep Dives Podcast"
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
@@ -158,15 +158,17 @@ export default function AboutPage() {
 
                 <HandSignature className="mt-10" />
 
-                <a
-                  href={CHANNEL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group mt-10 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-ink transition-colors duration-200 hover:bg-gold-bright"
-                >
-                  Watch on YouTube
-                  <span className="text-[14px] transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                </a>
+                <div className="mt-10">
+                  <a
+                    href={CHANNEL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-ink transition-colors duration-200 hover:bg-gold-bright"
+                  >
+                    Watch on YouTube
+                    <span className="text-[14px] transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+                  </a>
+                </div>
               </Reveal>
             </div>
           </div>

@@ -106,7 +106,7 @@ export function personSchema() {
     "@type": "Person",
     name: "Raissa",
     url: `${siteUrl()}/about`,
-    image: `${siteUrl()}/brand/raissa-portrait.png`,
+    image: `${siteUrl()}/brand/raissa-portrait.jpg`,
     jobTitle: "Host and creator, Deep Dives Podcast",
     description:
       "Host of Deep Dives Podcast. Long-form conversations with founders, planners, clergy, civic voices, immigrants, and creatives.",

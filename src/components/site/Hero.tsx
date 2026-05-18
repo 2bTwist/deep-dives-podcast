@@ -66,34 +66,13 @@ export function Hero({ featured }: Props) {
                 Explore Episodes
               </Link>
             </div>
-
-            <a
-              href="https://www.youtube.com/@DeepDives237"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-14 inline-flex items-center gap-4"
-            >
-              <span className="grid h-10 w-10 place-items-center rounded-full border border-gold text-gold transition-colors duration-200 group-hover:bg-gold/10">
-                <svg viewBox="0 0 12 12" className="h-3.5 w-3.5 translate-x-[1px]" fill="currentColor" aria-hidden>
-                  <polygon points="2,0 12,6 2,12" />
-                </svg>
-              </span>
-              <span className="leading-tight">
-                <span className="block font-body text-[15px] font-medium tracking-[-0.005em] text-paper transition-colors duration-200 group-hover:text-gold">
-                  @DeepDives237
-                </span>
-                <span className="mt-1 block font-body italic text-sub text-[13px]">
-                  Long-form conversations on YouTube.
-                </span>
-              </span>
-            </a>
           </div>
 
           {/* CENTER — real photo of Raissa from the YouTube banner */}
           <div className="lg:col-span-4">
             <div className="relative h-full min-h-[520px] overflow-hidden bg-surface">
               <Image
-                src="/brand/raissa-portrait.png"
+                src="/brand/raissa-portrait.jpg"
                 alt="Raissa, host of the Deep Dives Podcast"
                 fill
                 priority

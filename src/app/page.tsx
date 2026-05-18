@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { ConversationsSection } from "@/components/site/ConversationsSection";
 import { WhyIStartedSection } from "@/components/site/WhyIStartedSection";
+import { MomentsSection } from "@/components/site/MomentsSection";
 import { CommunitySection } from "@/components/site/CommunitySection";
 import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
@@ -23,6 +24,7 @@ export default async function HomePage() {
         <Hero featured={featured} />
         <ConversationsSection />
         <WhyIStartedSection />
+        <MomentsSection />
         <CommunitySection />
       </main>
       <Footer />

@@ -43,7 +43,7 @@ export function WhyIStartedSection() {
               className="group relative block aspect-[4/5] overflow-hidden bg-card"
             >
               <Image
-                src="/brand/raissa-portrait.png"
+                src="/brand/raissa-portrait.jpg"
                 alt="Raissa, host and founder of Deep Dives Podcast"
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
