@@ -41,7 +41,7 @@ export function ContactForm() {
           Thank you for writing.
         </p>
         <p className="mt-5 max-w-md font-body italic text-sub text-[16px] leading-[1.55]">
-          I read every note. You'll hear back from us, usually within a week. Often sooner.
+          I read every note. You&rsquo;ll hear back, usually within a week. Often sooner.
         </p>
       </div>
     );
@@ -113,7 +113,7 @@ export function ContactForm() {
           rows={6}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Tell us what's on your mind. The longer the better."
+          placeholder="Tell me what's on your mind."
           className="mt-3 w-full border border-rule bg-transparent px-4 py-4 font-body text-[16px] leading-[1.55] text-paper placeholder:text-muted focus:border-gold focus:outline-none"
         />
       </label>

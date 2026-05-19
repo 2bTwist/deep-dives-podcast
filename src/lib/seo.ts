@@ -8,7 +8,7 @@ const SITE = {
   name: "Deep Dive Podcast with Raissa",
   shortName: "Deep Dives",
   description:
-    "Genuine conversations that inspire, educate, and empower. Real stories. Real people. Real impact.",
+    "A show with Raissa. Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.",
   channel: "https://www.youtube.com/@DeepDives237",
   handle: "@DeepDives237",
   social: {
@@ -133,7 +133,7 @@ export function personSchema() {
     image: `${siteUrl()}/brand/raissa-portrait.jpg`,
     jobTitle: "Host and creator, Deep Dives Podcast",
     description:
-      "Host of Deep Dives Podcast. Long-form conversations with founders, planners, clergy, civic voices, immigrants, and creatives.",
+      "Entrepreneur and host of Deep Dives Podcast. Going deep on the questions that shape modern life, with the experts who actually live them.",
     sameAs: [SITE.social.youtube, SITE.social.instagram, SITE.social.tiktok],
   };
 }

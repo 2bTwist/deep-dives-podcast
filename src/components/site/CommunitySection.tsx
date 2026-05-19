@@ -30,13 +30,13 @@ export function CommunitySection() {
             {/* Left — copy */}
             <div className="lg:col-span-6">
               <h2 className="font-display text-[44px] leading-[1.0] tracking-[-0.015em] text-ink lg:text-[56px]">
-                <DropCap letter="J" color="ink" />oin the conversation
-                <span className="italic font-light"> before it airs.</span>
+                <DropCap letter="F" color="ink" />irst in line
+                <span className="italic font-light"> when a new episode drops.</span>
                 <span className="clear-both block" />
               </h2>
               <p className="mt-5 max-w-md font-body italic text-ink/80 text-[18px] leading-[1.5]">
-                New episodes, behind-the-scenes notes, and the occasional thought too long for an
-                Instagram caption. No spam, ever.
+                I&rsquo;ll send the new episode when it&rsquo;s out, plus the occasional
+                note about who&rsquo;s coming on next. No spam, ever.
               </p>
             </div>
 
@@ -46,10 +46,10 @@ export function CommunitySection() {
                 {state === "success" ? (
                   <div className="border border-ink/30 p-8">
                     <p className="font-body text-[12px] uppercase tracking-[0.32em] text-ink/80">
-                      You're in.
+                      You&rsquo;re in.
                     </p>
                     <p className="mt-3 font-display italic text-[28px] leading-[1.2] text-ink">
-                      Welcome to the long-form.
+                      Talk soon.
                     </p>
                     <p className="mt-3 font-body italic text-ink/80 text-[14px]">
                       Next email lands when the next episode drops.

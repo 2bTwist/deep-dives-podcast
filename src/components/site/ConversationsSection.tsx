@@ -18,15 +18,15 @@ export async function ConversationsSection() {
         <div className="mb-16 grid gap-8 lg:mb-20 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5">
             <h2 className="break-words font-display text-[44px] leading-[1.0] tracking-[-0.015em] sm:text-[56px] sm:leading-[0.98] lg:text-[72px]">
-              <DropCap letter="C" size="md" />onversations
-              <span className="block italic font-light text-sub">That Matter</span>
+              <DropCap letter="R" size="md" />ecent
+              <span className="block italic font-light text-sub">Conversations</span>
               <span className="clear-both block" />
             </h2>
           </Reveal>
           <Reveal delay={0.08} className="self-end lg:col-span-7 lg:col-start-6">
             <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
-              Long-form interviews with people who lived the story before they told it. Founders,
-              clergy, planners, lobbyists, immigrants, the under-asked.
+              The newest drops. Founders, planners, pastors, lobbyists, writers,
+              and a few people who don&rsquo;t fit any of those.
             </p>
             <Link
               href="/episodes"

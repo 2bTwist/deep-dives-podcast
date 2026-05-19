@@ -26,8 +26,8 @@ export function Footer() {
           <div className="lg:col-span-5">
             <Logo withWordmark size={56} />
             <p className="mt-8 max-w-sm font-body italic text-sub text-[18px] leading-[1.55]">
-              Genuine conversations that inspire, educate, and empower. Real stories. Real people.
-              Real impact.
+              A show with Raissa. Going deep on the questions that shape modern life,
+              with the experts who actually live them.
             </p>
             <p className="mt-8 font-body text-[12px] uppercase tracking-[0.32em] text-gold">
               @DeepDives237

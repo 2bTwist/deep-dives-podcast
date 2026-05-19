@@ -9,23 +9,23 @@ import { PullQuote } from "./PullQuote";
 const values: { Icon: ComponentType<{ className?: string }>; title: string; body: string }[] = [
   {
     Icon: Mic,
-    title: "Real Conversations",
-    body: "Two real people, one mic, no filters between you and the story.",
+    title: "Topics that matter now",
+    body: "Work, money, faith, relationships, immigration. The questions today's professionals are actually asking.",
   },
   {
     Icon: Users,
-    title: "Inspiring Guests",
-    body: "Founders, planners, lobbyists, immigrants. Voices you don't hear on autopilot.",
+    title: "Real expertise",
+    body: "Founders, planners, pastors, lobbyists, writers. People who've lived the answer, not just read about it.",
   },
   {
     Icon: Globe,
-    title: "Meaningful Impact",
-    body: "Stories that travel, from launch to listener to action.",
+    title: "Past the surface",
+    body: "The version of a topic you only get when somebody who knows it is actually being asked.",
   },
   {
     Icon: Heart,
-    title: "A Community",
-    body: "Listeners who came for one episode and stayed for the conversation.",
+    title: "Listener-shaped",
+    body: "A lot of who I book comes from someone who emailed about an episode that hit.",
   },
 ];
 
@@ -90,19 +90,20 @@ export function AboutTeaserSection() {
 
             <div className="mt-10 max-w-xl space-y-6 font-body text-sub text-[18px] leading-[1.6]">
               <p>
-                I made Deep Dives because the conversations I most wanted to hear weren't happening
-                anywhere. The kind where someone actually answers the question.
+                I made Deep Dives because the conversations I most wanted to listen
+                to weren&rsquo;t happening anywhere. The kind where someone actually
+                answers the question.
               </p>
             </div>
 
             <PullQuote className="max-w-xl">
-              Where the camera doesn&rsquo;t cut when the truth gets quiet.
+              What an expert actually thinks, said out loud.
             </PullQuote>
 
             <div className="max-w-xl font-body text-sub text-[18px] leading-[1.6]">
               <p>
-                No filters. No fluff. Real people sharing the stories that shaped them, and the
-                lessons they&rsquo;re still working out in real time.
+                The guests are people who actually know what they&rsquo;re talking
+                about. The topics are the questions I&rsquo;m wrestling with too.
               </p>
             </div>
 

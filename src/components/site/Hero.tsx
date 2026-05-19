@@ -46,8 +46,8 @@ export function Hero({ featured }: Props) {
 
           {/* Lede */}
           <p className="mt-12 max-w-xl font-body italic text-sub text-[20px] leading-[1.55]">
-            Genuine conversations that inspire, educate, and empower. The interviews
-            you wish more hosts had the courage to do.
+            Deep conversations on the questions of the moment, with the experts
+            who actually live them.
           </p>
 
           {/* CTAs */}

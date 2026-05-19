@@ -12,7 +12,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Write to Deep Dives. Guest pitches, press inquiries, partnerships, or just hello.",
+    "Write to Deep Dives. Guest pitches, press, partnerships, or just hello.",
   alternates: { canonical: "/contact" },
 };
 
@@ -47,10 +47,9 @@ export default function ContactPage() {
                     Pitching a guest?
                   </p>
                   <p className="mt-5 font-body text-paper text-[18px] leading-[1.6]">
-                    Deep Dives runs long-form interviews with people whose stories don't fit a
-                    tweet. Founders past the pitch deck, planners past the photo shoot, clergy past
-                    the Sunday cadence. If that sounds like you, tell us the story you'd tell on
-                    mic.
+                    I&rsquo;m looking for experts on topics that matter today. If
+                    you&rsquo;ve gone deep on something most people never get the
+                    chance to ask you about, tell me what.
                   </p>
                 </div>
 
@@ -59,8 +58,8 @@ export default function ContactPage() {
                     Press &amp; partnerships
                   </p>
                   <p className="mt-5 font-body text-paper text-[18px] leading-[1.6]">
-                    Working on a piece about the show or interested in collaborating? Drop a line
-                    and we'll route it to the right inbox.
+                    Writing a piece about the show, or want to collaborate? Send it
+                    through.
                   </p>
                 </div>
 

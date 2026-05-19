@@ -171,7 +171,7 @@ export default async function EpisodePage({
               </Reveal>
               <Reveal delay={0.08} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[17px] leading-[1.55]">
-                  Other long-form interviews worth your full attention.
+                  Three more conversations on the questions that matter.
                 </p>
               </Reveal>
             </div>

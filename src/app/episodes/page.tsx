@@ -15,7 +15,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Episodes",
   description:
-    "The latest episodes of Deep Dive Podcast with Raissa. Long-form conversations with founders, lobbyists, planners, clergy, immigrants, and the under-asked.",
+    "The latest episodes of Deep Dive Podcast with Raissa. Going deep on the questions that shape modern life: work, money, faith, immigration, relationships.",
   alternates: { canonical: "/episodes" },
 };
 
@@ -48,8 +48,7 @@ export default async function EpisodesPage() {
               </Reveal>
               <Reveal delay={0.08} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
-                  A handful of the newest drops. The full library (long-form episodes and clips)
-                  lives on YouTube.
+                  The newest drops. The full archive (episodes and clips) lives on YouTube.
                 </p>
               </Reveal>
             </div>

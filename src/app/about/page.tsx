@@ -8,6 +8,7 @@ import { DropCap } from "@/components/site/DropCap";
 import { PullQuote } from "@/components/site/PullQuote";
 import { HandSignature } from "@/components/site/HandSignature";
 import { MomentsStack, type Moment } from "@/components/site/MomentsStack";
+import { BeAGuestInvite } from "@/components/site/BeAGuestInvite";
 import { JsonLd } from "@/components/site/JsonLd";
 import { breadcrumbSchema, faqPageSchema, personSchema, podcastSeriesSchema, siteUrl } from "@/lib/seo";
 
@@ -25,31 +26,51 @@ const topics = [
   "Immigrant Journeys",
 ];
 
-const FAQS = [
+type FAQ = {
+  question: string;
+  answer: string;
+  answerNode?: React.ReactNode;
+};
+
+const FAQS: FAQ[] = [
   {
     question: "What is Deep Dives Podcast?",
     answer:
-      "Deep Dives is a long-form interview podcast hosted by Raissa, an entrepreneur and storyteller. Each episode is one conversation with one guest, taken as long as it deserves — usually an hour, sometimes two. New episodes drop on YouTube at @DeepDives237.",
+      "Deep Dives is an interview podcast hosted by Raissa. Each episode goes deep on a single topic with the expert who actually lives it. The subjects range across work, money, faith, immigration, relationships, and the questions shaping today's professional life. New episodes are on YouTube at @DeepDives237.",
   },
   {
     question: "Who is Raissa?",
     answer:
-      "Raissa is the host and creator of Deep Dives. She's an entrepreneur who has built businesses, raised money, lost some, started over. She makes the show she wanted to be in and couldn't find — the long version of conversations the algorithm doesn't usually catch.",
+      "Raissa is the host and creator of Deep Dives. She's an entrepreneur who has built businesses, raised money, lost some, started over. She makes the show she wanted to listen to and couldn't find.",
   },
   {
     question: "How long are Deep Dives episodes?",
     answer:
-      "Each episode is one conversation with one guest, taken as long as the conversation deserves. Most run between 60 and 90 minutes; some go to two hours. No panel, no co-host, no clips cut for engagement.",
+      "Most episodes run between 60 and 90 minutes. Some go to two hours. The length isn't the point; it's whatever the topic actually needs.",
   },
   {
     question: "Where can I listen to Deep Dives Podcast?",
     answer:
-      "Every episode lives on YouTube at @DeepDives237. New episodes drop there first; the full back catalog is available on the channel. There is no Spotify or Apple Podcasts feed — Deep Dives is YouTube-only by design.",
+      "Every episode is on YouTube at @DeepDives237. That's the only place it lives for now.",
   },
   {
     question: "How can I be a guest on Deep Dives?",
     answer:
-      "Pitch yourself via the Contact form. The best pitches start with the one moment you'd want to open the conversation with — a specific thing you've lived and can be specific about.",
+      "Pitch yourself via the Contact form. The best pitches start with the topic you know better than most people, and the question you wish more people would actually ask you about it.",
+    answerNode: (
+      <>
+        Pitch yourself via the{" "}
+        <Link
+          href="/contact"
+          className="text-gold transition-colors hover:text-gold-bright"
+        >
+          Contact form
+        </Link>
+        . The best pitches start with the topic you know better than most
+        people, and the question you wish more people would actually ask you
+        about it.
+      </>
+    ),
   },
 ];
 
@@ -63,7 +84,7 @@ const MOMENTS: Moment[] = [
 export const metadata: Metadata = {
   title: "About",
   description:
-    "A letter from Raissa, host of Deep Dives. What the show is about, who it's for, and where to find every long-form conversation on YouTube.",
+    "A letter from Raissa, host of Deep Dives. What the show is, who it's for, and where to find every episode on YouTube.",
   alternates: { canonical: "/about" },
 };
 
@@ -103,55 +124,58 @@ export default function AboutPage() {
 
                 <div className="mt-10 space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
-                    I&rsquo;m Raissa, an{" "}
+                    I&rsquo;m Raissa. I&rsquo;m an{" "}
                     <span className="font-semibold uppercase tracking-[0.04em] text-gold">
                       Entrepreneur
                     </span>{" "}
-                    and{" "}
+                    first, a{" "}
                     <span className="font-semibold uppercase tracking-[0.04em] text-gold">
                       Host
                     </span>{" "}
-                    on a journey into the minds of the smart people the algorithm
-                    doesn&rsquo;t catch. Thinkers, builders, and entrepreneurs whose
-                    stories don&rsquo;t fit a tweet.
+                    second. I&rsquo;ve started companies, raised money, lost some,
+                    started over. I know the part of a founder&rsquo;s story that gets
+                    edited out, because I&rsquo;ve lived a few of them.
                   </p>
                   <p>
-                    I&rsquo;ve been on the other side of this microphone too. I&rsquo;ve
-                    started companies, raised money, lost some, started over. I know the
-                    part of a founder&rsquo;s story that gets edited out, because
-                    I&rsquo;ve lived a few of them.
+                    I made Deep Dives because I was hungry for real conversations on
+                    the things actually shaping our generation. Work, money, faith,
+                    immigration, relationships, the questions you only get into
+                    seriously when you&rsquo;re with someone who has lived them.
                   </p>
                   <p>
-                    So I made the show I wanted to listen to. The room where the
-                    conversation actually gets where it&rsquo;s trying to go, instead of
-                    where the timer says it has to stop.
+                    Most interviews stay on the surface. I wanted the version where
+                    the expert gets asked about their subject like it matters.
                   </p>
                 </div>
 
                 <PullQuote>
-                  Where the camera doesn&rsquo;t cut when the truth gets quiet.
+                  What an expert actually thinks, said out loud.
                 </PullQuote>
 
                 <div className="space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
-                    The guests are the minds I want to spend an hour inside. People
-                    who&rsquo;ve lived a specific thing and will be specific about it.
-                    Builders whose work matters and doesn&rsquo;t trend. The voices that
-                    look and sound like mine and don&rsquo;t usually get this much oxygen.
+                    The guests are people who actually know what they&rsquo;re talking
+                    about: founders, planners, writers, pastors, lobbyists, organizers.
+                    People whose work I keep thinking about a week later.
                   </p>
                   <p>
-                    The first time a guest told me something they&rsquo;d never said out
-                    loud before, I knew the show was working.
+                    The topics are the questions I&rsquo;m wrestling with, and that
+                    most people I know are wrestling with too. How to build something.
+                    How to belong somewhere. How to hold a life together when the
+                    rules keep changing.
                   </p>
                   <p>
-                    Each episode is one guest, one conversation, run until the truth shows
-                    up. No panel, no clips cut for the timeline.
+                    The first time a guest told me something they&rsquo;d never said
+                    out loud before, I knew the show was working.
                   </p>
-                  <p>This is the version you don&rsquo;t get anywhere else.</p>
+                  <p>
+                    If those are the conversations you&rsquo;ve been looking for too,
+                    the whole thing lives on YouTube.
+                  </p>
                 </div>
 
                 <div className="mt-14">
-                  <p className="font-body italic text-sub text-[17px]">With every conversation,</p>
+                  <p className="font-body italic text-sub text-[17px]">Yours truly,</p>
                   <HandSignature className="mt-4" />
                   <p className="mt-4 font-body text-[11px] uppercase tracking-[0.32em] text-sub">
                     Host &amp; creator &middot; @DeepDives237
@@ -172,11 +196,11 @@ export default function AboutPage() {
                       style={{ objectPosition: "50% 22%" }}
                       priority
                     />
-                    {/* Edge vignettes — all four sides, so corners blend into ink */}
-                    <div aria-hidden className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-ink/95 via-ink/40 to-transparent" />
-                    <div aria-hidden className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-ink/80 to-transparent" />
-                    <div aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
-                    <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/70 to-transparent" />
+                    {/* Edge vignettes — smoother, wider falloff so corners blend into ink without a hard band */}
+                    <div aria-hidden className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-ink/75 via-ink/20 to-transparent" />
+                    <div aria-hidden className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-ink/55 via-ink/15 to-transparent" />
+                    <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent" />
+                    <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/50 to-transparent" />
 
                     {/* Overlay name plate */}
                     <div className="absolute bottom-8 left-8 right-8">
@@ -209,8 +233,8 @@ export default function AboutPage() {
                   <span className="clear-both block" />
                 </h2>
                 <p className="mt-8 max-w-sm font-body italic text-sub text-[17px] leading-[1.6]">
-                  Seven kinds of room. The same posture in each: stay long enough to let the
-                  person finish their thought.
+                  Seven topics I keep coming back to, with the people who actually
+                  know what they&rsquo;re talking about.
                 </p>
               </Reveal>
               <Reveal delay={0.1} className="lg:col-span-6 lg:pt-4">
@@ -249,7 +273,7 @@ export default function AboutPage() {
                   Vol. I&nbsp;&middot;&nbsp;IV
                 </p>
                 <p className="mt-6 max-w-md font-body italic text-sub text-[17px] leading-[1.6]">
-                  A few frames from the spaces between conversations.
+                  A few frames between takes.
                 </p>
               </Reveal>
               <Reveal delay={0.15} className="lg:col-span-7">
@@ -275,8 +299,25 @@ export default function AboutPage() {
               </Reveal>
               <Reveal delay={0.1} className="lg:col-span-5 lg:self-end">
                 <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
-                  Every episode lives on YouTube. Subscribe at{" "}
-                  <span className="text-gold not-italic">@DeepDives237</span>.
+                  Every episode lives on{" "}
+                  <a
+                    href={CHANNEL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gold not-italic transition-colors hover:text-gold-bright"
+                  >
+                    YouTube
+                  </a>
+                  . Subscribe at{" "}
+                  <a
+                    href={CHANNEL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gold not-italic transition-colors hover:text-gold-bright"
+                  >
+                    @DeepDives237
+                  </a>
+                  .
                 </p>
               </Reveal>
             </div>
@@ -306,24 +347,19 @@ export default function AboutPage() {
 
         {/* 5. Be a Guest. */}
         <section className="relative bg-surface">
-          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
-            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-              <Reveal className="lg:col-span-7">
-                <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
-                  <DropCap letter="B" />e a
-                  <span className="italic font-light text-sub"> Guest.</span>
-                  <span className="clear-both block" />
-                </h2>
-              </Reveal>
-              <Reveal delay={0.1} className="lg:col-span-5 lg:self-end">
-                <p className="max-w-md font-body italic text-sub text-[18px] leading-[1.55]">
-                  Got a story Deep Dives should hear? Send it over. The next conversation could be
-                  yours.
-                </p>
-              </Reveal>
-            </div>
+          <div className="mx-auto max-w-content px-8 py-24 text-center lg:px-10 lg:py-32">
+            <Reveal>
+              <h2 className="font-display text-[36px] leading-[1.0] tracking-[-0.015em] text-paper sm:text-[44px] lg:text-[56px]">
+                Be a{" "}
+                <span className="italic font-light text-sub">Guest!</span>
+              </h2>
+            </Reveal>
 
-            <Reveal delay={0.18} className="mt-14">
+            <Reveal delay={0.1} className="mt-10 lg:mt-14">
+              <BeAGuestInvite />
+            </Reveal>
+
+            <Reveal delay={0.18} className="mt-12 flex justify-center lg:mt-16">
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-ink transition-colors duration-200 hover:bg-gold-bright"
@@ -359,7 +395,7 @@ export default function AboutPage() {
                         {f.question}
                       </dt>
                       <dd className="mt-4 font-body text-sub text-[17px] leading-[1.7]">
-                        {f.answer}
+                        {f.answerNode ?? f.answer}
                       </dd>
                     </div>
                   ))}

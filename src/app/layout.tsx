@@ -45,20 +45,20 @@ export const metadata: Metadata = {
     template: '%s | Deep Dives Podcast',
   },
   description:
-    'Genuine conversations that inspire, educate, and empower. Real stories. Real people. Real impact.',
+    'A show with Raissa. Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.',
   openGraph: {
     type: 'website',
     siteName: 'Deep Dives Podcast',
     title: 'Deep Dives Podcast with Raissa',
     description:
-      'Genuine conversations that inspire, educate, and empower. Real stories. Real people. Real impact.',
+      'A show with Raissa. Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.',
     locale: 'en_US',
     images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Deep Dive Podcast with Raissa' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Deep Dives Podcast with Raissa',
-    description: 'Genuine conversations that inspire, educate, and empower.',
+    description: 'Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.',
     images: ['/og.jpg'],
     creator: '@DeepDives237',
     site: '@DeepDives237',
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Raissa' }],
   keywords: [
     'podcast',
-    'long-form interviews',
+    'interview podcast',
     'Deep Dives',
     'Raissa',
     'DeepDives237',

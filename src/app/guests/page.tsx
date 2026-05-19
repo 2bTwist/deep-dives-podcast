@@ -14,45 +14,45 @@ export const revalidate = 3600;
 const voices: { label: string; archetype: string; body: string }[] = [
   {
     label: "Founders & Operators",
-    archetype: "Past the pitch deck.",
-    body: "People who started something and lived past the launch. What kept the lights on. What they wish they had known.",
+    archetype: "The story behind the company.",
+    body: "People who started something and lived past the launch. What kept the lights on, and what they wish they had known.",
   },
   {
     label: "Planners & Producers",
-    archetype: "Past the photo shoot.",
-    body: "The makers behind the moments. Wedding planners, event producers, designers, the people whose work goes uncredited.",
+    archetype: "The makers behind the moments.",
+    body: "Wedding planners, event producers, designers. People whose work goes uncredited but whose taste sets the room.",
   },
   {
     label: "Clergy & Counselors",
-    archetype: "Past the Sunday cadence.",
-    body: "Pastors, therapists, mentors. The people who hold other people's hardest hours.",
+    archetype: "The people who hold the hard hours.",
+    body: "Pastors, therapists, mentors. The ones other people call when the wheels come off.",
   },
   {
     label: "Civic Voices",
-    archetype: "Past the campaign cycle.",
-    body: "Lobbyists, organizers, public servants. Conversations about power and participation that don't fit a debate clip.",
+    archetype: "Power without the soundbite.",
+    body: "Lobbyists, organizers, public servants. How things actually get done, away from the debate clip.",
   },
   {
     label: "Immigrants & Diaspora",
-    archetype: "Past the headline.",
-    body: "Families across two continents. The cost of arriving and the cost of staying. The America that rarely asks.",
+    archetype: "Two continents, one life.",
+    body: "Families across borders. The cost of arriving and the cost of staying. The version that rarely makes the headline.",
   },
   {
     label: "Creatives at Work",
-    archetype: "Past the highlight reel.",
-    body: "Writers, musicians, designers, photographers. The middle of a creative life. Process, paychecks, persistence.",
+    archetype: "The middle of a creative life.",
+    body: "Writers, musicians, designers, photographers. Process, paychecks, persistence.",
   },
   {
     label: "Faith & Doubt",
-    archetype: "Past the certainty.",
-    body: "Believers, seekers, ex-believers. The questions belief asks of the people who hold it.",
+    archetype: "The questions belief asks of you.",
+    body: "Believers, seekers, ex-believers. What people work out alone, said out loud.",
   },
 ];
 
 export const metadata: Metadata = {
   title: "Guests",
   description:
-    "The kinds of voices Deep Dives features. Founders, planners, clergy, civic voices, immigrants, creatives. Pitch yourself.",
+    "The kinds of voices on Deep Dives. Founders, planners, clergy, civic voices, immigrants, creatives. Pitch yourself.",
   alternates: { canonical: "/guests" },
 };
 
@@ -123,7 +123,7 @@ export default async function GuestsPage() {
               </Reveal>
               <Reveal delay={0.08} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[17px] leading-[1.55]">
-                  Watch the conversations themselves. Guest names and topic notes live in each
+                  Watch the conversations themselves. Guest names and notes are in each
                   episode.
                 </p>
               </Reveal>
@@ -154,9 +154,9 @@ export default async function GuestsPage() {
                   <span className="clear-both block" />
                 </h2>
                 <p className="mt-6 max-w-xl font-body italic text-sub text-[18px] leading-[1.55]">
-                  If your story doesn't fit a tweet, or hasn't been told the way you'd tell it,
-                  send it in. The best pitches start with the one moment you'd open the
-                  conversation with.
+                  See yourself in any of the voices above? Or somewhere close to
+                  them? An expert in a topic the rest of us are trying to figure
+                  out? I&rsquo;d love to have you on the show. Get in touch!
                 </p>
               </div>
               <div className="lg:col-span-5 lg:flex lg:items-end lg:justify-end">

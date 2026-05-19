@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Deep Dive Podcast with Raissa",
     short_name: "Deep Dives",
     description:
-      "Genuine conversations that inspire, educate, and empower. Real stories. Real people. Real impact.",
+      "A show with Raissa. Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.",
     start_url: "/",
     display: "standalone",
     background_color: "#050505",
