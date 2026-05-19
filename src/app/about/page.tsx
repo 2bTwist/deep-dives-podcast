@@ -112,19 +112,19 @@ export default function AboutPage() {
                       Host
                     </span>{" "}
                     on a journey into the minds of the smart people the algorithm
-                    doesn&rsquo;t usually catch. Thinkers, builders, and entrepreneurs
-                    whose stories rarely get the long version.
+                    doesn&rsquo;t catch. Thinkers, builders, and entrepreneurs whose
+                    stories don&rsquo;t fit a tweet.
                   </p>
                   <p>
-                    I&rsquo;ve sat on both sides of this microphone. I&rsquo;ve built
-                    businesses, raised money, lost some, started over. I know the part
-                    of a founder&rsquo;s story that gets edited out, because I&rsquo;ve
-                    lived a few of them.
+                    I&rsquo;ve been on the other side of this microphone too. I&rsquo;ve
+                    started companies, raised money, lost some, started over. I know the
+                    part of a founder&rsquo;s story that gets edited out, because
+                    I&rsquo;ve lived a few of them.
                   </p>
                   <p>
-                    Deep Dives is the room I wanted to be in and couldn&rsquo;t find. Most
-                    rooms don&rsquo;t hold space for the long version. They run on a clip
-                    count, a timer, a tweet. This one runs on whether the truth shows up.
+                    So I made the show I wanted to listen to. The room where the
+                    conversation actually gets where it&rsquo;s trying to go, instead of
+                    where the timer says it has to stop.
                   </p>
                 </div>
 
@@ -134,21 +134,20 @@ export default function AboutPage() {
 
                 <div className="space-y-7 font-body text-paper text-[19px] leading-[1.75]">
                   <p>
-                    The guests are the minds I want to learn from. People who&rsquo;ve
-                    lived a specific thing and will be specific about it. Builders and
-                    thinkers whose work matters but doesn&rsquo;t trend. Voices that
-                    look like mine and sound like mine and don&rsquo;t usually get this
-                    much oxygen.
+                    The guests are the minds I want to spend an hour inside. People
+                    who&rsquo;ve lived a specific thing and will be specific about it.
+                    Builders whose work matters and doesn&rsquo;t trend. The voices that
+                    look and sound like mine and don&rsquo;t usually get this much oxygen.
                   </p>
                   <p>
-                    The first time a guest told me something they&rsquo;d never said
-                    out loud before, I knew the show was working.
+                    The first time a guest told me something they&rsquo;d never said out
+                    loud before, I knew the show was working.
                   </p>
                   <p>
-                    One conversation. One guest. As long as it deserves. Usually an
-                    hour, sometimes two. No panel. No clips cut for engagement.
+                    Each episode is one guest, one conversation, run until the truth shows
+                    up. No panel, no clips cut for the timeline.
                   </p>
-                  <p>What you&rsquo;ll find here is the long version. The honest one.</p>
+                  <p>This is the version you don&rsquo;t get anywhere else.</p>
                 </div>
 
                 <div className="mt-14">
@@ -236,41 +235,7 @@ export default function AboutPage() {
           <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
-        {/* 3. Quick Answers. */}
-        <section className="relative">
-          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
-            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-              <Reveal className="lg:col-span-5">
-                <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
-                  <DropCap letter="Q" />uick
-                  <span className="italic font-light text-sub"> Answers.</span>
-                  <span className="clear-both block" />
-                </h2>
-                <p className="mt-8 max-w-sm font-body italic text-sub text-[17px] leading-[1.6]">
-                  The questions people actually ask, answered straight.
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.1} className="lg:col-span-7">
-                <dl className="divide-y divide-rule">
-                  {FAQS.map((f) => (
-                    <div key={f.question} className="py-6 first:pt-0 last:pb-0">
-                      <dt className="font-display text-[22px] leading-[1.25] text-paper lg:text-[26px]">
-                        {f.question}
-                      </dt>
-                      <dd className="mt-4 font-body text-sub text-[17px] leading-[1.7]">
-                        {f.answer}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </Reveal>
-            </div>
-          </div>
-          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
-        </section>
-
-        {/* 4. Off the Mic. */}
+        {/* 3. Off the Mic. */}
         <section className="relative bg-ink">
           <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-20">
@@ -367,6 +332,40 @@ export default function AboutPage() {
                 <span className="text-[14px] transition-transform duration-200 group-hover:translate-x-0.5">→</span>
               </Link>
             </Reveal>
+          </div>
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
+        </section>
+
+        {/* 6. Quick Answers. — bottom-of-page FAQ for AI extractability. */}
+        <section className="relative">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-5">
+                <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
+                  <DropCap letter="Q" />uick
+                  <span className="italic font-light text-sub"> Answers.</span>
+                  <span className="clear-both block" />
+                </h2>
+                <p className="mt-8 max-w-sm font-body italic text-sub text-[17px] leading-[1.6]">
+                  The questions people actually ask, answered straight.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.1} className="lg:col-span-7">
+                <dl className="divide-y divide-rule">
+                  {FAQS.map((f) => (
+                    <div key={f.question} className="py-6 first:pt-0 last:pb-0">
+                      <dt className="font-display text-[22px] leading-[1.25] text-paper lg:text-[26px]">
+                        {f.question}
+                      </dt>
+                      <dd className="mt-4 font-body text-sub text-[17px] leading-[1.7]">
+                        {f.answer}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            </div>
           </div>
         </section>
       </main>
