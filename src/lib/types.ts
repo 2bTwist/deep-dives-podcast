@@ -50,6 +50,7 @@ export type Article = {
   /** ISO 8601 datetime; set when materially updated. */
   dateModified?: string;
   featured?: boolean;
-  /** Minimal resolved shape of the linked episode, for internal linking. */
-  relatedEpisode?: { slug: string; title: string } | null;
+  /** Minimal resolved shape of the linked episode, for internal linking and
+   *  the video thumbnail shown at the top of the article. */
+  relatedEpisode?: { slug: string; title: string; youtubeId?: string } | null;
 };

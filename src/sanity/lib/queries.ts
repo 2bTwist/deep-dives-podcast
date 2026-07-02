@@ -44,7 +44,8 @@ const ARTICLE_PROJECTION = /* groq */ `
   body,
   relatedEpisode->{
     title,
-    "slug": slug.current
+    "slug": slug.current,
+    youtubeId
   }
 `;
 

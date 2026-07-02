@@ -97,8 +97,9 @@ export const article = defineType({
       type: "reference",
       title: "Related Episode",
       description:
-        "Optional. Link the episode this article discusses, for internal linking.",
+        "Required. The episode this article is based on. Its YouTube video is shown at the top of the article and links through to the episode page.",
       to: [{ type: "episode" }],
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

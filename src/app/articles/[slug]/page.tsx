@@ -6,6 +6,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { PortableBody } from "@/components/site/PortableBody";
+import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
 import { CommunitySection } from "@/components/site/CommunitySection";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getArticleBySlug, getArticleSlugs } from "@/sanity/lib/queries";
@@ -127,7 +128,7 @@ export default async function ArticlePage({
                 </div>
               </Reveal>
 
-              {a.coverImage?.url && (
+              {a.coverImage?.url ? (
                 <Reveal delay={0.08} className="mt-12 lg:mt-16">
                   <div className="relative aspect-video w-full overflow-hidden bg-card">
                     <Image
@@ -140,6 +141,48 @@ export default async function ArticlePage({
                     />
                   </div>
                 </Reveal>
+              ) : (
+                a.relatedEpisode?.youtubeId && (
+                  <Reveal delay={0.08} className="mt-12 lg:mt-16">
+                    <Link
+                      href={`/episodes/${a.relatedEpisode.slug}`}
+                      className="group block"
+                      aria-label={`Watch the full episode: ${a.relatedEpisode.title}`}
+                    >
+                      <div className="relative aspect-video w-full overflow-hidden bg-card">
+                        <EpisodeThumbStatic
+                          id={a.relatedEpisode.youtubeId}
+                          alt={a.relatedEpisode.title}
+                          width={1280}
+                          height={720}
+                          priority
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                        />
+                        <span className="pointer-events-none absolute inset-0 grid place-items-center">
+                          <span className="grid h-16 w-16 place-items-center rounded-full bg-gold/95 text-ink shadow-lg transition-transform duration-300 group-hover:scale-110 lg:h-20 lg:w-20">
+                            <svg
+                              viewBox="0 0 12 12"
+                              className="h-5 w-5 translate-x-[1px] lg:h-6 lg:w-6"
+                              fill="currentColor"
+                              aria-hidden
+                            >
+                              <polygon points="2,0 12,6 2,12" />
+                            </svg>
+                          </span>
+                        </span>
+                      </div>
+                      <p className="mt-3 font-body text-[13px] uppercase tracking-[0.22em] text-muted transition-colors group-hover:text-gold">
+                        Watch the full episode
+                        <span
+                          aria-hidden
+                          className="ml-2 inline-block transition-transform group-hover:translate-x-1"
+                        >
+                          →
+                        </span>
+                      </p>
+                    </Link>
+                  </Reveal>
+                )
               )}
 
               <Reveal delay={0.12} className="mx-auto mt-14 max-w-3xl lg:mt-16">
@@ -153,7 +196,7 @@ export default async function ArticlePage({
                     className="group block border border-rule bg-card p-7 transition-colors duration-300 hover:border-gold/40"
                   >
                     <p className="font-body text-[11px] uppercase tracking-[0.28em] text-gold">
-                      Listen to the episode
+                      Watch the full episode
                     </p>
                     <p className="mt-3 font-display text-[24px] leading-[1.2] text-paper transition-colors group-hover:text-gold">
                       {a.relatedEpisode.title}
