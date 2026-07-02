@@ -222,8 +222,87 @@ export default function AboutPage() {
           <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
-        {/* 2. What We Cover. */}
+        {/* 2. Vision & Mission. */}
         <section className="relative bg-surface">
+          <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-5">
+                <h2 className="break-words font-display text-[52px] leading-[0.98] tracking-[-0.02em] sm:text-[68px] lg:text-[88px]">
+                  <DropCap letter="V" />ision &amp;
+                  <span className="italic font-light text-sub"> Mission.</span>
+                  <span className="clear-both block" />
+                </h2>
+                <p className="mt-8 max-w-sm font-body italic text-sub text-[17px] leading-[1.6]">
+                  Why Deep Dives exists, and where it&rsquo;s going.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.1} className="lg:col-span-7">
+                <div className="space-y-10">
+                  <div>
+                    <p className="font-body text-[11px] uppercase tracking-[0.32em] text-gold/80">
+                      Vision
+                    </p>
+                    <p className="mt-5 font-body text-paper text-[19px] leading-[1.75]">
+                      At Deep Dives, our vision is to become a leading platform
+                      for authentic conversations that inspire people to overcome
+                      adversity, embrace personal growth, and build lives of
+                      purpose, impact, and fulfillment. We believe that true
+                      success is not defined solely by achievements, titles, or
+                      wealth, but by the resilience, courage, and lessons
+                      developed through life&rsquo;s challenges. Through powerful
+                      storytelling and meaningful dialogue, we aim to create a
+                      global community where individuals are empowered to learn
+                      from the journeys of others, discover their own potential,
+                      and pursue lives aligned with their values and aspirations.
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-body text-[11px] uppercase tracking-[0.32em] text-gold/80">
+                      Mission
+                    </p>
+                    <div className="mt-5 space-y-6 font-body text-paper text-[19px] leading-[1.75]">
+                      <p>
+                        Deep Dives exists to uncover the untold stories behind
+                        success. Through honest and thought-provoking
+                        conversations with entrepreneurs, business leaders,
+                        creators, athletes, innovators, and changemakers, we
+                        explore the defining moments, failures, sacrifices,
+                        breakthroughs, and lessons that have shaped their
+                        journeys. Hosted by entrepreneur and healthcare executive
+                        Raissa, the podcast goes beyond surface-level interviews
+                        to reveal the human experiences behind achievement.
+                      </p>
+                      <p>
+                        Our mission is to provide listeners with inspiration,
+                        practical wisdom, and actionable insights that can help
+                        them navigate their own personal and professional
+                        challenges. We strive to create a space where
+                        authenticity is valued, vulnerability is welcomed, and
+                        meaningful conversations lead to growth. By sharing
+                        genuine stories of resilience, transformation, leadership,
+                        and perseverance, Deep Dives seeks to encourage people to
+                        move beyond limitations, embrace continuous learning, and
+                        build lives that reflect both success and purpose.
+                      </p>
+                      <p>
+                        At its core, Deep Dives is about reminding people that
+                        behind every accomplishment is a story worth
+                        understanding, and within every challenge lies an
+                        opportunity for growth.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+          <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
+        </section>
+
+        {/* 3. What We Cover. */}
+        <section className="relative">
           <div className="mx-auto max-w-content px-8 py-24 lg:px-10 lg:py-32">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <Reveal className="lg:col-span-6">
