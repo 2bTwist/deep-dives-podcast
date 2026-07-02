@@ -12,6 +12,26 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react'],
   },
   logging: { fetches: { fullUrl: true } },
+  async headers() {
+    // Static security headers applied to every route. HSTS is supplied by
+    // Vercel automatically. Content-Security-Policy is intentionally omitted
+    // for now: it needs a deliberate report-only-then-enforce pass against the
+    // embedded Studio (/studio), YouTube embeds, and Vercel Analytics.
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 export default nextConfig
