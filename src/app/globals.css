@@ -136,3 +136,15 @@ body {
     transform: none;
   }
 }
+
+/* Article body: gold drop cap on the opening paragraph. CSS ::first-letter
+   keeps inline marks intact and is request-safe (no shared module state). */
+.article-body > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.02em 0.08em 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 4.4em;
+  line-height: 0.72;
+  color: var(--color-gold);
+}

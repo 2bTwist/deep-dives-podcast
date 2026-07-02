@@ -1,4 +1,4 @@
-import type { Episode } from "@/lib/types";
+import type { Episode, Article } from "@/lib/types";
 
 export function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -151,6 +151,47 @@ export function episodeListSchema(episodes: EpisodeListItem[]) {
       position: i + 1,
       url: `${siteUrl()}/episodes/${ep.slug}`,
       name: ep.title,
+    })),
+  };
+}
+
+export function articleSchema(a: Article) {
+  const url = `${siteUrl()}/articles/${a.slug}`;
+  const image = a.coverImage?.url ?? `${siteUrl()}/og.jpg`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: a.title,
+    description: a.excerpt,
+    datePublished: a.publishedAt,
+    ...(a.dateModified ? { dateModified: a.dateModified } : {}),
+    image,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    inLanguage: "en",
+    author: { "@type": "Person", name: "Raissa", url: `${siteUrl()}/about` },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      logo: { "@type": "ImageObject", url: `${siteUrl()}/brand/raissa-avatar.png` },
+    },
+    ...(a.category ? { articleSection: a.category } : {}),
+  };
+}
+
+type ArticleListItem = Pick<Article, "slug" | "title">;
+
+export function articleListSchema(articles: ArticleListItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Deep Dives articles",
+    numberOfItems: articles.length,
+    itemListElement: articles.map((a, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${siteUrl()}/articles/${a.slug}`,
+      name: a.title,
     })),
   };
 }

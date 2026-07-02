@@ -8,6 +8,7 @@ import { SocialIcons } from "./SocialIcons";
 
 const navLinks = [
   { label: "Episodes", href: "/episodes" },
+  { label: "Articles", href: "/articles" },
   { label: "Guests",   href: "/guests" },
   { label: "About",    href: "/about" },
   { label: "Contact",  href: "/contact" },
