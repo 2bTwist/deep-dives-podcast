@@ -129,7 +129,7 @@ export default async function ArticlePage({
               </Reveal>
 
               {a.coverImage?.url ? (
-                <Reveal delay={0.08} className="mt-12 lg:mt-16">
+                <Reveal delay={0.08} className="mx-auto mt-12 max-w-3xl lg:mt-16">
                   <div className="relative aspect-video w-full overflow-hidden bg-card">
                     <Image
                       src={a.coverImage.url}
@@ -143,7 +143,7 @@ export default async function ArticlePage({
                 </Reveal>
               ) : (
                 a.relatedEpisode?.youtubeId && (
-                  <Reveal delay={0.08} className="mt-12 lg:mt-16">
+                  <Reveal delay={0.08} className="mx-auto mt-12 max-w-3xl lg:mt-16">
                     <Link
                       href={`/episodes/${a.relatedEpisode.slug}`}
                       className="group block"
