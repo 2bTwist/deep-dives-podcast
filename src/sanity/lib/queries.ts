@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "./client";
-import type { Episode, Article } from "@/lib/types";
+import type { Episode, Article, Guest, GuestCard } from "@/lib/types";
 
 const EPISODE_PROJECTION = /* groq */ `
   _id,
@@ -139,6 +139,72 @@ export function getArticleSlugs(): Promise<string[]> {
   return sanityFetch<string[]>({
     query: ARTICLE_SLUGS_QUERY,
     tags: ["article"],
+    revalidate: false,
+  });
+}
+
+// ---- Guests ----
+
+const GUEST_CARD_PROJECTION = /* groq */ `
+  _id,
+  name,
+  "slug": slug.current,
+  title,
+  company,
+  archetype,
+  photo{ "url": asset->url, alt },
+  "episodeCount": count(episodes)
+`;
+
+const GUEST_PROJECTION = /* groq */ `
+  ${GUEST_CARD_PROJECTION},
+  bio,
+  "episodes": episodes[]->{
+    title,
+    "slug": slug.current,
+    youtubeId,
+    category,
+    duration,
+    publishedAt
+  } | order(publishedAt desc)
+`;
+
+const ALL_GUESTS_QUERY = defineQuery(/* groq */ `
+  *[_type == "guest" && defined(slug.current)]
+    | order(name asc) {
+      ${GUEST_CARD_PROJECTION}
+    }
+`);
+
+const GUEST_BY_SLUG_QUERY = defineQuery(/* groq */ `
+  *[_type == "guest" && slug.current == $slug][0] {
+    ${GUEST_PROJECTION}
+  }
+`);
+
+const GUEST_SLUGS_QUERY = defineQuery(/* groq */ `
+  *[_type == "guest" && defined(slug.current)].slug.current
+`);
+
+export function getAllGuests(): Promise<GuestCard[]> {
+  return sanityFetch<GuestCard[]>({
+    query: ALL_GUESTS_QUERY,
+    tags: ["guest"],
+  });
+}
+
+export function getGuestBySlug(slug: string): Promise<Guest | null> {
+  return sanityFetch<Guest | null>({
+    query: GUEST_BY_SLUG_QUERY,
+    params: { slug },
+    tags: [`guest:${slug}`, "guest"],
+  });
+}
+
+export function getGuestSlugs(): Promise<string[]> {
+  return sanityFetch<string[]>({
+    query: GUEST_SLUGS_QUERY,
+    tags: ["guest"],
     revalidate: false,
   });
 }

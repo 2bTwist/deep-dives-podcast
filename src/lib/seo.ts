@@ -1,4 +1,4 @@
-import type { Episode, Article } from "@/lib/types";
+import type { Episode, Article, Guest } from "@/lib/types";
 
 export function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -193,6 +193,23 @@ export function articleListSchema(articles: ArticleListItem[]) {
       url: `${siteUrl()}/blog/${a.slug}`,
       name: a.title,
     })),
+  };
+}
+
+export function guestSchema(g: Guest) {
+  const url = `${siteUrl()}/guests/${g.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: g.name,
+    ...(g.title ? { jobTitle: g.title } : {}),
+    ...(g.company
+      ? { worksFor: { "@type": "Organization", name: g.company } }
+      : {}),
+    ...(g.bio ? { description: g.bio } : {}),
+    ...(g.photo?.url ? { image: g.photo.url } : {}),
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 }
 

@@ -54,3 +54,51 @@ export type Article = {
    *  the video thumbnail shown at the top of the article. */
   relatedEpisode?: { slug: string; title: string; youtubeId?: string } | null;
 };
+
+/** The 7 guest archetypes — the sections of the guest wall. */
+export type GuestArchetype =
+  | "Founders & Operators"
+  | "Planners & Producers"
+  | "Clergy & Counselors"
+  | "Civic Voices"
+  | "Immigrants & Diaspora"
+  | "Creatives at Work"
+  | "Faith & Doubt";
+
+/** Minimal resolved episode shape shown on a guest card/profile. */
+export type GuestEpisodeRef = {
+  title: string;
+  slug: string;
+  youtubeId: string;
+  category?: EpisodeCategory;
+  duration?: string;
+  publishedAt?: string;
+};
+
+export type Guest = {
+  _id?: string;
+  name: string;
+  slug: string;
+  /** Role/title, e.g. "Cybersecurity Executive". */
+  title?: string;
+  /** Business/organization, e.g. "FinServePro". */
+  company?: string;
+  archetype: GuestArchetype;
+  /** Optional headshot; the wall is typographic without it. */
+  photo?: { url: string; alt?: string } | null;
+  bio?: string;
+  /** Episodes this guest appears in, latest first. */
+  episodes: GuestEpisodeRef[];
+};
+
+/** Lighter wall-card shape: no bio/episodes, just an episode count for the hint. */
+export type GuestCard = {
+  _id?: string;
+  name: string;
+  slug: string;
+  title?: string;
+  company?: string;
+  archetype: GuestArchetype;
+  photo?: { url: string; alt?: string } | null;
+  episodeCount: number;
+};

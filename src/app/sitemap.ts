@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllEpisodes, getAllArticles } from "@/sanity/lib/queries";
+import { getAllEpisodes, getAllArticles, getAllGuests } from "@/sanity/lib/queries";
 
 function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -20,7 +20,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/terms`,    lastModified: now, changeFrequency: "yearly",  priority: 0.2 },
   ];
 
-  const [episodes, articles] = await Promise.all([getAllEpisodes(), getAllArticles()]);
+  const [episodes, articles, guests] = await Promise.all([
+    getAllEpisodes(),
+    getAllArticles(),
+    getAllGuests(),
+  ]);
 
   const episodeRoutes: MetadataRoute.Sitemap = episodes.map((ep) => ({
     url: `${base}/episodes/${ep.slug}`,
@@ -40,5 +44,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...episodeRoutes, ...articleRoutes];
+  const guestRoutes: MetadataRoute.Sitemap = guests.map((g) => ({
+    url: `${base}/guests/${g.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...episodeRoutes, ...articleRoutes, ...guestRoutes];
 }

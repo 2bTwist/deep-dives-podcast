@@ -4,10 +4,12 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { EpisodeCard } from "@/components/site/EpisodeCard";
+import { GuestEntry } from "@/components/site/GuestEntry";
 import { Button } from "@/components/site/Button";
 import { JsonLd } from "@/components/site/JsonLd";
-import { getAllEpisodes } from "@/sanity/lib/queries";
+import { getAllEpisodes, getAllGuests } from "@/sanity/lib/queries";
 import { breadcrumbSchema, guestArchetypesSchema, siteUrl } from "@/lib/seo";
+import type { GuestCard } from "@/lib/types";
 
 export const revalidate = 3600;
 
@@ -52,12 +54,25 @@ const voices: { label: string; archetype: string; body: string }[] = [
 export const metadata: Metadata = {
   title: "Guests",
   description:
-    "The kinds of voices on Deep Dives. Founders, planners, clergy, civic voices, immigrants, creatives. Pitch yourself.",
+    "The people who've been on Deep Dives. Founders, planners, clergy, civic voices, and more, grouped by the kind of expert they are. Pitch yourself.",
   alternates: { canonical: "/guests" },
 };
 
 export default async function GuestsPage() {
-  const recentGuestEpisodes = (await getAllEpisodes()).slice(0, 4);
+  const [guests, episodes] = await Promise.all([getAllGuests(), getAllEpisodes()]);
+  const recentGuestEpisodes = episodes.slice(0, 4);
+
+  // Group guests by archetype, then walk `voices` order and keep only the
+  // archetypes that actually have someone (Decision: hide empty categories).
+  const byArchetype = new Map<string, GuestCard[]>();
+  for (const g of guests) {
+    const arr = byArchetype.get(g.archetype) ?? [];
+    arr.push(g);
+    byArchetype.set(g.archetype, arr);
+  }
+  const sections = voices
+    .map((v, i) => ({ ...v, number: i + 1, guests: byArchetype.get(v.label) ?? [] }))
+    .filter((s) => s.guests.length > 0);
 
   return (
     <>
@@ -86,24 +101,31 @@ export default async function GuestsPage() {
           <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
         </section>
 
-        {/* Voices grid */}
+        {/* The wall — one block per archetype that has guests */}
         <section className="relative bg-surface">
-          <div className="mx-auto max-w-content px-8 py-16 lg:px-10 lg:py-20">
-            <div className="grid grid-cols-1 gap-px bg-rule sm:grid-cols-2 lg:grid-cols-3">
-              {voices.map((v, i) => (
-                <Reveal key={v.label} delay={i * 0.06} className="bg-surface p-8 lg:p-10">
-                  <p className="font-body text-[11px] uppercase tracking-[0.32em] text-gold">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h2 className="mt-5 font-display text-[26px] leading-[1.15] text-paper">
-                    {v.label}
-                  </h2>
-                  <p className="mt-3 font-display italic text-[18px] text-gold">{v.archetype}</p>
-                  <p className="mt-5 font-body text-sub text-[15px] leading-[1.6]">{v.body}</p>
-                </Reveal>
-              ))}
-              {Array.from({ length: (3 - (voices.length % 3)) % 3 }).map((_, i) => (
-                <div key={`filler-${i}`} aria-hidden className="hidden bg-surface lg:block" />
+          <div className="mx-auto max-w-content px-8 py-16 lg:px-10 lg:py-24">
+            <div className="space-y-20 lg:space-y-28">
+              {sections.map((s) => (
+                <div key={s.label} className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+                  {/* Archetype header */}
+                  <Reveal className="lg:col-span-4">
+                    <p className="font-body text-[11px] uppercase tracking-[0.32em] text-gold">
+                      {String(s.number).padStart(2, "0")}
+                    </p>
+                    <h2 className="mt-5 font-display text-[30px] leading-[1.12] text-paper lg:text-[36px]">
+                      {s.label}
+                    </h2>
+                    <p className="mt-3 font-display italic text-[18px] text-gold">{s.archetype}</p>
+                    <p className="mt-5 max-w-sm font-body text-sub text-[15px] leading-[1.6]">{s.body}</p>
+                  </Reveal>
+
+                  {/* Guests in this archetype */}
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-8">
+                    {s.guests.map((g, i) => (
+                      <GuestEntry key={g.slug} guest={g} delay={i * 0.06} />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -123,8 +145,8 @@ export default async function GuestsPage() {
               </Reveal>
               <Reveal delay={0.08} className="self-end lg:col-span-5 lg:col-start-8">
                 <p className="max-w-md font-body italic text-sub text-[17px] leading-[1.55]">
-                  Watch the conversations themselves. Guest names and notes are in each
-                  episode.
+                  Watch the conversations themselves. Every guest above links to their
+                  episodes.
                 </p>
               </Reveal>
             </div>

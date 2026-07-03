@@ -1,5 +1,5 @@
 import type { StructureResolver } from "sanity/structure";
-import { PlayIcon, DocumentTextIcon } from "@sanity/icons";
+import { PlayIcon, DocumentTextIcon, UsersIcon } from "@sanity/icons";
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -20,5 +20,13 @@ export const structure: StructureResolver = (S) =>
           S.documentTypeList("article")
             .title("Blog")
             .defaultOrdering([{ field: "publishedAt", direction: "desc" }]),
+        ),
+      S.listItem()
+        .title("Guests")
+        .icon(UsersIcon)
+        .child(
+          S.documentTypeList("guest")
+            .title("Guests")
+            .defaultOrdering([{ field: "name", direction: "asc" }]),
         ),
     ]);
