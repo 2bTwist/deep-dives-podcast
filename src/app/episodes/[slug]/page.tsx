@@ -133,7 +133,7 @@ export default async function EpisodePage({
             </div>
 
             {/* Embedded player */}
-            <Reveal delay={0.08} className="mt-12 lg:mt-16">
+            <Reveal delay={0.08} className="mx-auto mt-12 max-w-3xl lg:mt-16">
               <div className="relative aspect-video w-full overflow-hidden bg-card">
                 <iframe
                   src={youtubeEmbedUrl(ep.youtubeId)}
