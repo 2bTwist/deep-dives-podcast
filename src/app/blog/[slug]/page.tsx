@@ -43,12 +43,12 @@ export async function generateMetadata({
   return {
     title: a.title,
     description: a.excerpt,
-    alternates: { canonical: `/articles/${a.slug}` },
+    alternates: { canonical: `/blog/${a.slug}` },
     openGraph: {
       type: "article",
       title: a.title,
       description: a.excerpt,
-      url: `/articles/${a.slug}`,
+      url: `/blog/${a.slug}`,
       images: [{ url: image, alt: a.coverImage?.alt ?? a.title }],
       ...(a.publishedAt ? { publishedTime: a.publishedAt } : {}),
       ...(a.dateModified ? { modifiedTime: a.dateModified } : {}),
@@ -77,7 +77,7 @@ export default async function ArticlePage({
     articleSchema(a),
     breadcrumbSchema([
       { name: "Home", url: siteUrl() },
-      { name: "Articles", url: `${siteUrl()}/articles` },
+      { name: "Blog", url: `${siteUrl()}/blog` },
       { name: a.title },
     ]),
   ];
@@ -92,14 +92,14 @@ export default async function ArticlePage({
             <div className="mx-auto max-w-content px-8 py-20 lg:px-10 lg:py-28">
               <Reveal>
                 <Link
-                  href="/articles"
+                  href="/blog"
                   className="group inline-flex items-baseline gap-3 font-body text-[14px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-gold"
                 >
                   <span className="text-[15px] transition-transform duration-200 ease-out group-hover:-translate-x-1">
                     ←
                   </span>
                   <span className="border-b border-muted/40 pb-1 transition-colors group-hover:border-gold/60">
-                    All articles
+                    All posts
                   </span>
                 </Link>
               </Reveal>

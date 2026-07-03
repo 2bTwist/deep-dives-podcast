@@ -156,7 +156,7 @@ export function episodeListSchema(episodes: EpisodeListItem[]) {
 }
 
 export function articleSchema(a: Article) {
-  const url = `${siteUrl()}/articles/${a.slug}`;
+  const url = `${siteUrl()}/blog/${a.slug}`;
   const image = a.coverImage?.url ?? `${siteUrl()}/og.jpg`;
   return {
     "@context": "https://schema.org",
@@ -190,7 +190,7 @@ export function articleListSchema(articles: ArticleListItem[]) {
     itemListElement: articles.map((a, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${siteUrl()}/articles/${a.slug}`,
+      url: `${siteUrl()}/blog/${a.slug}`,
       name: a.title,
     })),
   };

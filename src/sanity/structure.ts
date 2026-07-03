@@ -14,11 +14,11 @@ export const structure: StructureResolver = (S) =>
             .defaultOrdering([{ field: "publishedAt", direction: "desc" }]),
         ),
       S.listItem()
-        .title("Articles")
+        .title("Blog")
         .icon(DocumentTextIcon)
         .child(
           S.documentTypeList("article")
-            .title("Articles")
+            .title("Blog")
             .defaultOrdering([{ field: "publishedAt", direction: "desc" }]),
         ),
     ]);

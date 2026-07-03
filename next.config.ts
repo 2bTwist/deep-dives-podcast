@@ -32,6 +32,14 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  async redirects() {
+    // Articles section was renamed to Blog. Preserve the (brief) indexing and
+    // any inbound links with permanent 301s.
+    return [
+      { source: '/articles', destination: '/blog', permanent: true },
+      { source: '/articles/:slug', destination: '/blog/:slug', permanent: true },
+    ]
+  },
 }
 
 export default nextConfig
