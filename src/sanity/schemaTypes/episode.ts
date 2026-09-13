@@ -81,7 +81,7 @@ export const episode = defineType({
       title: "Newsletter Draft Created",
       readOnly: true,
       description:
-        "Set automatically when the new-episode email draft is created in Kit. Leave this alone — it prevents duplicate drafts.",
+        "Set automatically when the new-episode email draft is created in Resend. Leave this alone — it prevents duplicate drafts.",
     }),
     defineField({
       name: "thumbnailOverride",

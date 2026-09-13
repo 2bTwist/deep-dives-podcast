@@ -1,20 +1,22 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import { newsletterSchema } from "@/lib/validation";
 import { rateLimit, clientIp } from "@/lib/rate-limit";
 
 /**
- * Newsletter signup -> Kit (ConvertKit) v4 API.
+ * Newsletter signup -> Resend contact in the Newsletter segment.
  *
- * Adds the email to the configured Kit form. Single opt-in is a setting ON THE
- * KIT FORM itself (set in the Kit dashboard), so the subscriber is active
- * immediately and our "You're in" copy stays truthful.
+ * Resend's contact create is an upsert, so a repeat signup is harmless. The
+ * create never sends `unsubscribed`, so someone who unsubscribed stays
+ * unsubscribed. Membership is added explicitly because the upsert is not
+ * guaranteed to add segments to a contact that already exists.
  *
- * Env: KIT_API_KEY, KIT_NEWSLETTER_FORM_ID
+ * Env: RESEND_AUDIENCE_API_KEY (full access, server only), RESEND_NEWSLETTER_SEGMENT_ID
  */
 export async function POST(req: Request) {
-  const apiKey = process.env.KIT_API_KEY;
-  const formId = process.env.KIT_NEWSLETTER_FORM_ID;
-  if (!apiKey || !formId) {
+  const apiKey = process.env.RESEND_AUDIENCE_API_KEY;
+  const segmentId = process.env.RESEND_NEWSLETTER_SEGMENT_ID;
+  if (!apiKey || !segmentId) {
     return NextResponse.json(
       { ok: false, error: "Newsletter is not configured." },
       { status: 500 },
@@ -44,49 +46,36 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Please enter a valid email." }, { status: 400 });
   }
 
-  // Honeypot tripped — pretend success so bots don't learn anything.
+  // Honeypot tripped: pretend success so bots don't learn anything.
   if (parsed.data.company) {
     return NextResponse.json({ ok: true });
   }
 
-  const headers = { "Content-Type": "application/json", "X-Kit-Api-Key": apiKey };
-  const body = JSON.stringify({ email_address: parsed.data.email });
+  const email = parsed.data.email;
+  const resend = new Resend(apiKey);
   const failed = () =>
     NextResponse.json(
       { ok: false, error: "Something went wrong. Please try again." },
       { status: 502 },
     );
 
+  // Log only the error name and status: Resend messages can echo the address.
   try {
-    // Kit v4 only adds EXISTING subscribers to a form, so upsert the subscriber
-    // first. The upsert never changes state, so an unsubscribed address stays
-    // unsubscribed. Log status codes only: Kit error bodies can echo the address.
-    const created = await fetch("https://api.kit.com/v4/subscribers", {
-      method: "POST",
-      headers,
-      body,
-    });
-    if (!created.ok) {
-      console.error("Kit subscriber upsert failed", created.status);
+    const created = await resend.contacts.create({ email });
+    if (created.error) {
+      console.error("Resend contact create failed", created.error.name, created.error.statusCode);
       return failed();
     }
 
-    const added = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
-      method: "POST",
-      headers,
-      body,
-    });
-    if (!added.ok) {
-      console.error("Kit add-to-form failed", added.status);
+    const added = await resend.contacts.segments.add({ contactId: created.data.id, segmentId });
+    if (added.error) {
+      console.error("Resend segment add failed", added.error.name, added.error.statusCode);
       return failed();
     }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("Kit subscribe error", err);
-    return NextResponse.json(
-      { ok: false, error: "Something went wrong. Please try again." },
-      { status: 502 },
-    );
+    console.error("Resend subscribe error", err instanceof Error ? err.name : typeof err);
+    return failed();
   }
 }

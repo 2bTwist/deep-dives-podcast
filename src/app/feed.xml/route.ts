@@ -13,8 +13,8 @@ function escapeXml(s: string) {
 }
 
 /**
- * RSS 2.0 feed of episodes. Useful for feed readers, and the input a Kit RSS
- * broadcast can watch if the show ever switches to hands-off auto-send.
+ * RSS 2.0 feed of episodes. Useful for feed readers, and the input an
+ * RSS-to-email tool can watch if the show ever switches to hands-off auto-send.
  */
 export async function GET() {
   const base = siteUrl();

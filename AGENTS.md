@@ -24,27 +24,33 @@ in repository instructions or handoff files.
 
 ## External state contract
 
-- Sanity is authoritative for episode and editorial CMS state. Kit is authoritative
-  for newsletter subscribers and broadcast drafts. Repository code and local process
-  memory are not replicas or recovery sources for either provider.
-- Keep `SANITY_API_WRITE_TOKEN` in server-only code. A client component must never
-  import the write-enabled Sanity client, and logs or responses must not expose
-  provider credentials or subscriber addresses.
-- Newsletter signup is one external Kit write. The blast route is two ordered writes:
-  create a Kit draft, then set `newsletterDraftCreated` on the Sanity episode. There
+- Sanity is authoritative for episode and editorial CMS state. Resend is authoritative
+  for newsletter contacts (the Newsletter segment), their unsubscribe state, and
+  broadcast drafts. Repository code and local process memory are not replicas or
+  recovery sources for either provider.
+- Keep `SANITY_API_WRITE_TOKEN` and `RESEND_AUDIENCE_API_KEY` in server-only code. The
+  audience key is full access because Resend has no contacts-only scope; only the
+  newsletter and blast routes may read it. The contact form uses the sending-only
+  `RESEND_API_KEY`. A client component must never import the write-enabled Sanity
+  client, and logs or responses must not expose provider credentials or subscriber
+  addresses.
+- Newsletter signup writes one Resend contact and its Newsletter segment membership.
+  It must never set a contact's unsubscribe state, so an unsubscribed address stays
+  unsubscribed. The blast route is two ordered writes: create a Resend broadcast
+  draft, then set `newsletterDraftCreated` on the Sanity episode. There
   is no transaction across those providers. Never describe the flag as proof that the
   two writes completed atomically.
-- The current blast route can create duplicate Kit drafts when concurrent signed
+- The current blast route can create duplicate Resend drafts when concurrent signed
   webhooks observe an unset flag. Webhook idempotency and the duplicate-draft race are
   unresolved architecture gaps. Do not redesign this boundary without an explicit
   decision covering idempotency ownership, recovery, and reversal.
 - Repository code defines no provider-data purge or retention workflow. Deletion and
   recovery remain provider-managed until an explicit, tested workflow is added. Sanity
-  schema changes and Kit contract changes require compatibility review against existing
+  schema changes and Resend contract changes require compatibility review against existing
   provider state; do not infer a migration from TypeScript types alone.
 - Verify request validation, signature rejection, missing configuration, provider
   failure mapping, and write ordering with contract tests that use independent provider
-  fakes. A local lint or typecheck result does not prove the live Sanity-to-Kit flow.
+  fakes. A local lint or typecheck result does not prove the live Sanity-to-Resend flow.
   Live-provider verification and a concurrency/idempotency test remain undriven.
 
 ## Verification
