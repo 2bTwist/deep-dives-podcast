@@ -1,3 +1,5 @@
+import type { GUEST_ARCHETYPES } from "@/sanity/schemaTypes/guest";
+
 export type EpisodeCategory =
   | "Entrepreneurship"
   | "Finance"
@@ -55,15 +57,8 @@ export type Article = {
   relatedEpisode?: { slug: string; title: string; youtubeId?: string } | null;
 };
 
-/** The 7 guest archetypes — the sections of the guest wall. */
-export type GuestArchetype =
-  | "Founders & Operators"
-  | "Planners & Producers"
-  | "Clergy & Counselors"
-  | "Civic Voices"
-  | "Immigrants & Diaspora"
-  | "Creatives at Work"
-  | "Faith & Doubt";
+/** The guest archetypes — the sections of the guest wall. Derived from the schema list. */
+export type GuestArchetype = (typeof GUEST_ARCHETYPES)[number];
 
 /** Minimal resolved episode shape shown on a guest card/profile. */
 export type GuestEpisodeRef = {
