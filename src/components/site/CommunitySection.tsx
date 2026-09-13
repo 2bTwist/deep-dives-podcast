@@ -6,16 +6,25 @@ import { DropCap } from "./DropCap";
 
 export function CommunitySection() {
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "submitting" | "success">("idle");
+  const [company, setCompany] = useState(""); // honeypot
+  const [state, setState] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
     setState("submitting");
-    // TODO: wire to Resend / ConvertKit / Supabase. Frontend-only for now.
-    await new Promise((r) => setTimeout(r, 600));
-    setState("success");
-    setEmail("");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, company }),
+      });
+      if (!res.ok) throw new Error("request failed");
+      setState("success");
+      setEmail("");
+    } catch {
+      setState("error");
+    }
   }
 
   return (
@@ -43,6 +52,17 @@ export function CommunitySection() {
             {/* Right — form */}
             <div className="lg:col-span-6 lg:flex lg:items-end">
               <form onSubmit={submit} className="w-full">
+                {/* Honeypot — hidden from humans, tempting to bots. */}
+                <input
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                />
                 {state === "success" ? (
                   <div className="border border-ink/30 p-8">
                     <p className="font-body text-[12px] uppercase tracking-[0.32em] text-ink/80">
@@ -81,9 +101,15 @@ export function CommunitySection() {
                     </button>
                   </div>
                 )}
-                <p className="mt-4 font-body italic text-ink/60 text-[13px]">
-                  No spam, ever.
-                </p>
+                {state === "error" ? (
+                  <p role="alert" className="mt-4 font-body text-[13px] font-medium text-ink underline decoration-ink/40 underline-offset-2">
+                    Something went wrong. Please try again.
+                  </p>
+                ) : (
+                  <p className="mt-4 font-body italic text-ink/60 text-[13px]">
+                    No spam, ever.
+                  </p>
+                )}
               </form>
             </div>
           </div>

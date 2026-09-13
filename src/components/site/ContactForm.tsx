@@ -17,18 +17,27 @@ export function ContactForm() {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState<(typeof subjects)[number]>("Just saying hi");
   const [message, setMessage] = useState("");
-  const [state, setState] = useState<"idle" | "submitting" | "success">("idle");
+  const [company, setCompany] = useState(""); // honeypot
+  const [state, setState] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!name || !email || !message) return;
     setState("submitting");
-    // TODO: wire to Resend / Formspree / Supabase. Frontend-only for now.
-    await new Promise((r) => setTimeout(r, 700));
-    setState("success");
-    setName("");
-    setEmail("");
-    setMessage("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message, company }),
+      });
+      if (!res.ok) throw new Error("request failed");
+      setState("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch {
+      setState("error");
+    }
   }
 
   if (state === "success") {
@@ -49,6 +58,17 @@ export function ContactForm() {
 
   return (
     <form onSubmit={submit} className="space-y-6">
+      {/* Honeypot — hidden from humans, tempting to bots. */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={company}
+        onChange={(e) => setCompany(e.target.value)}
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
       <div className="grid gap-6 sm:grid-cols-2">
         <label className="block">
           <span className="block font-body text-[11px] uppercase tracking-[0.32em] text-gold">
@@ -133,6 +153,12 @@ export function ContactForm() {
           </span>
         )}
       </motion.button>
+
+      {state === "error" && (
+        <p role="alert" className="font-body text-[14px] text-youtube">
+          Something went wrong sending your message. Please try again.
+        </p>
+      )}
     </form>
   );
 }

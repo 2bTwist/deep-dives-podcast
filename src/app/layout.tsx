@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Fraunces, Allura } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { NewsletterPopup } from "@/components/site/NewsletterPopup";
 import "./globals.css";
 
 // All three brand fonts use display:swap with preload so the real fonts always
@@ -123,6 +124,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
+        <NewsletterPopup />
         <Analytics />
         <SpeedInsights />
       </body>

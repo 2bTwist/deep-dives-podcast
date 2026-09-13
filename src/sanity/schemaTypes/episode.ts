@@ -76,6 +76,14 @@ export const episode = defineType({
       description: "Guest title or role (optional).",
     }),
     defineField({
+      name: "newsletterDraftCreated",
+      type: "boolean",
+      title: "Newsletter Draft Created",
+      readOnly: true,
+      description:
+        "Set automatically when the new-episode email draft is created in Kit. Leave this alone — it prevents duplicate drafts.",
+    }),
+    defineField({
       name: "thumbnailOverride",
       type: "image",
       title: "Thumbnail Override",

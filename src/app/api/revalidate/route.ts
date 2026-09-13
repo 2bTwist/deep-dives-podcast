@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
   }
 
   if (!isValidSignature) {
-    const auth = req.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
-    if (auth !== secret) {
+    const auth = req.headers.get("authorization");
+    if (auth !== `Bearer ${secret}`) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     try {
@@ -40,16 +40,25 @@ export async function POST(req: NextRequest) {
   }
 
   revalidateTag("episode", "max");
+  revalidateTag("article", "max");
   revalidatePath("/");
   revalidatePath("/episodes");
+  revalidatePath("/blog");
   revalidatePath("/guests");
 
+  // The webhook body carries the document type + slug. Fall back to a generic
+  // `slug` for the manual bearer path (treated as an episode for compatibility).
+  const type = typeof body._type === "string" ? body._type : undefined;
   const slug = typeof body.slug === "string" ? body.slug : undefined;
-  if (slug) revalidatePath(`/episodes/${slug}`);
+  if (slug) {
+    if (type === "article") revalidatePath(`/blog/${slug}`);
+    else revalidatePath(`/episodes/${slug}`);
+  }
 
   return NextResponse.json({
     revalidated: true,
     via: isValidSignature ? "sanity-webhook" : "bearer",
+    type: type ?? null,
     slug: slug ?? null,
     at: new Date().toISOString(),
   });
