@@ -40,7 +40,7 @@ export function AboutTeaserSection() {
             <Link
               href="/about"
               aria-label="Read about Raissa"
-              className="group relative block aspect-[4/5] overflow-hidden bg-card"
+              className="group relative block aspect-[4/5] overflow-hidden bg-card sm:aspect-[16/10] lg:aspect-[4/5]"
             >
               <Image
                 src="/brand/raissa-portrait.jpg"
@@ -120,14 +120,16 @@ export function AboutTeaserSection() {
         {/* Bottom: 4 value cards */}
         <div className="mt-24 grid grid-cols-1 gap-px bg-rule sm:grid-cols-2 lg:mt-32 lg:grid-cols-4">
           {values.map(({ Icon, title, body }, i) => (
-            <Reveal key={title} delay={i * 0.08} className="group bg-surface p-8 lg:p-10">
-              <span className="inline-grid h-12 w-12 place-items-center border border-gold text-gold transition-all duration-300 ease-out group-hover:border-gold-bright group-hover:text-gold-bright">
+            <Reveal key={title} delay={i * 0.08} className="group flex items-start gap-5 bg-surface py-7 sm:block sm:p-8 lg:p-10">
+              <span className="inline-grid h-12 w-12 shrink-0 place-items-center border border-gold text-gold transition-all duration-300 ease-out group-hover:border-gold-bright group-hover:text-gold-bright">
                 <Icon className="h-5 w-5 transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110" />
               </span>
-              <h3 className="mt-7 font-display text-[22px] leading-[1.2] text-paper transition-colors duration-300 group-hover:text-gold">
-                {title}
-              </h3>
-              <p className="mt-3 font-body italic text-sub text-[15px] leading-[1.55]">{body}</p>
+              <div>
+                <h3 className="font-display text-[22px] leading-[1.2] text-paper transition-colors duration-300 group-hover:text-gold sm:mt-7">
+                  {title}
+                </h3>
+                <p className="mt-2 font-body italic text-sub text-[15px] leading-[1.55] sm:mt-3">{body}</p>
+              </div>
             </Reveal>
           ))}
         </div>
