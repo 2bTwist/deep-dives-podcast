@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Contact subjects must mirror the chips in ContactForm.tsx.
-export const contactSubjects = [
+const contactSubjects = [
   "Guest pitch",
   "Press inquiry",
   "Partnership",
@@ -25,6 +25,3 @@ export const contactSchema = z.object({
   message: z.string().trim().min(1).max(5000),
   company: honeypot, // honeypot
 });
-
-export type NewsletterInput = z.infer<typeof newsletterSchema>;
-export type ContactInput = z.infer<typeof contactSchema>;

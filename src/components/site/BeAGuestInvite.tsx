@@ -1,54 +1,62 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
+// Each profession carries its article so the question stays grammatical.
 const PROFESSIONS = [
-  "founder",
-  "planner",
-  "pastor",
-  "lobbyist",
-  "organizer",
-  "writer",
-  "therapist",
+  { article: "a", word: "founder" },
+  { article: "a", word: "planner" },
+  { article: "a", word: "pastor" },
+  { article: "a", word: "lobbyist" },
+  { article: "an", word: "organizer" },
+  { article: "a", word: "writer" },
+  { article: "a", word: "therapist" },
 ] as const;
 
+const HOLD_MS = 2200;
+/** Matches the invite-word keyframes in globals.css. */
+const SWAP_MS = 400;
+
+type Phase = "idle" | "leave" | "enter";
+
 /**
- * Be-a-Guest hero question. Renders the section's <h2> with the profession
- * crossfading every 2.2s. The first profession is the SSR'd word so the
- * h2 is meaningful for crawlers; rotation kicks in client-side.
+ * Be-a-Guest hero question. The profession swaps every 2.2s. The first
+ * profession is the SSR'd word so the line is meaningful for crawlers;
+ * rotation kicks in client-side. CSS keyframes run the swap, which keeps an
+ * animation library out of the homepage bundle.
  */
 export function BeAGuestInvite() {
-  const reduced = useReducedMotion();
   const [i, setI] = useState(0);
+  const [phase, setPhase] = useState<Phase>("idle");
 
   useEffect(() => {
-    if (reduced) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let swap: ReturnType<typeof setTimeout> | undefined;
     const id = setInterval(() => {
-      setI((prev) => (prev + 1) % PROFESSIONS.length);
-    }, 2200);
-    return () => clearInterval(id);
-  }, [reduced]);
+      setPhase("leave");
+      swap = setTimeout(() => {
+        setI((prev) => (prev + 1) % PROFESSIONS.length);
+        setPhase("enter");
+      }, SWAP_MS);
+    }, HOLD_MS);
+    return () => {
+      clearInterval(id);
+      clearTimeout(swap);
+    };
+  }, []);
+
+  const { article, word } = PROFESSIONS[i];
 
   return (
     <p className="font-display text-[44px] leading-[1.02] tracking-[-0.015em] text-paper sm:text-[64px] sm:leading-[1.0] lg:text-[96px]">
-      Are you a{" "}
+      Are you {article}{" "}
       <span
         aria-live="polite"
         className="relative inline-block align-baseline italic font-light text-gold"
       >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={PROFESSIONS[i]}
-            initial={reduced ? false : { opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduced ? { opacity: 1 } : { opacity: 0, y: -18 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block"
-          >
-            {PROFESSIONS[i]}
-          </motion.span>
-        </AnimatePresence>
+        <span key={word} data-invite-word={phase} className="inline-block">
+          {word}
+        </span>
       </span>
       ?
     </p>

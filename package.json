@@ -34,7 +34,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "chrome-launcher": "^1.2.1",
-    "depcheck": "^1.4.7",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "knip": "^6.14.1",

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRef } from "react";
 import { EpisodeThumb } from "@/components/site/EpisodeThumb";
 import { NewBadge } from "@/components/site/NewBadge";
-import { EASE, MOTION_OK, floatLoop, gsap, mouseParallax, riseOnScroll, useGSAP } from "@/lib/gsap";
+import { Reveal } from "@/components/site/Reveal";
+import { EASE, MOTION_OK, floatLoop, gsap, mouseParallax, useGSAP } from "@/lib/gsap";
 import type { Episode } from "@/lib/types";
 
 const ART = "/art";
@@ -16,8 +17,9 @@ type Props = {
 
 /**
  * Centered magazine-cover masthead with three small 3D blobs around it.
- * The <h1> is server-rendered and never hidden, so the LCP element still
- * paints on the first frame. Only the supporting copy and blobs animate in.
+ * No copy waits for JavaScript: the text and the latest-episode card render
+ * visible (Reveal only animates what starts below the fold), and GSAP only
+ * drives the decorative blobs.
  */
 export function Hero({ featured }: Props) {
   const root = useRef<HTMLElement>(null);
@@ -37,11 +39,7 @@ export function Hero({ featured }: Props) {
 
       mm.add(MOTION_OK, () => {
         gsap.set("[data-reveal]", { visibility: "visible" });
-
-        gsap
-          .timeline({ defaults: { ease: EASE, duration: 1.2 } })
-          .from("[data-blob]", { scale: 0.6, autoAlpha: 0, stagger: 0.12, duration: 1.6 }, 0)
-          .from("[data-intro]", { y: 18, autoAlpha: 0, stagger: 0.08 }, 0.15);
+        gsap.from("[data-blob]", { scale: 0.6, autoAlpha: 0, stagger: 0.12, duration: 1.6, ease: EASE });
 
         // Blobs drift up at different rates as the hero scrolls away.
         gsap.utils.toArray<HTMLElement>("[data-blob]").forEach((el, i) => {
@@ -53,7 +51,6 @@ export function Hero({ featured }: Props) {
         });
 
         floatLoop(scope);
-        riseOnScroll(scope);
         return mouseParallax(scope);
       });
     },
@@ -92,21 +89,25 @@ export function Hero({ featured }: Props) {
           </h1>
 
           {/* Host attribution */}
-          <p data-intro data-reveal className="mt-10 font-body italic text-gold text-[18px] leading-none">
-            with{" "}
-            <span className="font-display italic font-medium text-[32px] tracking-[-0.005em] text-gold-shine">
-              Raissa
-            </span>
-          </p>
+          <Reveal delay={0.15} className="mt-10">
+            <p className="font-body italic text-gold text-[18px] leading-none">
+              with{" "}
+              <span className="font-display italic font-medium text-[32px] tracking-[-0.005em] text-gold-shine">
+                Raissa
+              </span>
+            </p>
+          </Reveal>
 
           {/* Lede */}
-          <p data-intro data-reveal className="mt-12 max-w-xl font-body italic text-sub text-[20px] leading-[1.55]">
-            Deep conversations on the questions of the moment, with the experts
-            who actually live them.
-          </p>
+          <Reveal delay={0.23} className="mt-12">
+            <p className="max-w-xl font-body italic text-sub text-[20px] leading-[1.55]">
+              Deep conversations on the questions of the moment, with the experts
+              who actually live them.
+            </p>
+          </Reveal>
 
           {/* CTAs */}
-          <div data-intro data-reveal className="mt-12 flex flex-wrap items-center justify-center gap-4">
+          <Reveal delay={0.31} className="mt-12 flex flex-wrap items-center justify-center gap-4">
             <a
               href={`https://www.youtube.com/watch?v=${featured.youtubeId}`}
               target="_blank"
@@ -122,10 +123,10 @@ export function Hero({ featured }: Props) {
             >
               Explore Episodes
             </Link>
-          </div>
+          </Reveal>
 
           {/* Latest episode — horizontal card below the masthead */}
-          <div data-rise data-reveal className="relative mt-16 w-full max-w-4xl text-left sm:mt-24 lg:mt-28">
+          <Reveal className="relative mt-16 w-full max-w-4xl text-left sm:mt-24 lg:mt-28">
             <div aria-hidden className="pointer-events-none absolute -bottom-16 -left-28 hidden w-[150px] lg:block">
               <div data-mouse="20">
                 <div data-float>
@@ -153,6 +154,8 @@ export function Hero({ featured }: Props) {
                   width={1280}
                   height={720}
                   sizes="(min-width: 1024px) 56vw, 100vw"
+                  // Above the fold on desktop, where it is the largest element.
+                  loading="eager"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 <NewBadge publishedAt={featured.publishedAt} />
@@ -181,7 +184,7 @@ export function Hero({ featured }: Props) {
                 </div>
               </div>
             </Link>
-          </div>
+          </Reveal>
         </div>
       </div>
 

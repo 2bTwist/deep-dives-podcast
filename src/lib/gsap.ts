@@ -46,16 +46,4 @@ export function floatLoop(scope: HTMLElement) {
   });
 }
 
-/** Rise-in on scroll for [data-rise] elements. Starts hidden only once motion is confirmed. */
-export function riseOnScroll(scope: HTMLElement) {
-  const els = gsap.utils.toArray<HTMLElement>("[data-rise]", scope);
-  gsap.set(els, { y: 60, autoAlpha: 0 });
-  ScrollTrigger.batch(els, {
-    start: "top 88%",
-    once: true,
-    onEnter: (batch) =>
-      gsap.to(batch, { y: 0, autoAlpha: 1, duration: 1.1, ease: EASE, stagger: 0.09 }),
-  });
-}
-
-export { gsap, ScrollTrigger, useGSAP };
+export { gsap, useGSAP };
