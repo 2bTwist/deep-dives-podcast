@@ -162,7 +162,7 @@ export function MomentsStack({
               }
             }}
           >
-            <PolaroidCard moment={moments[topIdx]} priority />
+            <PolaroidCard moment={moments[topIdx]} />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -196,13 +196,9 @@ export function MomentsStack({
   );
 }
 
-function PolaroidCard({
-  moment,
-  priority = false,
-}: {
-  moment: Moment;
-  priority?: boolean;
-}) {
+// Images load lazily: the stack sits far below the fold on /about, and a
+// preload here would compete with the portrait, which is the page's LCP.
+function PolaroidCard({ moment }: { moment: Moment }) {
   return (
     <div
       className="relative h-full w-full bg-paper ring-1 ring-black/5"
@@ -221,7 +217,6 @@ function PolaroidCard({
             sizes="(min-width: 768px) 360px, 78vw"
             className="object-cover"
             draggable={false}
-            priority={priority}
           />
           {/* gold corner ornaments */}
           <span
