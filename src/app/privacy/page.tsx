@@ -1,21 +1,21 @@
-import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { JsonLd } from "@/components/site/JsonLd";
-import { breadcrumbSchema, siteUrl } from "@/lib/seo";
+import { breadcrumbSchema, pageMetadata, siteUrl } from "@/lib/seo";
+import { formatLegalDate, PRIVACY_UPDATED } from "@/lib/legal";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
     "How Deep Dives handles your information when you sign up for the newsletter, send a message, or watch episodes.",
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
-const LAST_UPDATED = "May 16, 2026";
+const LAST_UPDATED = formatLegalDate(PRIVACY_UPDATED);
 
 export default function PrivacyPage() {
   return (

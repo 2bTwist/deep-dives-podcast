@@ -86,9 +86,14 @@ export type Guest = {
   episodes: GuestEpisodeRef[];
 };
 
+/** Just enough of a guest to link to their profile. */
+export type GuestRef = Pick<Guest, "name" | "slug">;
+
 /** Lighter wall-card shape: no bio/episodes, just an episode count for the hint. */
 export type GuestCard = {
   _id?: string;
+  /** Sanity's last-edit timestamp, used as the sitemap freshness date. */
+  _updatedAt?: string;
   name: string;
   slug: string;
   title?: string;

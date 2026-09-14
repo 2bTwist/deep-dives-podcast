@@ -8,7 +8,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { EpisodeCard } from "@/components/site/EpisodeCard";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getGuestBySlug, getGuestSlugs } from "@/sanity/lib/queries";
-import { guestSchema, breadcrumbSchema, siteUrl } from "@/lib/seo";
+import { guestImage, guestSchema, breadcrumbSchema, pageMetadata, siteUrl } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -27,21 +27,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const g = await getGuestBySlug(slug);
   if (!g) return {};
-  const role = [g.title, g.company].filter(Boolean).join(" · ");
-  const description = g.bio ?? `${g.name}${role ? ` — ${role}` : ""}, on Deep Dives.`;
-  const image = g.photo?.url ?? `${siteUrl()}/og.jpg`;
-  return {
-    title: g.name,
-    description,
-    alternates: { canonical: `/guests/${g.slug}` },
-    openGraph: {
-      type: "profile",
-      title: g.name,
-      description,
-      url: `/guests/${g.slug}`,
-      images: [{ url: image, alt: g.photo?.alt ?? g.name }],
-    },
-  };
+  const role = [g.title, g.company].filter(Boolean).join(", ");
+  return pageMetadata({
+    title: role ? `${g.name}, ${role}` : g.name,
+    description: g.bio ?? `${g.name}${role ? `, ${role},` : ""} on Deep Dives Podcast with Raissa.`,
+    path: `/guests/${g.slug}`,
+    image: guestImage(g),
+    og: { type: "profile" },
+  });
 }
 
 export default async function GuestProfilePage({

@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -7,9 +8,20 @@ import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { EpisodeCard } from "@/components/site/EpisodeCard";
 import { JsonLd } from "@/components/site/JsonLd";
-import { getAllEpisodes, getEpisodeBySlug, getEpisodeSlugs } from "@/sanity/lib/queries";
+import {
+  getAllEpisodes,
+  getEpisodeBySlug,
+  getEpisodeSlugs,
+  getGuestsForEpisode,
+} from "@/sanity/lib/queries";
 import { youtubeEmbedUrl, youtubeThumb, youtubeWatchUrl } from "@/lib/youtube";
-import { breadcrumbSchema, podcastEpisodeSchema, siteUrl } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  pageMetadata,
+  podcastEpisodeSchema,
+  siteUrl,
+  videoObjectSchema,
+} from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -37,28 +49,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const ep = await getEpisodeBySlug(slug);
   if (!ep) return {};
-  // 'sd' (640x480) is guaranteed for every public video; 'maxres' 404s on
-  // older/unprocessed videos and silently breaks the OG card when shared.
-  const image = youtubeThumb(ep.youtubeId, "sd");
-  return {
+  return pageMetadata({
     title: ep.title,
-    description: ep.description,
-    alternates: { canonical: `/episodes/${ep.slug}` },
-    openGraph: {
-      type: "video.episode",
-      title: ep.title,
-      description: ep.description,
-      url: `/episodes/${ep.slug}`,
-      images: [{ url: image, width: 1280, height: 720, alt: ep.title }],
-      ...(ep.publishedAt ? { publishedTime: ep.publishedAt } : {}),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: ep.title,
-      description: ep.description,
-      images: [image],
-    },
-  };
+    description: ep.description ?? `${ep.title}. A full episode of Deep Dives Podcast with Raissa.`,
+    path: `/episodes/${ep.slug}`,
+    // 'sd' (640x480) is guaranteed for every public video; 'maxres' 404s on
+    // older/unprocessed videos and silently breaks the OG card when shared.
+    image: { url: youtubeThumb(ep.youtubeId, "sd"), width: 640, height: 480, alt: ep.title },
+    og: { type: "video.episode" },
+  });
 }
 
 export default async function EpisodePage({
@@ -70,10 +69,13 @@ export default async function EpisodePage({
   const [ep, all] = await Promise.all([getEpisodeBySlug(slug), getAllEpisodes()]);
   if (!ep) notFound();
 
+  const guests = ep._id ? await getGuestsForEpisode(ep._id) : [];
   const related = all.filter((e) => e.slug !== slug).slice(0, 3);
+  const video = videoObjectSchema(ep, guests);
 
   const structured = [
-    podcastEpisodeSchema(ep),
+    podcastEpisodeSchema(ep, guests),
+    ...(video ? [video] : []),
     breadcrumbSchema([
       { name: "Home", url: siteUrl() },
       { name: "Episodes", url: `${siteUrl()}/episodes` },
@@ -110,6 +112,25 @@ export default async function EpisodePage({
                   {ep.title}
                 </h1>
                 <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-body italic text-sub text-[14px]">
+                  {guests.length > 0 && (
+                    <>
+                      <span>
+                        With{" "}
+                        {guests.map((g, i) => (
+                          <Fragment key={g.slug}>
+                            {i > 0 && (i === guests.length - 1 ? " and " : ", ")}
+                            <Link
+                              href={`/guests/${g.slug}`}
+                              className="text-paper transition-colors hover:text-gold"
+                            >
+                              {g.name}
+                            </Link>
+                          </Fragment>
+                        ))}
+                      </span>
+                      <span aria-hidden className="text-rule">·</span>
+                    </>
+                  )}
                   <span>{formatDate(ep.publishedAt)}</span>
                   {ep.dateModified && ep.dateModified !== ep.publishedAt && (
                     <>
@@ -117,8 +138,12 @@ export default async function EpisodePage({
                       <span>Updated {formatDate(ep.dateModified)}</span>
                     </>
                   )}
-                  <span aria-hidden className="text-rule">·</span>
-                  <span>{ep.duration}</span>
+                  {ep.duration && (
+                    <>
+                      <span aria-hidden className="text-rule">·</span>
+                      <span>{ep.duration}</span>
+                    </>
+                  )}
                   <span aria-hidden className="text-rule">·</span>
                   <a
                     href={youtubeWatchUrl(ep.youtubeId)}

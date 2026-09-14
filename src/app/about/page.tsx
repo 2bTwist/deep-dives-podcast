@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
@@ -10,7 +9,14 @@ import { HandSignature } from "@/components/site/HandSignature";
 import { MomentsStack, type Moment } from "@/components/site/MomentsStack";
 import { BeAGuestSection } from "@/components/site/BeAGuestSection";
 import { JsonLd } from "@/components/site/JsonLd";
-import { breadcrumbSchema, faqPageSchema, personSchema, podcastSeriesSchema, siteUrl } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqPageSchema,
+  pageMetadata,
+  personSchema,
+  podcastSeriesSchema,
+  siteUrl,
+} from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -81,12 +87,12 @@ const MOMENTS: Moment[] = [
   { src: "/brand/moments/04.jpg", alt: "Raissa against pleated velvet in soft plum light", vol: "IV", tag: "Quiet hours" },
 ];
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About",
   description:
     "A letter from Raissa, host of Deep Dives. What the show is, who it's for, and where to find every episode on YouTube.",
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

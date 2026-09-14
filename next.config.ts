@@ -36,6 +36,14 @@ const nextConfig: NextConfig = {
     // Articles section was renamed to Blog. Preserve the (brief) indexing and
     // any inbound links with permanent 301s.
     return [
+      // One host for search engines. www served a full duplicate of the site
+      // with a 200, splitting links and crawl budget across two hostnames.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.deepdives237.com' }],
+        destination: 'https://deepdives237.com/:path*',
+        permanent: true,
+      },
       { source: '/articles', destination: '/blog', permanent: true },
       { source: '/articles/:slug', destination: '/blog/:slug', permanent: true },
     ]

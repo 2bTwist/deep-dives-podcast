@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
@@ -6,18 +5,18 @@ import { DropCap } from "@/components/site/DropCap";
 import { EpisodeCard } from "@/components/site/EpisodeCard";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes } from "@/sanity/lib/queries";
-import { breadcrumbSchema, episodeListSchema, siteUrl } from "@/lib/seo";
+import { breadcrumbSchema, episodeListSchema, pageMetadata, siteUrl } from "@/lib/seo";
 
 const CHANNEL_URL = "https://www.youtube.com/@DeepDives237/videos";
 
 export const revalidate = 300;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Episodes",
   description:
-    "The latest episodes of Deep Dive Podcast with Raissa. Going deep on the questions that shape modern life: work, money, faith, immigration, relationships.",
-  alternates: { canonical: "/episodes" },
-};
+    "Every episode of Deep Dives Podcast with Raissa. Long-form interviews on work, money, faith, immigration and relationships, with the people who live them.",
+  path: "/episodes",
+});
 
 export default async function EpisodesPage() {
   const latest = await getAllEpisodes();

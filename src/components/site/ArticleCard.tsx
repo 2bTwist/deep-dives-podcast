@@ -33,7 +33,7 @@ export function ArticleCard({ article: a, delay = 0, headingLevel = 3 }: Props) 
       className="group border border-rule bg-card transition-colors duration-300 hover:border-gold/40"
     >
       <article>
-        <Link href={`/articles/${a.slug}`} className="block">
+        <Link href={`/blog/${a.slug}`} className="block">
           <div className="relative aspect-video overflow-hidden bg-deep-gray">
             {a.coverImage?.url ? (
               <Image

@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "./client";
-import type { Episode, Article, Guest, GuestCard } from "@/lib/types";
+import type { Episode, Article, Guest, GuestCard, GuestRef } from "@/lib/types";
 
 const EPISODE_PROJECTION = /* groq */ `
   _id,
@@ -147,6 +147,7 @@ export function getArticleSlugs(): Promise<string[]> {
 
 const GUEST_CARD_PROJECTION = /* groq */ `
   _id,
+  _updatedAt,
   name,
   "slug": slug.current,
   title,
@@ -198,6 +199,20 @@ export function getGuestBySlug(slug: string): Promise<Guest | null> {
     query: GUEST_BY_SLUG_QUERY,
     params: { slug },
     tags: [`guest:${slug}`, "guest"],
+  });
+}
+
+const GUESTS_BY_EPISODE_QUERY = defineQuery(/* groq */ `
+  *[_type == "guest" && defined(slug.current) && references($episodeId)]
+    | order(name asc) { name, "slug": slug.current }
+`);
+
+/** Guests whose profile lists this episode, so the episode page can link back to them. */
+export function getGuestsForEpisode(episodeId: string): Promise<GuestRef[]> {
+  return sanityFetch<GuestRef[]>({
+    query: GUESTS_BY_EPISODE_QUERY,
+    params: { episodeId },
+    tags: ["guest"],
   });
 }
 
