@@ -36,7 +36,9 @@ in repository instructions or handoff files.
   addresses.
 - Newsletter signup writes one Resend contact and its Newsletter segment membership.
   It must never set a contact's unsubscribe state, so an unsubscribed address stays
-  unsubscribed. The blast route is two ordered writes: create a Resend broadcast
+  unsubscribed. It sends the `newsletter.subscribed` event, which starts the Resend
+  welcome Automation, only when a lookup before the create returns 404; a failed
+  lookup or event still subscribes. Resend owns the welcome template after upload. The blast route is two ordered writes: create a Resend broadcast
   draft, then set `newsletterDraftCreated` on the Sanity episode. There
   is no transaction across those providers. Never describe the flag as proof that the
   two writes completed atomically.
