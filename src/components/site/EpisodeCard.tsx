@@ -48,6 +48,7 @@ export function EpisodeCard({
               alt={ep.title}
               width={640}
               height={360}
+              sizes="(min-width: 1024px) 460px, (min-width: 768px) 50vw, 100vw"
               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             />
             {showPlayBadge && (

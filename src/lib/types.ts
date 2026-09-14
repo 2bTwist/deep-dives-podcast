@@ -1,6 +1,6 @@
 import type { GUEST_ARCHETYPES } from "@/sanity/schemaTypes/guest";
 
-export type EpisodeCategory =
+type EpisodeCategory =
   | "Entrepreneurship"
   | "Finance"
   | "Relationships"
@@ -58,10 +58,10 @@ export type Article = {
 };
 
 /** The guest archetypes — the sections of the guest wall. Derived from the schema list. */
-export type GuestArchetype = (typeof GUEST_ARCHETYPES)[number];
+type GuestArchetype = (typeof GUEST_ARCHETYPES)[number];
 
 /** Minimal resolved episode shape shown on a guest card/profile. */
-export type GuestEpisodeRef = {
+type GuestEpisodeRef = {
   title: string;
   slug: string;
   youtubeId: string;

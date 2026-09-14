@@ -119,9 +119,49 @@ body {
   to   { opacity: 1; }
 }
 
-/* Hero intro: [data-reveal] elements stay hidden until GSAP starts the intro.
-   The delayed animation is a safety net that reveals them if the script never
-   runs. No-JS and reduced-motion visitors never hide anything. */
+/* Reveal (components/site/Reveal.tsx). Server-rendered content is always
+   visible. Content on screen at load never fades: Chrome only records LCP once
+   an opacity entrance finishes. Elements that start below the fold are hidden
+   after hydration until they scroll into view. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal-state="waiting"] {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  [data-reveal-state="shown"] {
+    transition:
+      opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s),
+      transform 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s);
+  }
+}
+
+/* BeAGuestInvite profession swap: the current word rises out, the next rises in. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-invite-word="leave"] {
+    animation: invite-word-out 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  [data-invite-word="enter"] {
+    animation: invite-word-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes invite-word-out {
+  to {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes invite-word-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+/* Hero blobs: decorative [data-reveal] art stays hidden until GSAP starts its
+   entrance. The delayed animation is a safety net that shows it if the script
+   never runs. No-JS and reduced-motion visitors never hide anything. */
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     visibility: hidden;

@@ -1,64 +1,52 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
   className?: string;
-  /** Stagger delay in seconds, applied after element enters viewport. */
+  /** Stagger delay in seconds, applied when the element scrolls into view. */
   delay?: number;
 };
 
+type RevealState = "visible" | "waiting" | "shown";
+
 /**
- * Scroll-triggered fade-up wrapper using IntersectionObserver + CSS transitions.
- * Replaces the previous motion-based Reveal so this component contributes
- * zero JS beyond the IO hook to the main bundle.
- *
- * Respects prefers-reduced-motion: renders shown immediately, no transition.
+ * Scroll-triggered fade-up wrapper. Content is server-rendered fully visible,
+ * so whatever is on screen at load paints on the first frame and counts toward
+ * LCP without waiting for JavaScript. After hydration, elements that start
+ * below the fold are hidden and fade up as they scroll into view. Styles live
+ * in globals.css under [data-reveal-state]; reduced motion skips all of it.
  */
 export function Reveal({ delay = 0, children, className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
+  const [state, setState] = useState<RevealState>("visible");
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // Reduce-motion: render shown immediately. One-shot setup
-      // side effect on mount, not derived render state.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setShown(true);
-      return;
-    }
-
+    // Hiding happens off screen, so it is never a visible flash.
+    setState("waiting");
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
-        if (delay > 0) {
-          setTimeout(() => setShown(true), delay * 1000);
-        } else {
-          setShown(true);
-        }
+        setState("shown");
         io.disconnect();
       },
       { rootMargin: "-80px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [delay]);
+  }, []);
 
   return (
     <div
       ref={ref}
       className={className}
-      style={{
-        opacity: shown ? 1 : 0,
-        transform: shown ? "translateY(0)" : "translateY(24px)",
-        transition:
-          "opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1)",
-        willChange: shown ? undefined : "opacity, transform",
-      }}
+      data-reveal-state={state}
+      style={delay > 0 ? ({ "--reveal-delay": `${delay}s` } as CSSProperties) : undefined}
     >
       {children}
     </div>
