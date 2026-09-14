@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { Episode, Article, Guest, GuestCard, GuestRef } from "@/lib/types";
 import { youtubeEmbedUrl, youtubeThumb } from "@/lib/youtube";
+import { SOCIAL } from "@/lib/social";
 
 /** Absolute site origin. Every canonical, sitemap, feed and JSON-LD URL derives from this. */
 export function siteUrl() {
@@ -14,11 +15,7 @@ const SITE = {
     "A show with Raissa. Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.",
   channel: "https://www.youtube.com/@DeepDives237",
   handle: "@DeepDives237",
-  social: {
-    youtube: "https://www.youtube.com/@DeepDives237",
-    instagram: "https://www.instagram.com/deepdives237",
-    tiktok: "https://www.tiktok.com/@deepdives237",
-  },
+  social: SOCIAL,
 };
 
 export const SITE_NAME = SITE.name;

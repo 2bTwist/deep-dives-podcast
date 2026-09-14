@@ -1,3 +1,5 @@
+import { SOCIAL } from "@/lib/social";
+
 type IconProps = { className?: string };
 
 function YoutubeIcon({ className = "" }: IconProps) {
@@ -27,9 +29,9 @@ function TikTokIcon({ className = "" }: IconProps) {
 }
 
 const items = [
-  { name: "YouTube",   href: "https://www.youtube.com/@DeepDives237", Icon: YoutubeIcon },
-  { name: "Instagram", href: "#",                                     Icon: InstagramIcon },
-  { name: "TikTok",    href: "#",                                     Icon: TikTokIcon },
+  { name: "YouTube",   href: SOCIAL.youtube,   Icon: YoutubeIcon },
+  { name: "Instagram", href: SOCIAL.instagram, Icon: InstagramIcon },
+  { name: "TikTok",    href: SOCIAL.tiktok,    Icon: TikTokIcon },
 ] as const;
 
 export function SocialIcons({ className = "" }: { className?: string }) {
