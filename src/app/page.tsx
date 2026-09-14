@@ -8,9 +8,22 @@ import { BeAGuestSection } from "@/components/site/BeAGuestSection";
 import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getFeaturedEpisode } from "@/sanity/lib/queries";
-import { organizationSchema, podcastSeriesSchema, websiteSchema } from "@/lib/seo";
+import {
+  organizationSchema,
+  pageMetadata,
+  podcastSeriesSchema,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  websiteSchema,
+} from "@/lib/seo";
 
 export const revalidate = 300;
+
+export const metadata = pageMetadata({
+  title: { absolute: SITE_NAME },
+  description: SITE_DESCRIPTION,
+  path: "/",
+});
 
 export default async function HomePage() {
   const featured = await getFeaturedEpisode();

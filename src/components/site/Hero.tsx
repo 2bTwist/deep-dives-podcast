@@ -85,7 +85,7 @@ export function Hero({ featured }: Props) {
           <h1>
             <span className="block font-display text-[64px] leading-[0.92] tracking-[-0.018em] text-paper sm:text-[96px] md:text-[120px] lg:text-[160px]">
               Deep Dives
-            </span>
+            </span>{" "}
             <span className="-mt-2 block font-script text-[64px] leading-[0.78] text-gold sm:text-[96px] md:text-[124px] lg:text-[164px]">
               Podcast
             </span>

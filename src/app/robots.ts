@@ -1,8 +1,5 @@
 import type { MetadataRoute } from "next";
-
-function siteUrl() {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-}
+import { siteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   // Explicit AI search bot allows so future infra changes (CDN, WAF) can't

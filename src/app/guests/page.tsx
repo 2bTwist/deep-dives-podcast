@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
@@ -8,7 +7,13 @@ import { GuestEntry } from "@/components/site/GuestEntry";
 import { Button } from "@/components/site/Button";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllEpisodes, getAllGuests } from "@/sanity/lib/queries";
-import { breadcrumbSchema, guestArchetypesSchema, siteUrl } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  guestArchetypesSchema,
+  guestListSchema,
+  pageMetadata,
+  siteUrl,
+} from "@/lib/seo";
 import type { GuestCard } from "@/lib/types";
 
 export const revalidate = 3600;
@@ -51,12 +56,12 @@ const voices: { label: string; archetype: string; body: string }[] = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Guests",
   description:
     "The people who've been on Deep Dives. Founders, planners, clergy, civic voices, and more, grouped by the kind of expert they are. Pitch yourself.",
-  alternates: { canonical: "/guests" },
-};
+  path: "/guests",
+});
 
 export default async function GuestsPage() {
   const [guests, episodes] = await Promise.all([getAllGuests(), getAllEpisodes()]);
@@ -78,6 +83,7 @@ export default async function GuestsPage() {
     <>
       <JsonLd
         data={[
+          guestListSchema(guests),
           guestArchetypesSchema(voices),
           breadcrumbSchema([
             { name: "Home", url: siteUrl() },

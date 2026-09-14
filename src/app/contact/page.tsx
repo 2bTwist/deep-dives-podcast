@@ -1,29 +1,31 @@
-import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { ContactForm } from "@/components/site/ContactForm";
 import { JsonLd } from "@/components/site/JsonLd";
-import { breadcrumbSchema, siteUrl } from "@/lib/seo";
+import { breadcrumbSchema, contactPageSchema, pageMetadata, siteUrl } from "@/lib/seo";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Write to Deep Dives. Guest pitches, press, partnerships, or just hello.",
-  alternates: { canonical: "/contact" },
-};
+    "Write to Deep Dives Podcast with Raissa. Pitch yourself or a guest, reach out about press and partnerships, or tell us which episode pulled you in.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <>
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", url: siteUrl() },
-          { name: "Contact", url: `${siteUrl()}/contact` },
-        ])}
+        data={[
+          contactPageSchema(),
+          breadcrumbSchema([
+            { name: "Home", url: siteUrl() },
+            { name: "Contact", url: `${siteUrl()}/contact` },
+          ]),
+        ]}
       />
       <Header />
       <main id="main">

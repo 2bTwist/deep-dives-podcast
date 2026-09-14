@@ -3,6 +3,7 @@ import { Playfair_Display, Fraunces, Allura } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NewsletterPopup } from "@/components/site/NewsletterPopup";
+import { FEED_PATH, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 // All three brand fonts use display:swap with preload so the real fonts always
@@ -40,8 +41,11 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Site-wide defaults. Indexable pages override these through pageMetadata() in
+// src/lib/seo.ts, which also sets the page's canonical URL. No canonical lives
+// here, so pages without their own (404s, error states) never point at the homepage.
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  metadataBase: new URL(siteUrl()),
   title: {
     default: 'Deep Dives Podcast with Raissa',
     template: '%s | Deep Dives Podcast',
@@ -55,7 +59,7 @@ export const metadata: Metadata = {
     description:
       'A show with Raissa. Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.',
     locale: 'en_US',
-    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Deep Dive Podcast with Raissa' }],
+    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Deep Dives Podcast with Raissa' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -66,7 +70,7 @@ export const metadata: Metadata = {
     site: '@DeepDives237',
   },
   alternates: {
-    canonical: '/',
+    types: { 'application/rss+xml': FEED_PATH },
   },
   authors: [{ name: 'Raissa' }],
   keywords: [

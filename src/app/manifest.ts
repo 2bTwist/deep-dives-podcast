@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Deep Dive Podcast with Raissa",
+    name: "Deep Dives Podcast with Raissa",
     short_name: "Deep Dives",
     description:
       "A show with Raissa. Going deep on the questions that shape modern life, with the experts who actually live them. New on YouTube.",

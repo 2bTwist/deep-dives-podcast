@@ -37,9 +37,9 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Deep Dive Podcast with Raissa</title>
+    <title>Deep Dives Podcast with Raissa</title>
     <link>${base}</link>
-    <description>New episodes of Deep Dive Podcast with Raissa.</description>
+    <description>New episodes of Deep Dives Podcast with Raissa.</description>
     <language>en</language>
     <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="${base}/feed.xml" rel="self" type="application/rss+xml"/>
 ${items}

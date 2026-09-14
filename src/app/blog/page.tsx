@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
@@ -6,16 +5,16 @@ import { DropCap } from "@/components/site/DropCap";
 import { ArticleCard } from "@/components/site/ArticleCard";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getAllArticles } from "@/sanity/lib/queries";
-import { articleListSchema, breadcrumbSchema, siteUrl } from "@/lib/seo";
+import { articleListSchema, breadcrumbSchema, pageMetadata, siteUrl } from "@/lib/seo";
 
 export const revalidate = 300;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Blog",
   description:
     "Essays and notes from Deep Dives Podcast with Raissa. Going deep on the questions that shape modern life: work, money, faith, immigration, relationships.",
-  alternates: { canonical: "/blog" },
-};
+  path: "/blog",
+});
 
 export default async function ArticlesPage() {
   const articles = await getAllArticles();

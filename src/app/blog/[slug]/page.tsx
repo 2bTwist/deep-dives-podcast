@@ -10,7 +10,7 @@ import { EpisodeThumbStatic } from "@/components/site/EpisodeThumbStatic";
 import { CommunitySection } from "@/components/site/CommunitySection";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getArticleBySlug, getArticleSlugs } from "@/sanity/lib/queries";
-import { articleSchema, breadcrumbSchema, siteUrl } from "@/lib/seo";
+import { articleImage, articleSchema, breadcrumbSchema, pageMetadata, siteUrl } from "@/lib/seo";
 import { readingTimeMinutes } from "@/lib/reading-time";
 
 type Params = { slug: string };
@@ -39,27 +39,19 @@ export async function generateMetadata({
   const { slug } = await params;
   const a = await getArticleBySlug(slug);
   if (!a) return {};
-  const image = a.coverImage?.url ?? `${siteUrl()}/og.jpg`;
-  return {
+  return pageMetadata({
     title: a.title,
-    description: a.excerpt,
-    alternates: { canonical: `/blog/${a.slug}` },
-    openGraph: {
+    description: a.excerpt ?? `${a.title}. An essay from Deep Dives Podcast with Raissa.`,
+    path: `/blog/${a.slug}`,
+    image: articleImage(a),
+    og: {
       type: "article",
-      title: a.title,
-      description: a.excerpt,
-      url: `/blog/${a.slug}`,
-      images: [{ url: image, alt: a.coverImage?.alt ?? a.title }],
+      authors: [`${siteUrl()}/about`],
+      ...(a.category ? { section: a.category } : {}),
       ...(a.publishedAt ? { publishedTime: a.publishedAt } : {}),
       ...(a.dateModified ? { modifiedTime: a.dateModified } : {}),
     },
-    twitter: {
-      card: "summary_large_image",
-      title: a.title,
-      description: a.excerpt,
-      images: [image],
-    },
-  };
+  });
 }
 
 export default async function ArticlePage({

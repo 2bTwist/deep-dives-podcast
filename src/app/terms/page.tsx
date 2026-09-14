@@ -1,20 +1,20 @@
-import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { DropCap } from "@/components/site/DropCap";
 import { JsonLd } from "@/components/site/JsonLd";
-import { breadcrumbSchema, siteUrl } from "@/lib/seo";
+import { breadcrumbSchema, pageMetadata, siteUrl } from "@/lib/seo";
+import { formatLegalDate, TERMS_UPDATED } from "@/lib/legal";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Terms of Use",
-  description: "The terms that govern your use of the Deep Dives website and content.",
-  alternates: { canonical: "/terms" },
-};
+  description: "The terms that govern your use of the Deep Dives Podcast website, its episodes, and its written content.",
+  path: "/terms",
+});
 
-const LAST_UPDATED = "May 16, 2026";
+const LAST_UPDATED = formatLegalDate(TERMS_UPDATED);
 
 export default function TermsPage() {
   return (
