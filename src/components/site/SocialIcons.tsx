@@ -34,7 +34,7 @@ const items = [
 
 export function SocialIcons({ className = "" }: { className?: string }) {
   return (
-    <ul className={`flex items-center gap-4 ${className}`}>
+    <ul className={`flex items-center gap-6 ${className}`}>
       {items.map(({ name, href, Icon }) => (
         <li key={name}>
           <a
@@ -42,7 +42,7 @@ export function SocialIcons({ className = "" }: { className?: string }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={name}
-            className="block text-paper transition-colors duration-200 hover:text-gold"
+            className="-m-3 block p-3 text-paper transition-colors duration-200 hover:text-gold"
           >
             <Icon className="h-[18px] w-[18px]" />
           </a>

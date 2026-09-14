@@ -1,18 +1,27 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 import { EpisodeThumb } from "@/components/site/EpisodeThumb";
 import { NewBadge } from "@/components/site/NewBadge";
-import { HeroAmbience } from "@/components/site/HeroAmbience";
+import { EASE, MOTION_OK, floatLoop, gsap, mouseParallax, riseOnScroll, useGSAP } from "@/lib/gsap";
 import type { Episode } from "@/lib/types";
+
+const ART = "/art";
 
 type Props = {
   featured: Episode;
 };
 
 /**
- * Server-rendered hero. Centered magazine-cover masthead — no portrait,
- * no client hydration. The LCP <h1> paints on the first frame.
+ * Centered magazine-cover masthead with three small 3D blobs around it.
+ * The <h1> is server-rendered and never hidden, so the LCP element still
+ * paints on the first frame. Only the supporting copy and blobs animate in.
  */
 export function Hero({ featured }: Props) {
+  const root = useRef<HTMLElement>(null);
+
   const formattedDate = featured.publishedAt
     ? new Date(featured.publishedAt).toLocaleDateString("en-US", {
         month: "short",
@@ -21,9 +30,55 @@ export function Hero({ featured }: Props) {
       })
     : "";
 
+  useGSAP(
+    () => {
+      const scope = root.current!;
+      const mm = gsap.matchMedia();
+
+      mm.add(MOTION_OK, () => {
+        gsap.set("[data-reveal]", { visibility: "visible" });
+
+        gsap
+          .timeline({ defaults: { ease: EASE, duration: 1.2 } })
+          .from("[data-blob]", { scale: 0.6, autoAlpha: 0, stagger: 0.12, duration: 1.6 }, 0)
+          .from("[data-intro]", { y: 18, autoAlpha: 0, stagger: 0.08 }, 0.15);
+
+        // Blobs drift up at different rates as the hero scrolls away.
+        gsap.utils.toArray<HTMLElement>("[data-blob]").forEach((el, i) => {
+          gsap.to(el, {
+            yPercent: -25 - i * 20,
+            ease: "none",
+            scrollTrigger: { trigger: scope, start: "top top", end: "bottom top", scrub: true },
+          });
+        });
+
+        floatLoop(scope);
+        riseOnScroll(scope);
+        return mouseParallax(scope);
+      });
+    },
+    { scope: root },
+  );
+
   return (
-    <section className="relative overflow-hidden">
-      <HeroAmbience />
+    <section ref={root} className="relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <div data-blob data-reveal className="absolute left-3 top-[4px] w-[64px] sm:left-[2%] sm:top-[40px] sm:w-[100px] lg:left-[9%] lg:top-[90px] lg:w-[160px]">
+          <div data-mouse="-16">
+            <div data-float>
+              <Image src={`${ART}/blob-gold.png`} alt="" width={480} height={480} sizes="160px" className="h-auto w-full" />
+            </div>
+          </div>
+        </div>
+        <div data-blob data-reveal className="absolute right-3 top-[235px] w-[56px] sm:right-[2%] sm:top-[330px] sm:w-[90px] lg:right-[9%] lg:top-[330px] lg:w-[150px]">
+          <div data-mouse="12">
+            <div data-float>
+              <Image src={`${ART}/blob-obsidian.png`} alt="" width={480} height={480} sizes="150px" className="h-auto w-full" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="relative z-10 mx-auto max-w-content-tight px-8 lg:px-10">
         <div className="flex flex-col items-center pb-24 pt-20 text-center lg:pb-32 lg:pt-28">
           {/* Masthead */}
@@ -37,7 +92,7 @@ export function Hero({ featured }: Props) {
           </h1>
 
           {/* Host attribution */}
-          <p className="mt-10 font-body italic text-gold text-[18px] leading-none">
+          <p data-intro data-reveal className="mt-10 font-body italic text-gold text-[18px] leading-none">
             with{" "}
             <span className="font-display italic font-medium text-[32px] tracking-[-0.005em] text-gold-shine">
               Raissa
@@ -45,13 +100,13 @@ export function Hero({ featured }: Props) {
           </p>
 
           {/* Lede */}
-          <p className="mt-12 max-w-xl font-body italic text-sub text-[20px] leading-[1.55]">
+          <p data-intro data-reveal className="mt-12 max-w-xl font-body italic text-sub text-[20px] leading-[1.55]">
             Deep conversations on the questions of the moment, with the experts
             who actually live them.
           </p>
 
           {/* CTAs */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+          <div data-intro data-reveal className="mt-12 flex flex-wrap items-center justify-center gap-4">
             <a
               href={`https://www.youtube.com/watch?v=${featured.youtubeId}`}
               target="_blank"
@@ -70,7 +125,15 @@ export function Hero({ featured }: Props) {
           </div>
 
           {/* Latest episode — horizontal card below the masthead */}
-          <div className="mt-24 w-full max-w-4xl text-left lg:mt-28">
+          <div data-rise data-reveal className="relative mt-16 w-full max-w-4xl text-left sm:mt-24 lg:mt-28">
+            <div aria-hidden className="pointer-events-none absolute -bottom-16 -left-28 hidden w-[150px] lg:block">
+              <div data-mouse="20">
+                <div data-float>
+                  <Image src={`${ART}/blob-pearl.png`} alt="" width={480} height={480} sizes="150px" className="h-auto w-full" />
+                </div>
+              </div>
+            </div>
+
             <div className="mb-7 flex items-center justify-center gap-4">
               <span aria-hidden className="h-px w-10 bg-gold/45" />
               <p className="font-body text-[11px] uppercase tracking-[0.34em] text-gold/80">
@@ -81,7 +144,7 @@ export function Hero({ featured }: Props) {
 
             <Link
               href={`/episodes/${featured.slug}`}
-              className="group grid gap-7 sm:grid-cols-12 sm:gap-10"
+              className="group relative grid gap-7 sm:grid-cols-12 sm:gap-10"
             >
               <div className="relative aspect-video overflow-hidden bg-card sm:col-span-7">
                 <EpisodeThumb
@@ -89,7 +152,6 @@ export function Hero({ featured }: Props) {
                   alt={featured.title}
                   width={1280}
                   height={720}
-                  priority
                   sizes="(min-width: 1024px) 56vw, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />

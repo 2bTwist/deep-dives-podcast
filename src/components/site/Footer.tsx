@@ -38,17 +38,17 @@ export function Footer() {
           {/* Navigation column */}
           <div className="lg:col-span-3 lg:col-start-7">
             <p className="font-body text-[12px] uppercase tracking-[0.32em] text-muted">Explore</p>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-5 space-y-1">
               {footerNav.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="group relative inline-block font-body text-[15px] text-paper transition-colors hover:text-gold"
+                    className="group relative inline-block py-1.5 font-body text-[15px] text-paper transition-colors hover:text-gold"
                   >
                     {l.label}
                     <span
                       aria-hidden
-                      className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100"
+                      className="absolute bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100"
                     />
                   </Link>
                 </li>
@@ -59,18 +59,18 @@ export function Footer() {
           {/* Listen column */}
           <div className="lg:col-span-3">
             <p className="font-body text-[12px] uppercase tracking-[0.32em] text-muted">Listen</p>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-5 space-y-1">
               <li>
                 <a
                   href="https://www.youtube.com/@DeepDives237"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-block font-body text-[15px] text-paper transition-colors hover:text-gold"
+                  className="group relative inline-block py-1.5 font-body text-[15px] text-paper transition-colors hover:text-gold"
                 >
                   YouTube
                   <span
                     aria-hidden
-                    className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100"
+                    className="absolute bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100"
                   />
                 </a>
               </li>
@@ -79,12 +79,12 @@ export function Footer() {
                   href="https://www.youtube.com/@DeepDives237?sub_confirmation=1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-block font-body text-[15px] text-paper transition-colors hover:text-gold"
+                  className="group relative inline-block py-1.5 font-body text-[15px] text-paper transition-colors hover:text-gold"
                 >
                   Subscribe
                   <span
                     aria-hidden
-                    className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100"
+                    className="absolute bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100"
                   />
                 </a>
               </li>
@@ -101,7 +101,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="font-body text-[13px] text-muted transition-colors hover:text-gold"
+                    className="inline-block py-2 font-body text-[13px] text-muted transition-colors hover:text-gold"
                   >
                     {l.label}
                   </Link>

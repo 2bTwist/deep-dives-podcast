@@ -38,12 +38,14 @@ export async function ConversationsSection() {
           </Reveal>
         </div>
 
-        {/* Episode card grid — outlined cards with hairline border + breathing room */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-7">
+        {/* Phones swipe through the cards, with the next one peeking in. Tablets and up get the grid. */}
+        <ul className="-mx-8 flex snap-x snap-mandatory scroll-px-8 gap-4 overflow-x-auto px-8 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 lg:gap-7">
           {list.map((ep, i) => (
-            <EpisodeCard key={ep.youtubeId} episode={ep} delay={i * 0.08} />
+            <li key={ep.youtubeId} className="w-[82%] shrink-0 snap-start md:w-auto [&>div]:h-full">
+              <EpisodeCard episode={ep} delay={i * 0.08} />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <div aria-hidden className="mx-auto h-px max-w-content bg-rule" />
